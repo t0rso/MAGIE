@@ -1,0 +1,160 @@
+---
+import Base from '../layouts/Base.astro';
+import info from '../data/info.json';
+import { gusti, CATEGORIE } from '../lib/gusti';
+
+// PIN dimostrativo: in produzione l'area sarebbe protetta da un vero login (CMS)
+const PIN_DEMO = '1234';
+---
+<Base title="Area gestione" nudo>
+  <div class="min-h-svh bg-cacao-900 text-crema-50">
+    <header class="border-b border-white/10">
+      <div class="container-page flex h-16 items-center justify-between">
+        <a href="/" class="flex items-center gap-2 font-display text-2xl font-bold">
+          <span class="grid size-9 place-items-center rounded-full bg-fragola-500 text-lg">🍨</span>
+          {info.nome} <span class="ml-1 rounded-full bg-white/10 px-2 py-0.5 font-sans text-xs font-medium tracking-wider uppercase">Gestione</span>
+        </a>
+        <a href="/" class="text-sm text-crema-200/80 hover:text-white">← Torna al sito</a>
+      </div>
+    </header>
+
+    <!-- Login -->
+    <section id="login" class="container-page grid min-h-[70svh] place-items-center py-16">
+      <form id="form-pin" class="w-full max-w-sm rounded-blob bg-white p-8 text-cacao-900 shadow-soft">
+        <h1 class="text-2xl font-bold">Buongiorno! 👋</h1>
+        <p class="mt-1 text-sm text-cacao-700">Inserisci il PIN per aggiornare la vetrina di oggi.</p>
+        <label class="mt-6 block text-sm font-medium">
+          PIN
+          <input id="pin" type="password" inputmode="numeric" autocomplete="one-time-code" maxlength="4" required
+            class="mt-1.5 w-full rounded-2xl border border-cacao-900/15 bg-crema-50 px-4 py-3 text-center text-2xl tracking-[0.5em] outline-none focus:border-cacao-900" />
+        </label>
+        <p id="pin-errore" class="mt-2 hidden text-sm font-medium text-fragola-600" role="alert">PIN non corretto.</p>
+        <button class="btn-primary mt-5 w-full">Entra</button>
+        <p class="mt-4 text-center text-xs text-cacao-700">Demo: il PIN è <code class="rounded bg-crema-100 px-1.5 py-0.5">{PIN_DEMO}</code></p>
+      </form>
+    </section>
+
+    <!-- Pannello -->
+    <section id="pannello" class="container-page hidden py-10">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-pistacchio-300">Vetrina di oggi</p>
+          <h1 class="mt-1 text-3xl font-bold sm:text-4xl">Cosa c'è in vetrina?</h1>
+          <p class="mt-2 text-crema-200/80">Tocca un gusto per accenderlo o spegnerlo. Il sito si aggiorna subito.</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="rounded-full bg-white/10 px-3 py-1.5 text-sm"><strong id="n-attivi">0</strong> / {gusti.length} attivi</span>
+          <button id="ripristina" class="btn-ghost !border-white/20 !py-2 text-sm text-crema-50 hover:!bg-white/10">Ripristina</button>
+        </div>
+      </div>
+
+      {Object.entries(CATEGORIE).map(([k, label]) => (
+        <div class="mt-10">
+          <h2 class="text-lg font-bold text-crema-200">{label}</h2>
+          <ul class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {gusti.filter((g) => g.categoria === k).map((g) => (
+              <li>
+                <button
+                  type="button"
+                  class="toggle-gusto flex w-full items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-left transition hover:bg-white/10 aria-pressed:border-pistacchio-300 aria-pressed:bg-pistacchio-500/20"
+                  data-gusto-id={g.id}
+                  data-default={String(g.disponibileOggi)}
+                  aria-pressed={g.disponibileOggi}
+                >
+                  <span class="size-10 shrink-0 rounded-full border-2 border-white/20" style={`background:${g.colore}`} aria-hidden="true"></span>
+                  <span class="flex-1">
+                    <span class="block font-semibold">{g.nome}</span>
+                    <span class="block text-xs text-crema-200/70 stato-label">—</span>
+                  </span>
+                  <span class="switch relative h-7 w-12 shrink-0 rounded-full bg-white/20 transition" aria-hidden="true">
+                    <span class="absolute left-1 top-1 size-5 rounded-full bg-white shadow transition"></span>
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <div class="mt-12 rounded-blob border border-white/10 bg-white/5 p-6 text-sm text-crema-200/80">
+        <p class="font-semibold text-crema-50">Come funziona questa demo</p>
+        <p class="mt-2">
+          Le modifiche vengono salvate su <em>questo</em> dispositivo e si vedono su tutte le pagine del sito aperte qui.
+          Nella versione definitiva il pannello aggiorna il sito per tutti i visitatori in tempo reale e si usa dal telefono, senza installare nulla.
+        </p>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<script define:vars={{ PIN_DEMO }}>
+  window.__PIN_DEMO = PIN_DEMO;
+</script>
+
+<script>
+  import { leggiOverride, salvaOverride } from '../scripts/disponibilita';
+
+  const SESSIONE = 'magie:admin';
+  const login = document.getElementById('login')!;
+  const pannello = document.getElementById('pannello')!;
+  const form = document.getElementById('form-pin') as HTMLFormElement;
+  const pin = document.getElementById('pin') as HTMLInputElement;
+  const errore = document.getElementById('pin-errore')!;
+  const toggles = [...document.querySelectorAll<HTMLButtonElement>('.toggle-gusto')];
+  const nAttivi = document.getElementById('n-attivi')!;
+
+  function mostraPannello() {
+    login.classList.add('hidden');
+    pannello.classList.remove('hidden');
+    render();
+  }
+
+  function render() {
+    const o = leggiOverride();
+    let n = 0;
+    for (const t of toggles) {
+      const id = t.dataset.gustoId!;
+      const on = id in o ? o[id] : t.dataset.default === 'true';
+      t.setAttribute('aria-pressed', String(on));
+      t.querySelector('.stato-label')!.textContent = on ? 'In vetrina' : 'Non disponibile';
+      const knob = t.querySelector<HTMLElement>('.switch > span')!;
+      knob.style.transform = on ? 'translateX(20px)' : '';
+      t.querySelector<HTMLElement>('.switch')!.style.background = on ? '#7fa864' : '';
+      if (on) n++;
+    }
+    nAttivi.textContent = String(n);
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (pin.value === (window as any).__PIN_DEMO) {
+      sessionStorage.setItem(SESSIONE, '1');
+      mostraPannello();
+    } else {
+      errore.classList.remove('hidden');
+      pin.value = '';
+      pin.focus();
+    }
+  });
+
+  for (const t of toggles) {
+    t.addEventListener('click', () => {
+      const o = leggiOverride();
+      const id = t.dataset.gustoId!;
+      const attuale = id in o ? o[id] : t.dataset.default === 'true';
+      o[id] = !attuale;
+      salvaOverride(o);
+      render();
+    });
+  }
+
+  document.getElementById('ripristina')!.addEventListener('click', () => {
+    if (confirm('Ripristinare la vetrina predefinita?')) {
+      salvaOverride({});
+      render();
+    }
+  });
+
+  if (sessionStorage.getItem(SESSIONE)) mostraPannello();
+  else pin.focus();
+</script>

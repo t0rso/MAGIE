@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --color-crema-50: #fdfaf3;
+  --color-crema-100: #f8f1e1;
+  --color-crema-200: #efe3c8;
+  --color-pistacchio-300: #b9d3a3;
+  --color-pistacchio-500: #7fa864;
+  --color-pistacchio-700: #557a3f;
+  --color-fragola-400: #f27d93;
+  --color-fragola-500: #e85d75;
+  --color-fragola-600: #cf4560;
+  --color-cacao-700: #5b3a2e;
+  --color-cacao-900: #33211a;
+
+  --radius-blob: 2rem;
+  --shadow-soft: 0 10px 30px -12px rgb(51 33 26 / 0.25);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-crema-50 text-cacao-900 font-sans antialiased;
+  }
+  h1, h2, h3, h4 { @apply font-display; }
+  ::selection { @apply bg-fragola-400 text-white; }
+}
+
+@utility container-page { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+@utility btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold transition active:scale-[0.98]; }
+@utility btn-primary { @apply btn bg-cacao-900 text-crema-50 hover:bg-cacao-700; }
+@utility btn-accent { @apply btn bg-fragola-500 text-white hover:bg-fragola-600; }
+@utility btn-ghost { @apply btn border-2 border-cacao-900/15 bg-transparent hover:bg-crema-100; }
+@utility chip {
+  @apply inline-flex items-center gap-1 rounded-full border border-cacao-900/10 bg-white/70 px-3 py-1 text-sm font-medium transition;
+  &[aria-pressed="true"] { @apply border-cacao-900 bg-cacao-900 text-crema-50; }
+}
+@utility eyebrow { @apply text-xs font-semibold uppercase tracking-[0.2em] text-pistacchio-700; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.fade-up { animation: fade-up 0.6s ease-out both; }
+.fade-up-delay { animation-delay: 0.15s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { animation: none; }
+}

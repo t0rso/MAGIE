@@ -1,0 +1,22 @@
+---
+import { GIORNI_ORDINATI, GIORNI_LABEL, formattaFasce, orari } from '../lib/orari';
+import StatoApertura from './StatoApertura.astro';
+---
+<div class="rounded-blob bg-white p-6 shadow-soft sm:p-8">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <h3 class="text-2xl font-bold">Orari</h3>
+    <StatoApertura />
+  </div>
+  <ul class="mt-5 divide-y divide-cacao-900/5">
+    {GIORNI_ORDINATI.map((g) => {
+      const fasce = orari[g] ?? null;
+      return (
+        <li class="flex items-center justify-between py-2.5 text-cacao-700" data-giorno={g}>
+          <span>{GIORNI_LABEL[g]}</span>
+          <span class:list={[!fasce && 'text-fragola-600']}>{formattaFasce(fasce)}</span>
+        </li>
+      );
+    })}
+  </ul>
+  <p class="mt-4 text-xs text-cacao-700">Nei giorni festivi gli orari possono variare: chiamaci o scrivici su WhatsApp.</p>
+</div>

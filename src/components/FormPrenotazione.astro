@@ -1,0 +1,96 @@
+---
+import info from '../data/info.json';
+import torteData from '../data/torte.json';
+import { gusti } from '../lib/gusti';
+
+const domani = new Date(Date.now() + 2 * 86_400_000).toISOString().slice(0, 10);
+---
+<form id="form-prenota" class="grid gap-5 rounded-blob bg-white p-6 shadow-soft sm:p-8" novalidate>
+  <div class="grid gap-5 sm:grid-cols-2">
+    <label class="grid gap-1.5 text-sm font-medium">
+      Il tuo nome
+      <input name="nome" required autocomplete="name" placeholder="Es. Laura" class="input" />
+    </label>
+    <label class="grid gap-1.5 text-sm font-medium">
+      Cosa vuoi prenotare?
+      <select name="prodotto" required class="input">
+        <optgroup label="Torte gelato">
+          {torteData.torte.map((t) => <option value={`Torta "${t.nome}" (${t.porzioni} porzioni)`}>{t.nome} · {t.porzioni} porzioni · €{t.prezzo}</option>)}
+        </optgroup>
+        <optgroup label="Vaschette">
+          {torteData.vaschette.map((v) => <option value={`Vaschetta da ${v.formato}`}>Vaschetta {v.formato} · {v.gusti} · €{v.prezzo}</option>)}
+        </optgroup>
+      </select>
+    </label>
+    <label class="grid gap-1.5 text-sm font-medium">
+      Per quando?
+      <input name="data" type="date" required min={domani} value={domani} class="input" />
+    </label>
+    <label class="grid gap-1.5 text-sm font-medium">
+      Orario di ritiro
+      <input name="ora" type="time" required value="18:00" class="input" />
+    </label>
+  </div>
+
+  <fieldset class="grid gap-2">
+    <legend class="text-sm font-medium">Gusti preferiti <span class="font-normal text-cacao-700">(facoltativo)</span></legend>
+    <div class="flex flex-wrap gap-2">
+      {gusti.filter((g) => g.disponibileOggi).map((g) => (
+        <label class="chip cursor-pointer has-[:checked]:border-cacao-900 has-[:checked]:bg-cacao-900 has-[:checked]:text-crema-50">
+          <input type="checkbox" name="gusti" value={g.nome} class="sr-only" />
+          <span class="size-3 rounded-full border border-black/10" style={`background:${g.colore}`}></span>
+          {g.nome}
+        </label>
+      ))}
+    </div>
+  </fieldset>
+
+  <label class="grid gap-1.5 text-sm font-medium">
+    Note <span class="font-normal text-cacao-700">(scritta sulla torta, allergie, ecc.)</span>
+    <textarea name="note" rows="3" placeholder='Es. "Buon compleanno Anna", senza frutta a guscio' class="input"></textarea>
+  </label>
+
+  <p class="text-sm text-cacao-700">{torteData.preavviso}</p>
+  <p id="form-errore" class="hidden text-sm font-medium text-fragola-600" role="alert">Compila nome, prodotto, data e orario per continuare.</p>
+
+  <button type="submit" class="btn-accent w-full sm:w-auto sm:justify-self-start">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
+    Invia la richiesta su WhatsApp
+  </button>
+  <p class="text-xs text-cacao-700">Si apre WhatsApp con il messaggio già scritto: lo controlli e lo invii tu. Ti confermiamo noi la disponibilità.</p>
+</form>
+
+<style>
+  @reference "../styles/global.css";
+  .input { @apply rounded-2xl border border-cacao-900/15 bg-crema-50 px-4 py-3 text-base font-normal outline-none transition focus:border-cacao-900 focus:ring-2 focus:ring-cacao-900/10; }
+</style>
+
+<script define:vars={{ numero: info.whatsapp, nomeGelateria: info.nome }}>
+  const form = document.getElementById('form-prenota');
+  const errore = document.getElementById('form-errore');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      errore.classList.remove('hidden');
+      form.querySelector(':invalid')?.focus();
+      return;
+    }
+    errore.classList.add('hidden');
+    const d = new FormData(form);
+    const gusti = d.getAll('gusti');
+    const data = new Date(d.get('data')).toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' });
+
+    const righe = [
+      `Ciao ${nomeGelateria}! Sono ${d.get('nome')} e vorrei prenotare:`,
+      `• ${d.get('prodotto')}`,
+      `• Ritiro: ${data} alle ${d.get('ora')}`,
+      gusti.length ? `• Gusti: ${gusti.join(', ')}` : null,
+      d.get('note') ? `• Note: ${d.get('note')}` : null,
+      '',
+      'Mi confermate la disponibilità? Grazie!',
+    ].filter((r) => r !== null);
+
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(righe.join('\n'))}`, '_blank', 'noopener');
+  });
+</script>

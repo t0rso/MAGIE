@@ -1,0 +1,36 @@
+{
+  "nome": "MAGIE",
+  "sottotitolo": "Gelateria artigianale",
+  "claim": "Gelato fatto ogni mattina, con le mani e con la testa.",
+  "descrizione": "Gelateria artigianale a Bologna: gelato mantecato ogni giorno con latte fresco, frutta di stagione e pistacchio di Bronte. Torte gelato su prenotazione.",
+  "indirizzo": {
+    "via": "Via delle Moline 12",
+    "cap": "40126",
+    "citta": "Bologna",
+    "provincia": "BO",
+    "lat": 44.4979,
+    "lng": 11.3489
+  },
+  "telefono": "+39 051 123 4567",
+  "whatsapp": "393331234567",
+  "email": "ciao@gelateriamagie.it",
+  "social": {
+    "instagram": "https://instagram.com/gelateriamagie",
+    "facebook": "https://facebook.com/gelateriamagie",
+    "google": "https://maps.google.com/?q=Gelateria+MAGIE+Bologna"
+  },
+  "orari": {
+    "lun": null,
+    "mar": [["12:00", "23:00"]],
+    "mer": [["12:00", "23:00"]],
+    "gio": [["12:00", "23:00"]],
+    "ven": [["12:00", "24:00"]],
+    "sab": [["11:00", "24:00"]],
+    "dom": [["11:00", "23:00"]]
+  },
+  "recensioni": [
+    { "autore": "Giulia R.", "voto": 5, "testo": "Il pistacchio è il migliore che abbia mai mangiato. Si sente che è vero." },
+    { "autore": "Marco B.", "voto": 5, "testo": "Torta gelato per il compleanno di mia figlia: perfetta, e prenotata via WhatsApp in due minuti." },
+    { "autore": "Sofia L.", "voto": 5, "testo": "Finalmente sorbetti davvero senza latte, buonissimi. Il mango è una bomba." }
+  ]
+}

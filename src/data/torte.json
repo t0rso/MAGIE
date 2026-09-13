@@ -1,0 +1,14 @@
+{
+  "torte": [
+    { "id": "magia-pistacchio", "nome": "Magia al pistacchio", "descrizione": "Base di pan di Spagna, gelato al pistacchio e fior di latte, granella di Bronte.", "porzioni": "8-10", "prezzo": 38, "colore": "#8FB57A" },
+    { "id": "foresta-nera", "nome": "Foresta nera", "descrizione": "Cioccolato fondente, amarene sciroppate, panna fresca montata.", "porzioni": "8-10", "prezzo": 36, "colore": "#4A2C21" },
+    { "id": "sorbetto-party", "nome": "Sorbetto party", "descrizione": "Tre strati di sorbetto (mango, lampone, limone). Vegana e senza glutine.", "porzioni": "10-12", "prezzo": 40, "colore": "#F6A623" },
+    { "id": "semifreddo-zabaione", "nome": "Semifreddo allo zabaione", "descrizione": "Zabaione al Marsala e croccante di mandorle. Il classico delle feste.", "porzioni": "6-8", "prezzo": 32, "colore": "#E9C46A" }
+  ],
+  "vaschette": [
+    { "formato": "500 g", "gusti": "fino a 2 gusti", "prezzo": 9 },
+    { "formato": "750 g", "gusti": "fino a 3 gusti", "prezzo": 13 },
+    { "formato": "1 kg", "gusti": "fino a 4 gusti", "prezzo": 17 }
+  ],
+  "preavviso": "Le torte vanno prenotate con almeno 48 ore di anticipo. Le vaschette sono sempre disponibili al banco."
+}

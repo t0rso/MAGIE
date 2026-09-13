@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import Mappa from '../components/Mappa.astro';
+import Orari from '../components/Orari.astro';
+import info from '../data/info.json';
+const tel = info.telefono.replace(/\s/g, '');
+---
+<Base title="Contatti e orari" description={`Gelateria MAGIE, ${info.indirizzo.via}, ${info.indirizzo.citta}. Orari di apertura, mappa, telefono e WhatsApp.`}>
+  <section class="container-page py-12 sm:py-16">
+    <p class="eyebrow">Dove e quando</p>
+    <h1 class="mt-2 text-4xl font-bold sm:text-5xl">Vieni a trovarci</h1>
+    <p class="mt-4 max-w-2xl text-lg text-cacao-700">
+      Siamo in {info.indirizzo.via}, a due passi dalle Due Torri. Se hai una domanda scrivici su WhatsApp: rispondiamo tra una mantecata e l'altra.
+    </p>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-[1.4fr_1fr]">
+      <div class="grid gap-6">
+        <Mappa />
+        <ul class="grid gap-4 sm:grid-cols-3">
+          <li class="rounded-blob bg-white p-5 shadow-soft">
+            <p class="eyebrow">Telefono</p>
+            <a href={`tel:${tel}`} class="mt-2 block font-semibold hover:underline">{info.telefono}</a>
+          </li>
+          <li class="rounded-blob bg-white p-5 shadow-soft">
+            <p class="eyebrow">WhatsApp</p>
+            <a href={`https://wa.me/${info.whatsapp}`} target="_blank" rel="noopener" class="mt-2 block font-semibold hover:underline">Scrivici un messaggio</a>
+          </li>
+          <li class="rounded-blob bg-white p-5 shadow-soft">
+            <p class="eyebrow">Email</p>
+            <a href={`mailto:${info.email}`} class="mt-2 block break-all font-semibold hover:underline">{info.email}</a>
+          </li>
+        </ul>
+      </div>
+      <Orari />
+    </div>
+
+    <div class="mt-14 grid gap-6 rounded-blob bg-crema-100 p-8 md:grid-cols-2">
+      <div>
+        <h2 class="text-2xl font-bold">Come arrivare</h2>
+        <ul class="mt-3 space-y-2 text-cacao-700">
+          <li><strong class="text-cacao-900">A piedi:</strong> 5 minuti da Piazza Maggiore lungo via Zamboni.</li>
+          <li><strong class="text-cacao-900">In bus:</strong> linee 20 e 32, fermata Moline.</li>
+          <li><strong class="text-cacao-900">In auto:</strong> parcheggio Autostazione (10 min a piedi). Siamo in ZTL.</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-2xl font-bold">Seguici</h2>
+        <p class="mt-3 text-cacao-700">Pubblichiamo la vetrina ogni mattina su Instagram, prima di aprire.</p>
+        <div class="mt-4 flex gap-3">
+          <a href={info.social.instagram} target="_blank" rel="noopener" class="btn-primary">Instagram</a>
+          <a href={info.social.facebook} target="_blank" rel="noopener" class="btn-ghost">Facebook</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

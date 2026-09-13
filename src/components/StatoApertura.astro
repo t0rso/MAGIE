@@ -1,0 +1,35 @@
+---
+/**
+ * Badge "Aperto ora / Chiuso" calcolato nel browser (l'orario è quello del visitatore).
+ * Renderizzato neutro in SSG, poi idratato dallo script.
+ */
+interface Props { class?: string }
+const { class: cls } = Astro.props;
+---
+<span data-stato-apertura class:list={['inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1.5 text-sm font-medium shadow-sm', cls]}>
+  <span class="size-2.5 rounded-full bg-cacao-900/20" data-dot></span>
+  <span data-label>Orari</span>
+  <span class="hidden text-cacao-700 sm:inline" data-dettaglio></span>
+</span>
+
+<script>
+  import { statoApertura } from '../scripts/orari';
+  import { orari } from '../lib/orari';
+
+  function aggiorna() {
+    const s = statoApertura(orari);
+    document.querySelectorAll<HTMLElement>('[data-stato-apertura]').forEach((el) => {
+      const dot = el.querySelector<HTMLElement>('[data-dot]')!;
+      el.querySelector('[data-label]')!.textContent = s.aperto ? 'Aperto ora' : 'Chiuso';
+      el.querySelector('[data-dettaglio]')!.textContent = `· ${s.dettaglio}`;
+      dot.className = `size-2.5 rounded-full ${s.aperto ? 'bg-pistacchio-500 animate-pulse' : 'bg-fragola-500'}`;
+    });
+    // Evidenzia il giorno corrente nelle liste orari
+    document.querySelectorAll<HTMLElement>('[data-giorno]').forEach((li) => {
+      li.classList.toggle('font-bold', li.dataset.giorno === s.giorno);
+      li.classList.toggle('text-cacao-900', li.dataset.giorno === s.giorno);
+    });
+  }
+  aggiorna();
+  setInterval(aggiorna, 60_000);
+</script>

@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import info from '../data/info.json';
+---
+<Base title="Chi siamo" description="La storia della gelateria MAGIE: un laboratorio a vista, latte fresco ogni giorno e la testardaggine di fare tutto a mano.">
+  <section class="container-page py-12 sm:py-16">
+    <div class="grid items-center gap-10 md:grid-cols-2">
+      <div>
+        <p class="eyebrow">La nostra storia</p>
+        <h1 class="mt-2 text-4xl font-bold sm:text-5xl">Un laboratorio a vista e poche idee, chiare</h1>
+        <p class="mt-6 text-lg text-cacao-700">
+          MAGIE è nata nel 2019 in un ex negozio di ferramenta, con una mantecatrice usata e la convinzione che il gelato buono non ha bisogno di trucchi.
+          Il laboratorio è dietro una vetrina: mentre aspetti il tuo cono vedi cosa ci mettiamo dentro.
+        </p>
+        <p class="mt-4 text-lg text-cacao-700">
+          Il nome viene da una frase di nonna Pina, che ai bambini diceva: <em>"non è magia, è latte buono"</em>. Aveva ragione lei.
+        </p>
+      </div>
+      <img
+        src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&w=900&q=80"
+        alt="Gelatiere che manteca il gelato in laboratorio"
+        width="900" height="1000"
+        class="aspect-[4/5] w-full rounded-blob object-cover shadow-soft md:aspect-[5/6]"
+        loading="eager"
+      />
+    </div>
+
+    <div class="mt-20 grid gap-6 md:grid-cols-3">
+      {[
+        { n: '01', t: 'Ingredienti prima di tutto', d: 'Pistacchio di Bronte DOP, nocciola Piemonte IGP, limoni di Sorrento, frutta dal mercato di via Albani. Se un ingrediente non ci convince, quel gusto non lo facciamo.' },
+        { n: '02', t: 'Niente semilavorati', d: 'Le paste di frutta secca le tostiamo e maciniamo noi. Le basi le bilanciamo a mano, gusto per gusto. Zero coloranti, zero aromi.' },
+        { n: '03', t: 'Poco, e fresco', d: 'Mantechiamo piccole quantità più volte al giorno. Per questo qualche gusto finisce presto: è un buon segno.' },
+      ].map((b) => (
+        <div class="rounded-blob bg-white p-7 shadow-soft">
+          <p class="font-display text-4xl font-bold text-fragola-500">{b.n}</p>
+          <h2 class="mt-3 text-xl font-bold">{b.t}</h2>
+          <p class="mt-2 text-cacao-700">{b.d}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-20 grid gap-10 md:grid-cols-2 md:items-center">
+      <img
+        src="https://images.unsplash.com/photo-1557142046-c704a3adf364?auto=format&fit=crop&w=900&q=80"
+        alt="Vetrina di gelato artigianale con diversi gusti"
+        width="900" height="700"
+        class="aspect-[4/3] w-full rounded-blob object-cover shadow-soft"
+        loading="lazy"
+      />
+      <div>
+        <p class="eyebrow">Le persone</p>
+        <h2 class="mt-2 text-3xl font-bold sm:text-4xl">Siamo in tre, più il bancone</h2>
+        <p class="mt-4 text-cacao-700">
+          Elena bilancia le ricette e tiene d'occhio il mercato. Davide sta alla mantecatrice dalle sei del mattino. Chiara ti serve al banco e conosce per nome metà del quartiere.
+        </p>
+        <a href="/contatti" class="btn-primary mt-6">Passa a conoscerci</a>
+      </div>
+    </div>
+  </section>
+</Base>

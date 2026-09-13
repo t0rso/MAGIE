@@ -1,0 +1,21 @@
+---
+import { ALLERGENI } from '../lib/gusti';
+interface Props { allergeni: string[]; compatto?: boolean }
+const { allergeni, compatto = false } = Astro.props;
+---
+{allergeni.length === 0 ? (
+  <span class="text-xs text-current/70">{compatto ? 'Senza allergeni' : 'Nessun allergene dichiarato'}</span>
+) : (
+  <ul class="flex flex-wrap gap-1.5" aria-label="Allergeni">
+    {allergeni.map((a) => {
+      const info = ALLERGENI[a] ?? { label: a, icona: '⚠️' };
+      return (
+        <li class="inline-flex items-center gap-1 rounded-full bg-black/10 px-2 py-0.5 text-xs" title={`Contiene ${info.label.toLowerCase()}`}>
+          <span aria-hidden="true">{info.icona}</span>
+          {!compatto && <span>{info.label}</span>}
+          {compatto && <span class="sr-only">{info.label}</span>}
+        </li>
+      );
+    })}
+  </ul>
+)}
