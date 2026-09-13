@@ -7,18 +7,19 @@ import info from '../data/info.json';
     <div class="grid items-center gap-10 md:grid-cols-2">
       <div>
         <p class="eyebrow">La nostra storia</p>
-        <h1 class="mt-2 text-4xl font-bold sm:text-5xl">Un laboratorio a vista e poche idee, chiare</h1>
+        <h1 class="mt-2 text-4xl font-bold sm:text-5xl">Un gelato che possano mangiare tutti</h1>
         <p class="mt-6 text-lg text-cacao-700">
-          MAGIE è nata nel 2019 in un ex negozio di ferramenta, con una mantecatrice usata e la convinzione che il gelato buono non ha bisogno di trucchi.
-          Il laboratorio è dietro una vetrina: mentre aspetti il tuo cono vedi cosa ci mettiamo dentro.
+          Magie è una gelateria artigianale di quartiere, in via Covignano a Rimini. Siamo partite da un'idea semplice:
+          chi è vegano, chi non può mangiare zucchero, chi ha un'intolleranza non dovrebbe accontentarsi del solito sorbetto al limone.
         </p>
         <p class="mt-4 text-lg text-cacao-700">
-          Il nome viene da una frase di nonna Pina, che ai bambini diceva: <em>"non è magia, è latte buono"</em>. Aveva ragione lei.
+          Per questo accanto alle creme classiche c'è sempre una linea vegana completa e una dolcificata solo con stevia.
+          E per questo le torte le facciamo su misura: ognuno ha la sua festa.
         </p>
       </div>
       <img
         src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&w=900&q=80"
-        alt="Gelatiere che manteca il gelato in laboratorio"
+        alt="Preparazione del gelato artigianale in laboratorio"
         width="900" height="1000"
         class="aspect-[4/5] w-full rounded-blob object-cover shadow-soft md:aspect-[5/6]"
         loading="eager"
@@ -27,9 +28,9 @@ import info from '../data/info.json';
 
     <div class="mt-20 grid gap-6 md:grid-cols-3">
       {[
-        { n: '01', t: 'Ingredienti prima di tutto', d: 'Pistacchio di Bronte DOP, nocciola Piemonte IGP, limoni di Sorrento, frutta dal mercato di via Albani. Se un ingrediente non ci convince, quel gusto non lo facciamo.' },
-        { n: '02', t: 'Niente semilavorati', d: 'Le paste di frutta secca le tostiamo e maciniamo noi. Le basi le bilanciamo a mano, gusto per gusto. Zero coloranti, zero aromi.' },
-        { n: '03', t: 'Poco, e fresco', d: 'Mantechiamo piccole quantità più volte al giorno. Per questo qualche gusto finisce presto: è un buon segno.' },
+        { n: '01', t: 'Ingredienti prima di tutto', d: 'Nocciola Piemonte IGP, pistacchio puro, frutta di stagione della Romagna. Zuccheri non raffinati e stevia per la linea senza zucchero. Se un ingrediente non ci convince, quel gusto non lo facciamo.' },
+        { n: '02', t: 'Vegano senza compromessi', d: 'Le basi vegetali le bilanciamo noi con latte di mandorla e riso fatti in casa: cremose come quelle al latte. Niente coloranti, niente aromi.' },
+        { n: '03', t: 'Cordialità, prima di tutto', d: 'Al banco c\'è sempre tempo per un assaggio e per un consiglio. Se hai un\'allergia o un dubbio, chiedi: sappiamo cosa c\'è in ogni vaschetta.' },
       ].map((b) => (
         <div class="rounded-blob bg-white p-7 shadow-soft">
           <p class="font-display text-4xl font-bold text-fragola-500">{b.n}</p>
@@ -49,9 +50,10 @@ import info from '../data/info.json';
       />
       <div>
         <p class="eyebrow">Le persone</p>
-        <h2 class="mt-2 text-3xl font-bold sm:text-4xl">Siamo in tre, più il bancone</h2>
+        <h2 class="mt-2 text-3xl font-bold sm:text-4xl">Le ragazze di Magie</h2>
         <p class="mt-4 text-cacao-700">
-          Elena bilancia le ricette e tiene d'occhio il mercato. Davide sta alla mantecatrice dalle sei del mattino. Chiara ti serve al banco e conosce per nome metà del quartiere.
+          Un piccolo team che manteca, decora torte e ti accoglie al banco. Le recensioni parlano di "ragazze super cordiali e professionali":
+          cerchiamo di meritarcelo ogni giorno.
         </p>
         <a href="/contatti" class="btn-primary mt-6">Passa a conoscerci</a>
       </div>

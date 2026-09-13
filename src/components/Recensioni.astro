@@ -3,7 +3,10 @@ import info from '../data/info.json';
 ---
 <section class="container-page py-16">
   <p class="eyebrow text-center">Dicono di noi</p>
-  <h2 class="mt-2 text-center text-3xl font-bold sm:text-4xl">Recensioni</h2>
+  <h2 class="mt-2 text-center text-3xl font-bold sm:text-4xl">
+    <span class="text-[#F6A623]" aria-hidden="true">★</span> {info.google.voto.toFixed(1).replace('.', ',')} su Google
+  </h2>
+  <p class="mt-2 text-center text-cacao-700">{info.google.recensioni} recensioni</p>
   <ul class="mt-10 grid gap-5 md:grid-cols-3">
     {info.recensioni.map((r) => (
       <li class="rounded-blob bg-white p-6 shadow-soft">

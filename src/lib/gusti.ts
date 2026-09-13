@@ -10,7 +10,7 @@ export const CATEGORIE: Record<Categoria, string> = {
 };
 
 // Filtri dietetici mostrati nella vetrina (l'ordine è quello di visualizzazione)
-export const TAG_FILTRI = ['vegano', 'senza lattosio', 'senza glutine', 'stagionale'];
+export const TAG_FILTRI = ['vegano', 'con stevia', 'senza lattosio', 'senza glutine', 'stagionale'];
 
 export const ALLERGENI: Record<string, { label: string; icona: string }> = {
   latte: { label: 'Latte', icona: '🥛' },

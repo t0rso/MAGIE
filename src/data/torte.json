@@ -1,14 +1,72 @@
 {
   "torte": [
-    { "id": "magia-pistacchio", "nome": "Magia al pistacchio", "descrizione": "Base di pan di Spagna, gelato al pistacchio e fior di latte, granella di Bronte.", "porzioni": "8-10", "prezzo": 38, "colore": "#8FB57A" },
-    { "id": "foresta-nera", "nome": "Foresta nera", "descrizione": "Cioccolato fondente, amarene sciroppate, panna fresca montata.", "porzioni": "8-10", "prezzo": 36, "colore": "#4A2C21" },
-    { "id": "sorbetto-party", "nome": "Sorbetto party", "descrizione": "Tre strati di sorbetto (mango, lampone, limone). Vegana e senza glutine.", "porzioni": "10-12", "prezzo": 40, "colore": "#F6A623" },
-    { "id": "semifreddo-zabaione", "nome": "Semifreddo allo zabaione", "descrizione": "Zabaione al Marsala e croccante di mandorle. Il classico delle feste.", "porzioni": "6-8", "prezzo": 32, "colore": "#E9C46A" }
+    {
+      "id": "personalizzata",
+      "nome": "Torta personalizzata",
+      "descrizione": "Scegli tu gusti, base e decorazione: la costruiamo su misura, con scritta o foto in cialda.",
+      "porzioni": "6-20",
+      "prezzo": 30,
+      "colore": "#E85D75",
+      "icona": "🎂"
+    },
+    {
+      "id": "cremino",
+      "nome": "Torta Cremino",
+      "descrizione": "Strati di nocciola e cioccolato al latte su base croccante. Il nostro gusto simbolo in versione torta.",
+      "porzioni": "8-10",
+      "prezzo": 36,
+      "colore": "#A0714F",
+      "icona": "🍫"
+    },
+    {
+      "id": "menta-cioccolato",
+      "nome": "Menta e cioccolato",
+      "descrizione": "Menta fresca e fondente 70%, con scaglie di cioccolato.",
+      "porzioni": "8-10",
+      "prezzo": 36,
+      "colore": "#9FD3B6",
+      "icona": "🌿"
+    },
+    {
+      "id": "vegana-frutta",
+      "nome": "Torta vegana ai frutti di bosco",
+      "descrizione": "Base di mandorla vegana e sorbetto ai frutti di bosco. Vegana e senza glutine.",
+      "porzioni": "8-10",
+      "prezzo": 38,
+      "colore": "#8E3B6B",
+      "icona": "🫐"
+    }
   ],
+  "pasticcini": {
+    "titolo": "Pasticcini di gelato in vassoio",
+    "descrizione": "Mignon di gelato assortiti (tartufini, bignè, cremini, mini-coni), pronti da portare a tavola. Chiedi la versione vegana o con stevia.",
+    "formati": [
+      {
+        "formato": "12 pezzi",
+        "prezzo": 18
+      },
+      {
+        "formato": "24 pezzi",
+        "prezzo": 34
+      }
+    ]
+  },
   "vaschette": [
-    { "formato": "500 g", "gusti": "fino a 2 gusti", "prezzo": 9 },
-    { "formato": "750 g", "gusti": "fino a 3 gusti", "prezzo": 13 },
-    { "formato": "1 kg", "gusti": "fino a 4 gusti", "prezzo": 17 }
+    {
+      "formato": "500 g",
+      "gusti": "fino a 2 gusti",
+      "prezzo": 9
+    },
+    {
+      "formato": "750 g",
+      "gusti": "fino a 3 gusti",
+      "prezzo": 13
+    },
+    {
+      "formato": "1 kg",
+      "gusti": "fino a 4 gusti",
+      "prezzo": 17
+    }
   ],
-  "preavviso": "Le torte vanno prenotate con almeno 48 ore di anticipo. Le vaschette sono sempre disponibili al banco."
+  "preavviso": "Le torte personalizzate vanno prenotate con almeno 48 ore di anticipo (24 per le torte di casa e i pasticcini). Vaschette sempre disponibili al banco, anche a domicilio."
 }

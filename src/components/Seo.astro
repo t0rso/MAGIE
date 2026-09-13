@@ -34,7 +34,9 @@ const schema = {
   },
   geo: { '@type': 'GeoCoordinates', latitude: info.indirizzo.lat, longitude: info.indirizzo.lng },
   openingHoursSpecification: orariSchema(orari),
-  sameAs: Object.values(info.social),
+  sameAs: [info.social.facebook, info.social.instagram],
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: info.google.voto, reviewCount: info.google.recensioni },
+  hasDeliveryMethod: 'http://purl.org/goodrelations/v1#DeliveryModeOwnFleet',
 };
 ---
 <title>{fullTitle}</title>

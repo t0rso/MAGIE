@@ -9,8 +9,9 @@ const anno = new Date().getFullYear();
       <p class="font-display text-3xl font-bold">{info.nome}</p>
       <p class="mt-2 max-w-xs text-cacao-700">{info.claim}</p>
       <div class="mt-5 flex gap-3">
-        <a href={info.social.instagram} class="chip" target="_blank" rel="noopener">Instagram</a>
         <a href={info.social.facebook} class="chip" target="_blank" rel="noopener">Facebook</a>
+        <a href={info.social.instagram} class="chip" target="_blank" rel="noopener">Instagram</a>
+        <a href={info.social.google} class="chip" target="_blank" rel="noopener">★ Google</a>
       </div>
     </div>
     <div>
@@ -35,7 +36,7 @@ const anno = new Date().getFullYear();
   </div>
   <div class="border-t border-cacao-900/10">
     <div class="container-page flex flex-col gap-2 py-5 text-xs text-cacao-700 sm:flex-row sm:justify-between">
-      <span>© {anno} Gelateria {info.nome} · P.IVA 00000000000</span>
+      <span>© {anno} Gelateria Magie · {info.indirizzo.citta} · P.IVA da inserire</span>
       <span>Sito dimostrativo · <a href="/admin" class="hover:underline">Area gestione</a></span>
     </div>
   </div>

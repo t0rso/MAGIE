@@ -14,17 +14,20 @@ import StatoApertura from './StatoApertura.astro';
     <div class="fade-up">
       <StatoApertura />
       <h1 class="mt-5 text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-        Gelato fatto <span class="text-fragola-500">ogni mattina</span>, con le mani e con la testa.
+        Gelato artigianale, <span class="text-fragola-500">per tutti</span>. Anche vegano, anche con stevia.
       </h1>
       <p class="mt-6 max-w-lg text-lg text-cacao-700">
-        Latte fresco, frutta di stagione, pistacchio di Bronte. Niente basi pronte, niente coloranti.
-        Vieni ad assaggiare cosa succede quando il gelato lo fai davvero.
+        A Rimini, sulla strada per Covignano. Creme e sorbetti mantecati ogni giorno, una linea vegana vera
+        e gusti dolcificati solo con stevia. E il Cremino che ci chiedono tutti.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="/gusti" class="btn-primary">Scopri i gusti di oggi</a>
-        <a href="/contatti" class="btn-ghost">Come raggiungerci</a>
+        <a href="/torte#prenota" class="btn-ghost">Prenota una torta</a>
       </div>
-      <p class="mt-6 text-sm text-cacao-700">
+      <ul class="mt-6 flex flex-wrap gap-x-4 gap-y-1 text-sm text-cacao-700" aria-label="Servizi">
+        {info.servizi.map((s) => <li class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-pistacchio-500" aria-hidden="true"></span>{s}</li>)}
+      </ul>
+      <p class="mt-4 text-sm text-cacao-700">
         {info.indirizzo.via}, {info.indirizzo.citta} · <a class="underline underline-offset-4" href={`tel:${info.telefono.replace(/\s/g, '')}`}>{info.telefono}</a>
       </p>
     </div>
@@ -32,7 +35,7 @@ import StatoApertura from './StatoApertura.astro';
     <div class="fade-up fade-up-delay relative mx-auto w-full max-w-md md:max-w-none">
       <img
         src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?auto=format&fit=crop&w=900&q=80"
-        alt="Coppette di gelato artigianale al pistacchio e fragola"
+        alt="Vetrina di gelato artigianale della Gelateria Magie"
         width="900"
         height="1100"
         class="aspect-[4/5] w-full rounded-blob object-cover shadow-soft"
@@ -43,6 +46,11 @@ import StatoApertura from './StatoApertura.astro';
         <p class="text-xs font-semibold uppercase tracking-wider text-pistacchio-700">Oggi in vetrina</p>
         <p class="font-display text-2xl font-bold" data-conteggio-oggi>— gusti</p>
       </div>
+      <a href={info.social.google} target="_blank" rel="noopener" class="absolute -top-4 right-2 flex items-center gap-2 rounded-2xl bg-white px-4 py-2.5 shadow-soft transition hover:-translate-y-0.5">
+        <span class="text-[#F6A623]" aria-hidden="true">★</span>
+        <span class="font-display text-xl font-bold">{info.google.voto.toFixed(1).replace('.', ',')}</span>
+        <span class="text-xs text-cacao-700">{info.google.recensioni} recensioni<br/>su Google</span>
+      </a>
     </div>
   </div>
 </section>

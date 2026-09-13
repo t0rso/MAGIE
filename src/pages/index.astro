@@ -34,9 +34,9 @@ import { gusti } from '../lib/gusti';
   <section class="bg-cacao-900 text-crema-50">
     <div class="container-page grid gap-10 py-16 md:grid-cols-3">
       {[
-        { icona: '🥛', titolo: 'Latte fresco, ogni giorno', testo: 'Arriva da un\'azienda dell\'alta pianura bolognese. Niente latte in polvere, niente basi pronte.' },
-        { icona: '🍓', titolo: 'Frutta di stagione', testo: 'I sorbetti sono almeno 60% frutta. Per questo il melone c\'è solo ad agosto e il fico a settembre.' },
-        { icona: '🌱', titolo: 'Vegano e senza lattosio', testo: 'Oltre ai sorbetti, creme 100% vegetali a base di mandorla o cocco. E il fondente lo è di natura.' },
+        { icona: '🌱', titolo: 'Vegano, davvero', testo: 'Non solo sorbetti: creme vegetali di mandorla, nocciola e cioccolato che non fanno rimpiangere il latte. Anche le torte e i pasticcini.' },
+        { icona: '🍃', titolo: 'Con stevia, senza zucchero', testo: 'Una linea di gusti dolcificati solo con stevia e zuccheri non raffinati, per chi deve stare attento senza rinunciare.' },
+        { icona: '🎂', titolo: 'Torte su misura', testo: 'Gusti, base, decorazione, scritta: la torta la disegni tu, noi la facciamo. Prenoti su WhatsApp, ritiri o te la portiamo a casa.' },
       ].map((b) => (
         <div>
           <span class="grid size-12 place-items-center rounded-2xl bg-white/10 text-2xl" aria-hidden="true">{b.icona}</span>
@@ -53,16 +53,17 @@ import { gusti } from '../lib/gusti';
       <div class="grid grid-cols-2 gap-4">
         {torteData.torte.map((t) => (
           <div class="flex aspect-square flex-col justify-end rounded-blob p-5 text-crema-50 shadow-soft" style={`background:${t.colore}`}>
-            <p class="text-xs uppercase tracking-wider opacity-80">{t.porzioni} porzioni</p>
+            <p class="text-xs uppercase tracking-wider opacity-80">{t.id === 'personalizzata' ? 'su misura' : `${t.porzioni} porzioni`}</p>
             <p class="font-display text-xl font-bold leading-tight">{t.nome}</p>
           </div>
         ))}
       </div>
       <div>
         <p class="eyebrow">Per le feste</p>
-        <h2 class="mt-2 text-3xl font-bold sm:text-4xl">Torte gelato e vaschette da portare a casa</h2>
+        <h2 class="mt-2 text-3xl font-bold sm:text-4xl">Torte personalizzate, pasticcini di gelato e vaschette</h2>
         <p class="mt-4 text-cacao-700">
-          Quattro torte di casa, oppure la tua su misura con i gusti che preferisci. Prenoti su WhatsApp in un minuto, passi a ritirare quando vuoi.
+          La torta la personalizzi tu, con i gusti che vuoi e la scritta che vuoi. Oppure un vassoio di pasticcini di gelato per la tavola.
+          Prenoti su WhatsApp in un minuto: ritiri in negozio o te lo consegniamo a domicilio.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
           <a href="/torte#prenota" class="btn-accent">Prenota una torta</a>

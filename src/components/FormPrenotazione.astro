@@ -17,6 +17,9 @@ const domani = new Date(Date.now() + 2 * 86_400_000).toISOString().slice(0, 10);
         <optgroup label="Torte gelato">
           {torteData.torte.map((t) => <option value={`Torta "${t.nome}" (${t.porzioni} porzioni)`}>{t.nome} · {t.porzioni} porzioni · €{t.prezzo}</option>)}
         </optgroup>
+        <optgroup label="Pasticcini di gelato">
+          {torteData.pasticcini.formati.map((f) => <option value={`Vassoio pasticcini da ${f.formato}`}>Pasticcini · vassoio {f.formato} · €{f.prezzo}</option>)}
+        </optgroup>
         <optgroup label="Vaschette">
           {torteData.vaschette.map((v) => <option value={`Vaschetta da ${v.formato}`}>Vaschetta {v.formato} · {v.gusti} · €{v.prezzo}</option>)}
         </optgroup>
@@ -27,10 +30,22 @@ const domani = new Date(Date.now() + 2 * 86_400_000).toISOString().slice(0, 10);
       <input name="data" type="date" required min={domani} value={domani} class="input" />
     </label>
     <label class="grid gap-1.5 text-sm font-medium">
-      Orario di ritiro
+      A che ora?
       <input name="ora" type="time" required value="18:00" class="input" />
     </label>
   </div>
+
+  <fieldset class="grid gap-2">
+    <legend class="text-sm font-medium">Come lo vuoi?</legend>
+    <div class="flex flex-wrap gap-2">
+      <label class="chip cursor-pointer has-[:checked]:border-cacao-900 has-[:checked]:bg-cacao-900 has-[:checked]:text-crema-50">
+        <input type="radio" name="modalita" value="Ritiro in gelateria" checked class="sr-only" /> 🏪 Ritiro in gelateria
+      </label>
+      <label class="chip cursor-pointer has-[:checked]:border-cacao-900 has-[:checked]:bg-cacao-900 has-[:checked]:text-crema-50">
+        <input type="radio" name="modalita" value="Consegna a domicilio" class="sr-only" /> 🛵 Consegna a domicilio
+      </label>
+    </div>
+  </fieldset>
 
   <fieldset class="grid gap-2">
     <legend class="text-sm font-medium">Gusti preferiti <span class="font-normal text-cacao-700">(facoltativo)</span></legend>
@@ -46,8 +61,8 @@ const domani = new Date(Date.now() + 2 * 86_400_000).toISOString().slice(0, 10);
   </fieldset>
 
   <label class="grid gap-1.5 text-sm font-medium">
-    Note <span class="font-normal text-cacao-700">(scritta sulla torta, allergie, ecc.)</span>
-    <textarea name="note" rows="3" placeholder='Es. "Buon compleanno Anna", senza frutta a guscio' class="input"></textarea>
+    Note <span class="font-normal text-cacao-700">(scritta sulla torta, vegana/stevia, allergie, indirizzo di consegna)</span>
+    <textarea name="note" rows="3" placeholder='Es. "Buon compleanno Anna", versione vegana, indirizzo per la consegna' class="input"></textarea>
   </label>
 
   <p class="text-sm text-cacao-700">{torteData.preavviso}</p>
@@ -84,7 +99,7 @@ const domani = new Date(Date.now() + 2 * 86_400_000).toISOString().slice(0, 10);
     const righe = [
       `Ciao ${nomeGelateria}! Sono ${d.get('nome')} e vorrei prenotare:`,
       `• ${d.get('prodotto')}`,
-      `• Ritiro: ${data} alle ${d.get('ora')}`,
+      `• ${d.get('modalita')}: ${data} alle ${d.get('ora')}`,
       gusti.length ? `• Gusti: ${gusti.join(', ')}` : null,
       d.get('note') ? `• Note: ${d.get('note')}` : null,
       '',

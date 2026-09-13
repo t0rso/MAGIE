@@ -1,36 +1,38 @@
 {
   "nome": "MAGIE",
-  "sottotitolo": "Gelateria artigianale",
-  "claim": "Gelato fatto ogni mattina, con le mani e con la testa.",
-  "descrizione": "Gelateria artigianale a Bologna: gelato mantecato ogni giorno con latte fresco, frutta di stagione e pistacchio di Bronte. Torte gelato su prenotazione.",
+  "sottotitolo": "Gelateria artigianale a Rimini",
+  "claim": "Gelato artigianale, anche vegano e con stevia. Torte personalizzate su prenotazione.",
+  "descrizione": "Gelateria Magie a Rimini, via Covignano 152: gelato artigianale con gusti vegani e dolcificati con stevia, pasticcini di gelato, bombardino, torte gelato personalizzate. Sul posto, da asporto e a domicilio.",
   "indirizzo": {
-    "via": "Via delle Moline 12",
-    "cap": "40126",
-    "citta": "Bologna",
-    "provincia": "BO",
-    "lat": 44.4979,
-    "lng": 11.3489
+    "via": "Via Covignano, 152",
+    "cap": "47923",
+    "citta": "Rimini",
+    "provincia": "RN",
+    "lat": 44.0497,
+    "lng": 12.5067
   },
-  "telefono": "+39 051 123 4567",
-  "whatsapp": "393331234567",
-  "email": "ciao@gelateriamagie.it",
+  "telefono": "0541 012388",
+  "whatsapp": "390541012388",
+  "email": "info@gelateriamagie.it",
   "social": {
-    "instagram": "https://instagram.com/gelateriamagie",
-    "facebook": "https://facebook.com/gelateriamagie",
-    "google": "https://maps.google.com/?q=Gelateria+MAGIE+Bologna"
+    "instagram": "https://instagram.com/gelateriamagierimini",
+    "facebook": "https://m.facebook.com/gelateriamagierimini",
+    "google": "https://www.google.com/maps/search/?api=1&query=Gelateria+Magie+Rimini"
   },
+  "servizi": ["Consumazione sul posto", "Asporto", "Consegna a domicilio", "Ordina online"],
   "orari": {
-    "lun": null,
-    "mar": [["12:00", "23:00"]],
-    "mer": [["12:00", "23:00"]],
-    "gio": [["12:00", "23:00"]],
-    "ven": [["12:00", "24:00"]],
-    "sab": [["11:00", "24:00"]],
-    "dom": [["11:00", "23:00"]]
+    "lun": [["14:30", "24:00"]],
+    "mar": [["14:30", "24:00"]],
+    "mer": [["14:30", "24:00"]],
+    "gio": [["14:30", "24:00"]],
+    "ven": [["14:30", "24:00"]],
+    "sab": [["14:30", "24:00"]],
+    "dom": [["14:30", "24:00"]]
   },
+  "google": { "voto": 4.6, "recensioni": 196 },
   "recensioni": [
-    { "autore": "Giulia R.", "voto": 5, "testo": "Il pistacchio è il migliore che abbia mai mangiato. Si sente che è vero." },
-    { "autore": "Marco B.", "voto": 5, "testo": "Torta gelato per il compleanno di mia figlia: perfetta, e prenotata via WhatsApp in due minuti." },
-    { "autore": "Sofia L.", "voto": 5, "testo": "Finalmente sorbetti davvero senza latte, buonissimi. Il mango è una bomba." }
+    { "autore": "Camilla L.", "voto": 5, "testo": "Una bella scoperta, soprattutto per chi cerca opzioni vegane." },
+    { "autore": "Viktor G.", "voto": 5, "testo": "Si sente subito la qualità degli ingredienti e la cura nella preparazione. Gusti ben bilanciati, cremosi e pieni di sapore." },
+    { "autore": "Lucia R.", "voto": 5, "testo": "Personale molto cordiale e gelati cremosi e gustosi, in particolare quelli veg e con zucchero non raffinato. Ci torneremo presto." }
   ]
 }

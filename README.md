@@ -2,7 +2,9 @@
 
 Sito vetrina statico (Astro 7 + Tailwind CSS 4) pensato come **prototipo commerciale**: si mostra al gelatiere da telefono, si personalizza in pochi minuti con i dati reali e si mette online gratis.
 
-**Demo:** https://gelateria-magie.netlify.app (aggiorna dopo il deploy) · QR in `public/qr.png`
+Contenuti basati sulla scheda Google di **Gelateria Magie Rimini** (via Covignano 152, 4,6★ su 196 recensioni): linea vegana, gusti con stevia, pasticcini di gelato, bombardino, torte personalizzate, asporto e consegna a domicilio.
+
+**Demo online:** https://gelateria-magie.netlify.app · QR in `public/qr.png`
 **Area gestione demo:** `/admin`, PIN `1234`
 
 ## Cosa c'è dentro
@@ -28,6 +30,16 @@ npm run preview    # anteprima della build
 npm run check      # controllo tipi
 npm run qr         # rigenera public/qr.png (usa `site` da astro.config.mjs, oppure: npm run qr -- https://...)
 ```
+
+## Da verificare con il cliente
+
+Dati presi dalla scheda Google o **ipotizzati** (segnati qui per non dimenticarli):
+- **Orari**: da Google si sa solo "chiude alle 00"; ho messo 14:30–24:00 tutti i giorni → chiedere gli orari reali.
+- **WhatsApp**: uso il fisso `0541 012388`; se hanno un cellulare per gli ordini va in `info.whatsapp` (formato `393…`).
+- **Email, Instagram, P.IVA**: placeholder.
+- **Gusti, prezzi, torte, pasticcini**: nomi presi dalle recensioni (Cremino, Menta, Bombardino, pasticcini in vassoio, stevia) ma descrizioni e prezzi inventati.
+- **Link "Ordina online"**: Google mostra il servizio, ma non so su quale piattaforma → da collegare.
+- **Foto**: Unsplash, da sostituire con le loro.
 
 ## Personalizzare per un cliente reale
 
