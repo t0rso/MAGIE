@@ -2,7 +2,7 @@
 
 Sito vetrina statico (Astro 7 + Tailwind CSS 4) pensato come **prototipo commerciale**: si mostra al gelatiere da telefono, si personalizza in pochi minuti con i dati reali e si mette online gratis.
 
-Contenuti basati sulla scheda Google di **Gelateria Magie Rimini** (via Covignano 152, 4,6★ su 196 recensioni): linea vegana, gusti con stevia, pasticcini di gelato, bombardino, torte personalizzate, asporto e consegna a domicilio.
+Contenuti basati sulla scheda Google (4,6★ su 196 recensioni) e sulla pagina Facebook di **Gelateria Magie Rimini** (via Covignano 152): oltre 20 anni di attività, tre sorelle, coppe, torte personalizzate, yogurt naturale, granite, linea vegana e con stevia, posti all'aperto, asporto e consegna a domicilio.
 
 **Demo online:** https://gelateria-magie.netlify.app · QR in `public/qr.png`
 **Area gestione demo:** `/admin`, PIN `1234`
@@ -35,8 +35,9 @@ npm run qr         # rigenera public/qr.png (usa `site` da astro.config.mjs, opp
 
 Dati presi dalla scheda Google o **ipotizzati** (segnati qui per non dimenticarli):
 - **Orari**: da Google si sa solo "chiude alle 00"; ho messo 14:30–24:00 tutti i giorni → chiedere gli orari reali.
-- **WhatsApp**: uso il fisso `0541 012388`; se hanno un cellulare per gli ordini va in `info.whatsapp` (formato `393…`).
-- **Email, Instagram, P.IVA**: placeholder.
+- **WhatsApp**: cellulare `328 818 4273` (da Facebook), da confermare che sia su WhatsApp.
+- **Email, Instagram (`magierimini`?), P.IVA**: placeholder.
+- **"Vippini"**: su Facebook chiamano così i clienti affezionati → idea per la tessera fedeltà digitale in fase 2.
 - **Gusti, prezzi, torte, pasticcini**: nomi presi dalle recensioni (Cremino, Menta, Bombardino, pasticcini in vassoio, stevia) ma descrizioni e prezzi inventati.
 - **Link "Ordina online"**: Google mostra il servizio, ma non so su quale piattaforma → da collegare.
 - **Foto**: Unsplash, da sostituire con le loro.

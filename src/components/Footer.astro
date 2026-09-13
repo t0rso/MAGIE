@@ -19,7 +19,7 @@ const anno = new Date().getFullYear();
       <address class="mt-3 not-italic leading-relaxed">
         {info.indirizzo.via}<br />{info.indirizzo.cap} {info.indirizzo.citta}
       </address>
-      <p class="mt-3"><a class="underline-offset-4 hover:underline" href={`tel:${info.telefono.replace(/\s/g, '')}`}>{info.telefono}</a></p>
+      <p class="mt-3"><a class="underline-offset-4 hover:underline" href={`tel:${info.cellulare.replace(/\s/g, '')}`}>{info.cellulare}</a> · <a class="underline-offset-4 hover:underline" href={`tel:${info.telefono.replace(/\s/g, '')}`}>{info.telefono}</a></p>
       <p><a class="underline-offset-4 hover:underline" href={`mailto:${info.email}`}>{info.email}</a></p>
     </div>
     <div>

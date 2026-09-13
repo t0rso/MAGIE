@@ -35,7 +35,7 @@ import { gusti } from '../lib/gusti';
     <div class="container-page grid gap-10 py-16 md:grid-cols-3">
       {[
         { icona: '🌱', titolo: 'Vegano, davvero', testo: 'Non solo sorbetti: creme vegetali di mandorla, nocciola e cioccolato che non fanno rimpiangere il latte. Anche le torte e i pasticcini.' },
-        { icona: '🍃', titolo: 'Con stevia, senza zucchero', testo: 'Una linea di gusti dolcificati solo con stevia e zuccheri non raffinati, per chi deve stare attento senza rinunciare.' },
+        { icona: '🍃', titolo: 'Con stevia, senza zucchero', testo: 'Gusti dolcificati solo con stevia, pensati per sportivi, diabetici e intolleranti. Stesso gelato, senza rinunce.' },
         { icona: '🎂', titolo: 'Torte su misura', testo: 'Gusti, base, decorazione, scritta: la torta la disegni tu, noi la facciamo. Prenoti su WhatsApp, ritiri o te la portiamo a casa.' },
       ].map((b) => (
         <div>
@@ -45,6 +45,21 @@ import { gusti } from '../lib/gusti';
         </div>
       ))}
     </div>
+  </section>
+
+  <!-- Non solo gelato -->
+  <section class="container-page py-16">
+    <p class="eyebrow">Non solo coni</p>
+    <h2 class="mt-2 text-3xl font-bold sm:text-4xl">Coppe, yogurt, granite</h2>
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {info.nonSoloGelato.map((v) => (
+        <li class="rounded-blob bg-white p-6 shadow-soft">
+          <span class="text-3xl" aria-hidden="true">{v.icona}</span>
+          <h3 class="mt-3 text-lg font-bold">{v.nome}</h3>
+          <p class="mt-1 text-sm text-cacao-700">{v.testo}</p>
+        </li>
+      ))}
+    </ul>
   </section>
 
   <!-- Torte -->

@@ -19,7 +19,7 @@ const schema = {
   name: `Gelateria ${info.nome}`,
   description: info.descrizione,
   url: Astro.site?.toString(),
-  telephone: info.telefono,
+  telephone: [info.cellulare, info.telefono],
   email: info.email,
   image: ogImage.toString(),
   priceRange: '€',

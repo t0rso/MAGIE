@@ -19,7 +19,8 @@ const tel = info.telefono.replace(/\s/g, '');
         <ul class="grid gap-4 sm:grid-cols-3">
           <li class="rounded-blob bg-white p-5 shadow-soft">
             <p class="eyebrow">Telefono</p>
-            <a href={`tel:${tel}`} class="mt-2 block font-semibold hover:underline">{info.telefono}</a>
+            <a href={`tel:${info.cellulare.replace(/\s/g, '')}`} class="mt-2 block font-semibold hover:underline">{info.cellulare}</a>
+            <a href={`tel:${tel}`} class="block text-sm text-cacao-700 hover:underline">{info.telefono}</a>
           </li>
           <li class="rounded-blob bg-white p-5 shadow-soft">
             <p class="eyebrow">WhatsApp</p>
@@ -39,6 +40,7 @@ const tel = info.telefono.replace(/\s/g, '');
         <h2 class="text-2xl font-bold">Come arrivare</h2>
         <ul class="mt-3 space-y-2 text-cacao-700">
           <li><strong class="text-cacao-900">In auto:</strong> via Covignano è fuori dalla ZTL, parcheggio comodo davanti al negozio.</li>
+          <li><strong class="text-cacao-900">Sul posto:</strong> tavolini all'aperto per la coppa o lo yogurt della sera.</li>
           <li><strong class="text-cacao-900">Dal centro:</strong> 10 minuti in auto o bici dall'Arco d'Augusto.</li>
           <li><strong class="text-cacao-900">A domicilio:</strong> consegniamo a Rimini e dintorni. Ordina su WhatsApp o online.</li>
         </ul>
