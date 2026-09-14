@@ -1,23 +1,20 @@
 ---
 import info from '../data/info.json';
-import Titolo from './Titolo.astro';
 const stelle = '★★★★★';
 ---
-<section class="mx-auto max-w-6xl px-4 sm:px-6 py-20">
-  <div class="grid gap-10 md:grid-cols-[1fr_1.6fr] items-start">
-    <div class="reveal">
-      <p class="display text-7xl font-black leading-none text-fragola">{info.google.voto}</p>
-      <p class="text-limone-dark text-2xl tracking-wider text-caramello">{stelle}</p>
+<section class="mx-auto max-w-6xl px-5 sm:px-6 py-16 md:py-20">
+  <div class="grid gap-8 md:gap-10 md:grid-cols-[1fr_1.6fr] items-start">
+    <div class="reveal text-center md:text-left">
+      <p class="display text-6xl sm:text-7xl font-black leading-none text-fragola">{info.google.voto}</p>
+      <p class="text-xl sm:text-2xl tracking-wider text-caramello">{stelle}</p>
       <p class="mt-2 font-extrabold">{info.google.recensioni} recensioni su Google</p>
-      <p class="text-cacao/80">{info.facebook.consigliata}% consigliata su Facebook · {info.facebook.follower} follower</p>
-      <a href={info.social.google} target="_blank" rel="noopener" class="btn-link mt-5">Leggi su Google Maps ↗</a>
+      <a href={info.social.google} target="_blank" rel="noopener" class="btn-link mt-3 text-sm">Leggile tutte ↗</a>
     </div>
-    <ul class="grid gap-4 reveal-stagger">
-      {info.recensioni.map((r, i) => (
-        <li class="card p-5 relative" style={`transform: rotate(${(i % 2 ? 1 : -1) * 0.6}deg)`}>
-          <span class="absolute -top-3 left-5 text-5xl display text-fragola/40 leading-none">“</span>
-          <p class="text-lg">{r.testo}</p>
-          <p class="mt-3 text-sm font-extrabold text-cacao/80">{r.autore} · <span class="text-caramello">{stelle.slice(0, r.voto)}</span></p>
+    <ul class="grid gap-3 sm:gap-4 reveal-stagger">
+      {info.recensioni.slice(0, 3).map((r, i) => (
+        <li class="card p-4 sm:p-5 relative" style={`transform: rotate(${(i % 2 ? 1 : -1) * 0.5}deg)`}>
+          <p class="text-base sm:text-lg">“{r.testo}”</p>
+          <p class="mt-2 text-sm font-extrabold text-cacao/70">{r.autore} · <span class="text-caramello">{stelle.slice(0, r.voto)}</span></p>
         </li>
       ))}
     </ul>

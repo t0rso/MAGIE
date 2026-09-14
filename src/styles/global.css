@@ -131,17 +131,18 @@ p { text-wrap: pretty; }
     linear-gradient(160deg, var(--color-cialda), var(--color-crema));
   border: 2px dashed rgb(198 156 109 / .7); color: var(--color-cacao);
 }
-.foto-placeholder.is-scontornata { border-radius: var(--radius-blob); border-style: dotted; background: rgb(255 253 248 / .6); }
+.foto-placeholder.is-scontornata { border: 0; background: transparent; color: var(--color-cacao); }
 .foto-placeholder-titolo { font-weight: 800; font-size: .95rem; max-width: 22ch; text-wrap: balance; }
 .foto-placeholder-file { font-family: ui-monospace, monospace; font-size: .7rem; opacity: .7; }
 
 /* ---------- Bordo che cola tra le sezioni ---------- */
-.drip { display: block; width: 100%; height: 42px; margin-bottom: -1px; }
+.drip { display: block; width: 100%; height: 32px; margin-bottom: -1px; }
+@media (min-width: 768px) { .drip { height: 42px; } }
 .drip svg { width: 100%; height: 100%; display: block; }
 
 /* ---------- Ticker ---------- */
 .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent); }
-.marquee-track { display: flex; gap: 2.5rem; width: max-content; animation: marquee 42s linear infinite; }
+.marquee-track { display: flex; gap: 2rem; width: max-content; animation: marquee 42s linear infinite; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 

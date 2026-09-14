@@ -1,8 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import Foto from '../components/Foto.astro';
-import StatoApertura from '../components/StatoApertura.astro';
-import VincoloChip from '../components/VincoloChip.astro';
 import Marquee from '../components/Marquee.astro';
 import PerChi from '../components/PerChi.astro';
 import CtaTorte from '../components/CtaTorte.astro';
@@ -12,70 +10,58 @@ import NonSoloGelato from '../components/NonSoloGelato.astro';
 import DoveSiamo from '../components/DoveSiamo.astro';
 import Titolo from '../components/Titolo.astro';
 import Drip from '../components/Drip.astro';
-import info from '../data/info.json';
-import { gustiSignature, vincoli } from '../lib/gusti';
+import { gustiSignature } from '../lib/gusti';
 ---
 <Base title="Gelateria Magie Rimini · Gelato artigianale, anche vegano e senza zucchero" rawTitle>
-  <!-- HERO -->
-  <section class="sprinkles relative overflow-hidden">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-10 pb-16 md:pt-16 md:pb-24 grid gap-10 md:grid-cols-[1.15fr_1fr] items-center">
-      <div>
-        <p class="anim-drop text-sm font-black uppercase tracking-[.18em] text-fragola" style="animation-delay:.1s">Gelateria artigianale · Rimini, via Covignano</p>
-        <h1 class="anim-drop mt-4 text-5xl sm:text-6xl lg:text-7xl font-semibold" style="animation-delay:.2s">
+  <!-- HERO: un messaggio, una foto, un'azione -->
+  <section class="sprinkles overflow-hidden">
+    <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-8 pb-12 md:pt-16 md:pb-24 grid gap-6 md:gap-x-12 md:grid-cols-[1.1fr_1fr] md:grid-rows-[auto_auto] items-center">
+      <div class="text-center md:text-left md:self-end">
+        <p class="anim-drop text-[11px] sm:text-xs font-black uppercase tracking-[.2em] text-fragola" style="animation-delay:.05s">Gelateria artigianale · Rimini</p>
+        <h1 class="anim-drop mt-3 text-[2.5rem] leading-[1.02] sm:text-6xl lg:text-7xl font-semibold" style="animation-delay:.15s">
           Gelato per tutti.<br />
           <em class="underline-brush is-in font-medium" style="--brush:var(--color-menta)">Anche per chi di solito non può.</em>
         </h1>
-        <p class="anim-drop mt-6 text-lg sm:text-xl text-cacao/90 max-w-xl" style="animation-delay:.35s">
-          Vegano, con stevia, senza lattosio, senza glutine: lo facciamo da oltre {info.anniAttivita} anni, e lo facciamo buono. Il resto del banco? Cremino, pistacchio, fior di latte. Quello di sempre.
+        <p class="anim-drop mt-4 text-base sm:text-lg text-cacao/85 max-w-md mx-auto md:mx-0" style="animation-delay:.3s">
+          Vegano, con stevia, senza lattosio, senza glutine. Da vent'anni, e buono.
         </p>
-        <div class="anim-drop mt-6 flex flex-wrap gap-2" style="animation-delay:.45s">
-          {vincoli.map((v) => <VincoloChip id={v.id} link />)}
-        </div>
-        <div class="anim-drop mt-8 flex flex-wrap items-center gap-3" style="animation-delay:.55s">
-          <a href="/torte#ordina" class="btn btn-primary btn-lg">Ordina una torta</a>
-          <a href="/gusti" class="btn-link">Guarda i gusti →</a>
-        </div>
-        <div class="anim-drop mt-6 flex flex-wrap items-center gap-x-3 gap-y-2" style="animation-delay:.65s">
-          <StatoApertura />
-          <a href="#dove" class="text-sm font-extrabold underline decoration-2 decoration-fragola underline-offset-4">Via Covignano 152</a>
+      </div>
+      <div class="relative mx-auto w-[min(58vw,240px)] md:w-[min(40vw,420px)] md:col-start-2 md:row-span-2 anim-drop" style="animation-delay:.25s">
+        <div class="absolute inset-[4%] -z-10 rounded-[var(--radius-blob)] bg-limone/70 anim-wobble" aria-hidden="true"></div>
+        <div class="anim-float">
+          <Foto nome="hero-cono" alt="Cono con tre gusti di gelato Magie" ratio="4/5" scontornata priority nota="Cono con 2–3 palline, in mano" sizes="(min-width: 768px) 420px, 58vw" />
         </div>
       </div>
-      <div class="relative mx-auto w-[min(80vw,420px)] anim-drop" style="animation-delay:.3s">
-        <div class="absolute inset-[6%] -z-10 rounded-[var(--radius-blob)] bg-limone/70 anim-wobble" aria-hidden="true"></div>
-        <div class="anim-float">
-          <Foto nome="hero-cono" alt="Cono con tre gusti di gelato Magie" ratio="4/5" scontornata priority nota="Un cono con 2–3 palline, tenuto in mano" sizes="(min-width: 768px) 420px, 80vw" />
-        </div>
+      <div class="anim-drop flex flex-col sm:flex-row items-center gap-4 md:justify-start md:self-start" style="animation-delay:.45s">
+        <a href="/torte#ordina" class="btn btn-primary btn-lg w-full sm:w-auto">Ordina una torta</a>
+        <a href="/gusti" class="btn-link">Guarda i gusti →</a>
       </div>
     </div>
   </section>
 
-  <!-- TICKER -->
-  <div class="relative bg-cioccolato text-crema">
-    <Drip color="#3B2418" class="absolute -top-10 left-0 right-0" />
-    <Marquee />
-    <Drip color="#3B2418" class="absolute -bottom-10 left-0 right-0" flip />
-  </div>
-
-  <div class="h-10"></div>
-  <PerChi />
+  <!-- TORTE: la conversione principale, subito -->
   <CtaTorte />
 
-  <!-- SIGNATURE -->
-  <section class="mx-auto max-w-6xl px-4 sm:px-6 py-20">
-    <Titolo occhiello="Dal banco" brush="var(--color-pesca)">
-      Quelli che ci <span class="underline-brush">chiedono di più.</span>
-      <Fragment slot="sotto">Lista provvisoria: la stiamo aggiornando con la gelateria. I gusti cambiano con le stagioni, la lista completa è nella pagina gusti.</Fragment>
-    </Titolo>
-    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger">
-      {gustiSignature.map((g) => <GustoCard gusto={g} />)}
-    </div>
-    <div class="mt-8 reveal"><a href="/gusti" class="btn btn-secondary">Tutti i gusti e i filtri</a></div>
-  </section>
+  <!-- PER CHI: quattro tessere, niente testo -->
+  <PerChi />
 
-  <!-- BANCO -->
-  <section class="mx-auto max-w-6xl px-4 sm:px-6 pb-10 reveal">
-    <Foto nome="banco" alt="La vetrina dei gusti di Gelateria Magie, di sera" ratio="21/9" nota="La vetrina dei gusti, di sera, con le etichette leggibili" sizes="(min-width: 1152px) 1152px, 100vw" />
-    <p class="mt-3 text-sm text-cacao/80 text-center">Il banco cambia con le stagioni. Le foto aggiornate le trovi sui social.</p>
+  <!-- TICKER -->
+  <div class="relative bg-cioccolato text-crema my-6">
+    <Drip color="#3B2418" class="absolute -top-8 md:-top-10 left-0 right-0" />
+    <Marquee />
+    <Drip color="#3B2418" class="absolute -bottom-8 md:-bottom-10 left-0 right-0" flip />
+  </div>
+
+  <!-- DAL BANCO -->
+  <section class="mx-auto max-w-6xl px-5 sm:px-6 pt-16 pb-14 md:py-20">
+    <Titolo occhiello="Dal banco" brush="var(--color-pesca)">Quelli che ci <span class="underline-brush">chiedono di più.</span></Titolo>
+    <div class="mt-8 reveal">
+      <Foto nome="banco" alt="La vetrina dei gusti di Gelateria Magie, di sera" ratio="16/9" nota="La vetrina dei gusti, di sera" sizes="(min-width: 1152px) 1152px, 100vw" class="md:!aspect-[21/9]" />
+    </div>
+    <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger">
+      {gustiSignature.slice(0, 6).map((g) => <GustoCard gusto={g} />)}
+    </div>
+    <div class="mt-8 text-center md:text-left reveal"><a href="/gusti" class="btn btn-secondary">Tutti i gusti, con i filtri</a></div>
   </section>
 
   <NonSoloGelato />

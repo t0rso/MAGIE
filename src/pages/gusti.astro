@@ -8,7 +8,7 @@ const allergeni = [...new Set(gusti.flatMap((g) => g.allergeni))].sort();
 ---
 <Base title="I gusti" description="Tutti i gusti di Gelateria Magie Rimini, filtrabili per vegano, senza zucchero (stevia), senza lattosio e senza glutine, con allergeni.">
   <section class="sprinkles">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 pb-8">
+    <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-12 pb-8">
       <Titolo tag="h1" occhiello="Il banco" brush="var(--color-limone)">
         Scegli per <span class="underline-brush">come mangi,</span> poi per gusto.
         <Fragment slot="sotto">Filtra per vincolo alimentare: ti restano solo i gusti che puoi prendere senza chiedere. Sotto ogni gusto trovi gli allergeni.</Fragment>
@@ -17,8 +17,8 @@ const allergeni = [...new Set(gusti.flatMap((g) => g.allergeni))].sort();
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-4 sm:px-6 pb-20">
-    <div class="sticky top-16 z-20 -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 header-blur border-b border-cialda/70" data-filtri>
+  <section class="mx-auto max-w-6xl px-5 sm:px-6 pb-20">
+    <div class="sticky top-16 z-20 -mx-4 sm:-mx-6 px-5 sm:px-6 py-3 header-blur border-b border-cialda/70" data-filtri>
       <div class="flex flex-wrap gap-2 items-center">
         <span class="text-sm font-black mr-1">Deve essere:</span>
         {vincoli.map((v) => (

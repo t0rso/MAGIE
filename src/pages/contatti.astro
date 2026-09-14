@@ -8,41 +8,28 @@ import info from '../data/info.json';
 ---
 <Base title="Contatti e orari" description="Gelateria Magie: via Covignano 152, Rimini. Aperti tutti i giorni 14:30–24:00. Telefono, WhatsApp, mappa e consegna a domicilio.">
   <section class="sprinkles">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 pb-4">
+    <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-8 md:pt-12 pb-4">
       <Titolo tag="h1" occhiello="Contatti" brush="var(--color-limone)">
         Siamo in <span class="underline-brush">via Covignano</span>, tutti i giorni dalle 14:30.
-        <Fragment slot="sotto">Per le torte scrivici su WhatsApp o usa il modulo: rispondiamo dal banco tra un cono e l'altro, quindi a volte ci vuole un'ora.</Fragment>
+        <Fragment slot="sotto">Rispondiamo dal banco, tra un cono e l'altro.</Fragment>
       </Titolo>
     </div>
   </section>
 
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-6 reveal">
+  <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-6 reveal">
     <Foto nome="esterno-sera" alt="L'ingresso della gelateria Magie di sera" ratio="21/9" nota="L'ingresso con i tavolini, di sera" sizes="(min-width: 1152px) 1152px, 100vw" />
   </div>
   <DoveSiamo compatto />
 
-  <section class="mx-auto max-w-6xl px-4 sm:px-6 pb-10 grid gap-5 md:grid-cols-3 reveal-stagger">
-    <a href={`https://wa.me/${info.whatsapp}`} class="card p-6 group">
-      <p class="text-3xl">💬</p><h2 class="mt-2 text-xl font-bold">WhatsApp</h2>
-      <p class="text-cacao/90">{info.cellulare}</p><p class="mt-3"><span class="btn-link text-sm">Il modo più veloce →</span></p>
-    </a>
-    <a href={`tel:${info.telefonoTel}`} class="card p-6 group">
-      <p class="text-3xl">📞</p><h2 class="mt-2 text-xl font-bold">Telefono</h2>
-      <p class="text-cacao/90">{info.telefono}</p><p class="mt-3"><span class="btn-link text-sm">Chiama in orario di apertura →</span></p>
-    </a>
-    <div class="card p-6">
-      <p class="text-3xl">🛵</p><h2 class="mt-2 text-xl font-bold">Consegna a domicilio <Placeholder /></h2>
-      <p class="text-cacao/90">{info.consegna.zona}. {info.consegna.note}</p>
+  <section class="mx-auto max-w-6xl px-5 sm:px-6 pb-10 grid gap-4 md:grid-cols-2 reveal-stagger">
+    <div class="card p-5 sm:p-6">
+      <h2 class="text-xl font-bold">Consegna a domicilio <Placeholder /></h2>
+      <p class="mt-1 text-cacao/85">{info.consegna.zona}. {info.consegna.note}</p>
     </div>
-  </section>
-
-  <section class="mx-auto max-w-6xl px-4 sm:px-6 py-10 reveal">
-    <div class="card p-6 flex flex-wrap gap-4 items-center justify-between">
-      <p class="font-extrabold text-lg">Le foto del banco, ogni giorno, le trovi sui social.</p>
-      <div class="flex gap-5">
-        <a class="btn-link" href={info.social.instagram} target="_blank" rel="noopener">Instagram ↗</a>
-        <a class="btn-link" href={info.social.facebook} target="_blank" rel="noopener">Facebook ↗</a>
-      </div>
+    <div class="card p-5 sm:p-6">
+      <h2 class="text-xl font-bold">Il banco di oggi</h2>
+      <p class="mt-1 text-cacao/85">Le foto aggiornate sono sui social.</p>
+      <p class="mt-3 flex gap-5"><a class="btn-link" href={info.social.instagram} target="_blank" rel="noopener">Instagram ↗</a><a class="btn-link" href={info.social.facebook} target="_blank" rel="noopener">Facebook ↗</a></p>
     </div>
   </section>
 </Base>

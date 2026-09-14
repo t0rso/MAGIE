@@ -2,24 +2,17 @@
 import { vincoli, gustiCon } from '../lib/gusti';
 import Titolo from './Titolo.astro';
 ---
-<section class="mx-auto max-w-6xl px-4 sm:px-6 py-20" id="per-chi">
-  <Titolo occhiello="Per chi di solito rinuncia" brush="var(--color-menta)">
-    Il gelato che <span class="underline-brush">non ti fa</span> chiedere «ma posso?»
-    <Fragment slot="sotto">Vegano, con stevia, senza lattosio, senza glutine: non un angolino del banco, ma una parte vera del laboratorio. Da oltre vent'anni.</Fragment>
-  </Titolo>
-
-  <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 reveal-stagger">
+<section class="mx-auto max-w-6xl px-5 sm:px-6 pt-16 pb-10 md:py-20" id="per-chi">
+  <Titolo brush="var(--color-menta)" center>Scegli per <span class="underline-brush">come mangi.</span></Titolo>
+  <div class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 reveal-stagger">
     {vincoli.map((v) => {
       const n = gustiCon(v.id).length;
       return (
-        <a href={v.url} class="card group p-6 flex flex-col gap-4 relative overflow-hidden">
-          <span class="absolute -right-8 -top-8 size-32 rounded-full opacity-40 transition-transform duration-700 group-hover:scale-[1.8]" style={`background:${v.colore}`} aria-hidden="true"></span>
-          <span class="scoop w-14 relative" style={`--c:${v.colore}`} aria-hidden="true"></span>
-          <div class="relative">
-            <h3 class="text-2xl font-bold">{v.emoji} {v.nome}</h3>
-            <p class="mt-1 text-cacao/90">{v.descrizione}</p>
-          </div>
-          <p class="relative mt-auto"><span class="btn-link text-sm">{n} gusti oggi →</span></p>
+        <a href={v.url} class="card p-4 sm:p-6 flex flex-col items-center text-center gap-2 relative overflow-hidden">
+          <span class="absolute -right-6 -top-6 size-24 rounded-full opacity-40 transition-transform duration-700 group-hover:scale-150" style={`background:${v.colore}`} aria-hidden="true"></span>
+          <span class="scoop w-10 sm:w-12 relative" style={`--c:${v.colore}`} aria-hidden="true"></span>
+          <h3 class="relative text-lg sm:text-xl font-bold leading-tight">{v.nome}</h3>
+          <p class="relative text-sm font-extrabold text-cacao/70">{n} gusti →</p>
         </a>
       );
     })}

@@ -1,6 +1,6 @@
 ---
 import info from '../data/info.json';
-import { orari, GIORNI_ORDINATI, GIORNI_LABEL, formattaFasce } from '../lib/orari';
+import { orari, GIORNI_ORDINATI, GIORNI_LABEL, formattaFasce, orariUniformi } from '../lib/orari';
 import StatoApertura from './StatoApertura.astro';
 import Titolo from './Titolo.astro';
 import Foto from './Foto.astro';
@@ -8,41 +8,39 @@ interface Props { compatto?: boolean }
 const { compatto = false } = Astro.props;
 const q = encodeURIComponent(`Gelateria Magie, ${info.indirizzo.via}, ${info.indirizzo.citta}`);
 const mapSrc = `https://www.google.com/maps?q=${q}&z=16&output=embed`;
+const uniforme = orariUniformi(orari);
 ---
-<section class="mx-auto max-w-6xl px-4 sm:px-6 py-20" id="dove">
-  {!compatto && <Titolo occhiello="Via Covignano, non il lungomare" brush="var(--color-limone)">Il gelato del <span class="underline-brush">dopo cena.</span>
-    <Fragment slot="sotto">Siamo sulla collina di Rimini, aperti tutti i giorni dalle 14:30 a mezzanotte. Tavolini fuori, parcheggio facile.</Fragment>
-  </Titolo>}
+<section class="mx-auto max-w-6xl px-5 sm:px-6 py-16 md:py-20" id="dove">
+  {!compatto && <Titolo occhiello="Dove e quando" brush="var(--color-limone)">Via Covignano, <span class="underline-brush">tutti i giorni</span> dalle 14:30.</Titolo>}
 
-  <div class:list={['grid gap-6 md:grid-cols-[1fr_1.3fr]', !compatto && 'mt-10']}>
-    <div class="card p-6 reveal">
+  <div class:list={['grid gap-4 md:gap-6 md:grid-cols-[1fr_1.3fr]', !compatto && 'mt-8']}>
+    <div class="card p-5 sm:p-6 reveal flex flex-col gap-5">
       <StatoApertura />
-      <address class="not-italic mt-5 text-lg">
+      <address class="not-italic text-lg leading-snug">
         <strong>Gelateria Magie</strong><br />
-        {info.indirizzo.via}<br />{info.indirizzo.cap} {info.indirizzo.citta} ({info.indirizzo.provincia})
+        {info.indirizzo.via}, {info.indirizzo.citta}
       </address>
-      <table class="mt-5 w-full text-sm">
-        <tbody>
+      {uniforme ? (
+        <p class="text-cacao/85">Tutti i giorni <strong>{uniforme}</strong></p>
+      ) : (
+        <table class="w-full text-sm"><tbody>
           {GIORNI_ORDINATI.map((g) => (
-            <tr class="border-t border-cialda" data-giorno={g}>
-              <th class="py-1.5 text-left font-extrabold">{GIORNI_LABEL[g]}</th>
-              <td class="py-1.5 text-right">{formattaFasce(orari[g])}</td>
-            </tr>
+            <tr class="border-t border-cialda"><th class="py-1.5 text-left font-extrabold">{GIORNI_LABEL[g]}</th><td class="py-1.5 text-right">{formattaFasce(orari[g])}</td></tr>
           ))}
-        </tbody>
-      </table>
-      <div class="mt-5 grid gap-3">
-        <a href={info.social.google} target="_blank" rel="noopener" class="btn btn-primary">Indicazioni stradali</a>
-        <p class="flex flex-wrap gap-x-5 gap-y-1 text-sm">
+        </tbody></table>
+      )}
+      <div class="grid gap-3 mt-auto">
+        <a href={info.social.google} target="_blank" rel="noopener" class="btn btn-primary">Portami lì</a>
+        <p class="flex flex-wrap gap-x-5 gap-y-1 text-sm justify-center md:justify-start">
           <a href={`tel:${info.telefonoTel}`} class="btn-link">{info.telefono}</a>
-          <a href={`https://wa.me/${info.whatsapp}`} class="btn-link">WhatsApp {info.cellulare}</a>
+          <a href={`https://wa.me/${info.whatsapp}`} class="btn-link">WhatsApp</a>
         </p>
       </div>
     </div>
-    <div class="grid gap-6 reveal">
-      {!compatto && <Foto nome="esterno-sera" alt="L'ingresso della gelateria Magie di sera, con i tavolini fuori" ratio="16/9" nota="L'ingresso con i tavolini, di sera, luci accese" />}
-      <div class="card overflow-hidden min-h-72">
-      <iframe src={mapSrc} title="Mappa: Gelateria Magie, via Covignano 152, Rimini" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full min-h-72 border-0 grayscale-[.2] contrast-[1.05]"></iframe>
+    <div class="grid gap-4 md:gap-6 reveal">
+      {!compatto && <Foto nome="esterno-sera" alt="L'ingresso della gelateria Magie di sera, con i tavolini fuori" ratio="16/9" nota="L'ingresso con i tavolini, di sera" />}
+      <div class="card overflow-hidden min-h-56 md:min-h-72">
+        <iframe src={mapSrc} title="Mappa: Gelateria Magie, via Covignano 152, Rimini" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full min-h-56 md:min-h-72 border-0 grayscale-[.2] contrast-[1.05]"></iframe>
       </div>
     </div>
   </div>

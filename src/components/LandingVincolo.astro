@@ -24,7 +24,7 @@ const lista = gustiCon(id);
 const torteOk = torte.filter((t) => t.vincoli.includes(id));
 ---
 <section class="sprinkles">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 pb-10 grid gap-8 md:grid-cols-[1.3fr_1fr] items-center">
+  <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-12 pb-10 grid gap-8 md:grid-cols-[1.3fr_1fr] items-center">
     <Titolo tag="h1" occhiello={occhiello} brush={v.colore}>
       <Fragment set:html={titolo} />
       <Fragment slot="sotto">{intro}</Fragment>
@@ -36,7 +36,7 @@ const torteOk = torte.filter((t) => t.vincoli.includes(id));
   </div>
 </section>
 
-<section class="mx-auto max-w-6xl px-4 sm:px-6 py-14">
+<section class="mx-auto max-w-6xl px-5 sm:px-6 py-14">
   <div class="grid gap-5 md:grid-cols-3 reveal-stagger">
     {punti.map((p) => (
       <div class="card p-6">
@@ -47,7 +47,7 @@ const torteOk = torte.filter((t) => t.vincoli.includes(id));
   </div>
 </section>
 
-<section class="mx-auto max-w-6xl px-4 sm:px-6 py-10">
+<section class="mx-auto max-w-6xl px-5 sm:px-6 py-10">
   <Titolo brush={v.colore}>{lista.length} gusti <span class="underline-brush">{v.nome.toLowerCase()}</span> oggi
     <Fragment slot="sotto">Lista provvisoria, in aggiornamento con la gelateria. Cambia con le stagioni.</Fragment>
   </Titolo>
@@ -58,7 +58,7 @@ const torteOk = torte.filter((t) => t.vincoli.includes(id));
 </section>
 
 {torteOk.length > 0 && (
-  <section class="mx-auto max-w-6xl px-4 sm:px-6 py-14">
+  <section class="mx-auto max-w-6xl px-5 sm:px-6 py-14">
     <div class="card overflow-hidden grid md:grid-cols-[1fr_300px] items-stretch reveal" style={`background:linear-gradient(135deg, ${v.colore}33, var(--color-panna))`}>
       <div class="p-8">
       <div>
@@ -73,7 +73,7 @@ const torteOk = torte.filter((t) => t.vincoli.includes(id));
   </section>
 )}
 
-<section class="mx-auto max-w-3xl px-4 sm:px-6 py-14 reveal">
+<section class="mx-auto max-w-3xl px-5 sm:px-6 py-14 reveal">
   <h2 class="text-3xl font-semibold">Domande che ci fate spesso</h2>
   <div class="mt-4 grid gap-2">
     {faq.map((f) => (

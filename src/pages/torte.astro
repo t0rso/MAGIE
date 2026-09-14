@@ -20,19 +20,23 @@ const jsonLd = {
 ---
 <Base title="Torte gelato su ordinazione" description="Torte gelato artigianali a Rimini, anche vegane, senza glutine e senza zucchero (stevia). Ordina online o su WhatsApp con 2 giorni di preavviso." jsonLd={jsonLd}>
   <section class="sprinkles">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 pb-10 grid gap-8 md:grid-cols-[1.2fr_1fr] items-center">
+    <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-8 md:pt-12 pb-10 grid gap-6 md:gap-8 md:grid-cols-[1.2fr_1fr] items-center">
       <Titolo tag="h1" occhiello="Torte gelato" brush="var(--color-fragola)">
         La torta che <span class="underline-brush">mangiano tutti,</span> non solo chi può.
-        <Fragment slot="sotto">Su misura: gusti, porzioni, vincoli alimentari, scritta o foto in cialda. Ordini dal sito o su WhatsApp, confermiamo a voce.</Fragment>
+        <Fragment slot="sotto">Gusti, porzioni e vincoli alimentari a scelta. Due giorni di preavviso.</Fragment>
       </Titolo>
-      <div class="relative max-w-sm mx-auto w-full anim-drop" style="animation-delay:.3s">
+      <div class="order-3 md:col-span-2 md:-mt-4 flex flex-col sm:flex-row items-center gap-4 anim-drop" style="animation-delay:.4s">
+        <a href="#ordina" class="btn btn-primary btn-lg w-full sm:w-auto">Ordina ora</a>
+        <a href="#faq" class="btn-link">Domande frequenti →</a>
+      </div>
+      <div class="relative w-[min(60vw,260px)] md:w-full md:max-w-sm mx-auto anim-drop" style="animation-delay:.3s">
         <div class="absolute inset-[8%] -z-10 rounded-[var(--radius-blob)] bg-fragola/25 anim-wobble" aria-hidden="true"></div>
         <div class="anim-float"><Foto nome="torta-hero" alt="Torta gelato Magie decorata" ratio="1/1" scontornata priority nota="Una torta gelato finita, vista di 3/4" /></div>
       </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-4 sm:px-6 py-12">
+  <section class="mx-auto max-w-6xl px-5 sm:px-6 py-12">
     <div class="grid gap-5 sm:grid-cols-2 reveal-stagger">
       {torte.map((t) => (
         <article class="card group overflow-hidden grid sm:grid-cols-[180px_1fr]">
@@ -50,9 +54,9 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-4 sm:px-6 py-12 grid gap-10 lg:grid-cols-[1.4fr_1fr] items-start">
+  <section class="mx-auto max-w-6xl px-5 sm:px-6 py-12 grid gap-10 lg:grid-cols-[1.4fr_1fr] items-start">
     <div class="reveal"><FormTorta /></div>
-    <div class="reveal">
+    <div class="reveal" id="faq">
       <h2 class="text-3xl font-semibold">Domande frequenti</h2>
       <div class="mt-4 grid gap-2">
         {faq.map((f) => (

@@ -5,9 +5,9 @@ const { occhiello, brush = 'var(--color-limone)', class: cls = '', center = fals
 const Tag = tag;
 ---
 <div class:list={['reveal', center && 'text-center', cls]}>
-  {occhiello && <p class="text-sm font-black uppercase tracking-[.18em] text-fragola mb-3">{occhiello}</p>}
-  <Tag class:list={['font-semibold', tag === 'h1' ? 'text-4xl sm:text-5xl md:text-6xl' : 'text-3xl sm:text-4xl md:text-5xl']} style={`--brush:${brush}`}>
+  {occhiello && <p class="text-[11px] sm:text-xs font-black uppercase tracking-[.2em] text-fragola mb-3">{occhiello}</p>}
+  <Tag class:list={['font-semibold', tag === 'h1' ? 'text-[2.4rem] leading-[1.05] sm:text-5xl md:text-6xl' : 'text-3xl sm:text-4xl md:text-5xl']} style={`--brush:${brush}`}>
     <slot />
   </Tag>
-  {Astro.slots.has('sotto') && <p class="mt-4 text-lg text-cacao/90 max-w-2xl" class:list={[center && 'mx-auto']}><slot name="sotto" /></p>}
+  {Astro.slots.has('sotto') && <p class="mt-4 text-base sm:text-lg text-cacao/85 max-w-2xl" class:list={[center && 'mx-auto']}><slot name="sotto" /></p>}
 </div>

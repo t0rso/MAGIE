@@ -1,28 +1,21 @@
 ---
 import Foto from './Foto.astro';
 import Drip from './Drip.astro';
-import Placeholder from './Placeholder.astro';
-import { preavvisoGiorni } from '../lib/gusti';
 ---
-<section class="relative bg-fragola text-white on-dark">
-  <Drip color="#E85D75" class="absolute -top-10 left-0 right-0" />
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-20 grid gap-10 md:grid-cols-2 items-center">
-    <div class="reveal">
-      <p class="text-sm font-black uppercase tracking-[.18em] text-limone mb-3">Torte gelato su ordinazione</p>
-      <h2 class="text-4xl sm:text-5xl font-semibold">Una torta che possono mangiare <span class="underline-brush" style="--brush:#C7405A">tutti gli invitati.</span></h2>
-      <p class="mt-5 text-lg text-white/90 max-w-lg">Compleanno con un nipote celiaco, un'amica vegana, il nonno diabetico? La facciamo su misura: vegana, senza glutine, con stevia, o semplicemente buona. Scritta o foto in cialda.</p>
-      <ul class="mt-6 grid gap-2 text-white/95 font-bold">
-        <li>🎂 Da 6 a 20 porzioni</li>
-        <li>⏱ Preavviso di {preavvisoGiorni} giorni <Placeholder class="!text-white !border-white/60 !bg-white/10" /></li>
-        <li>📲 Ordini via WhatsApp o dal sito</li>
-      </ul>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/torte#ordina" class="btn btn-primary btn-lg">Ordina una torta</a>
+<section class="relative bg-fragola text-white on-dark mt-6">
+  <Drip color="#E85D75" class="absolute -top-8 md:-top-10 left-0 right-0" />
+  <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-12 pb-14 md:py-20 grid gap-8 md:gap-12 md:grid-cols-[1fr_1fr] items-center">
+    <div class="reveal text-center md:text-left order-2 md:order-1">
+      <p class="text-[11px] sm:text-xs font-black uppercase tracking-[.2em] text-limone">Torte gelato su ordinazione</p>
+      <h2 class="mt-3 text-3xl sm:text-5xl font-semibold">Una torta che possono mangiare <span class="underline-brush" style="--brush:#C7405A">tutti gli invitati.</span></h2>
+      <p class="mt-4 text-base sm:text-lg text-white/90 max-w-md mx-auto md:mx-0">Anche vegana, senza glutine o con stevia. Scritta o foto in cialda. Due giorni di preavviso.</p>
+      <div class="mt-7 flex flex-col sm:flex-row items-center gap-4">
+        <a href="/torte#ordina" class="btn btn-primary btn-lg w-full sm:w-auto">Ordina una torta</a>
         <a href="/torte" class="btn-link">Vedi le torte →</a>
       </div>
     </div>
-    <div class="reveal max-w-md mx-auto w-full anim-float">
-      <Foto nome="torta-hero" alt="Torta gelato Magie decorata" ratio="1/1" scontornata nota="Una torta gelato finita, vista di 3/4" />
+    <div class="reveal order-1 md:order-2 mx-auto w-[min(70vw,300px)] md:w-full md:max-w-md anim-float">
+      <Foto nome="torta-hero" alt="Torta gelato Magie decorata" ratio="1/1" scontornata nota="Una torta finita, vista di 3/4" sizes="(min-width: 768px) 448px, 70vw" />
     </div>
   </div>
 </section>

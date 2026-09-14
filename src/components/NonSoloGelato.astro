@@ -4,17 +4,17 @@ import Titolo from './Titolo.astro';
 import Drip from './Drip.astro';
 import Foto from './Foto.astro';
 ---
-<section class="relative bg-cialda/60">
-  <Drip color="rgb(242 227 198 / .6)" class="absolute -top-10 left-0 right-0" />
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-20">
+<section class="relative bg-cialda/60 mt-6">
+  <Drip color="rgb(242 227 198 / .6)" class="absolute -top-8 md:-top-10 left-0 right-0" />
+  <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-12 pb-14 md:py-20">
     <Titolo occhiello="Non solo coni" brush="var(--color-pesca)">Ai tavolini, <span class="underline-brush">la sera.</span></Titolo>
-    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 reveal-stagger">
+    <div class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 reveal-stagger">
       {voci.map((v) => (
         <div class="card overflow-hidden">
-          <Foto nome={v.foto} alt={v.nome} ratio="4/3" nota={v.fotoNota} class="!rounded-none !shadow-none" />
-          <div class="p-5">
-          <h3 class="text-xl font-bold">{v.nome}</h3>
-          <p class="mt-1 text-cacao/90">{v.testo}</p>
+          <Foto nome={v.foto} alt={v.nome} ratio="4/3" nota={v.fotoNota} class="!rounded-none !shadow-none" sizes="(min-width: 1024px) 280px, 50vw" />
+          <div class="p-3 sm:p-5">
+            <h3 class="text-base sm:text-xl font-bold">{v.nome}</h3>
+            <p class="mt-1 text-sm text-cacao/85 hidden sm:block">{v.testo}</p>
           </div>
         </div>
       ))}
