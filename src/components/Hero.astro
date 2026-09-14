@@ -1,0 +1,64 @@
+---
+/**
+ * Hero a tutta immagine. Le foto `src/assets/foto/hero-*.jpg` ruotano in dissolvenza;
+ * il logo `src/assets/logo.(svg|png)` sostituisce la scritta "Magie" appena c'è.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+const slides = Object.entries(import.meta.glob<{ default: ImageMetadata }>('../assets/foto/hero-*.{jpg,jpeg,png,webp}', { eager: true }))
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, m]) => m.default);
+const logo = Object.values(import.meta.glob<{ default: ImageMetadata }>('../assets/logo.{svg,png,webp}', { eager: true }))[0]?.default;
+
+const placeholder = [
+  { note: 'foto/hero-1.jpg · il banco di sera, luci accese', bg: 'linear-gradient(160deg,#3B2418,#8B5E3C 60%,#C69C6D)' },
+  { note: 'foto/hero-2.jpg · un cono in mano, primo piano', bg: 'linear-gradient(160deg,#5E8A4A,#8FB57A 55%,#EEF3E6)' },
+  { note: 'foto/hero-3.jpg · tavolini fuori con la gente', bg: 'linear-gradient(160deg,#C7405A,#E85D75 55%,#F9B48A)' },
+];
+const n = slides.length || placeholder.length;
+---
+<section class="hero relative min-h-[100svh] md:min-h-[92vh] grid overflow-hidden bg-cioccolato text-white on-dark -mt-16" data-hero data-n={n}>
+  <div class="absolute inset-0" aria-hidden="true">
+    {slides.length > 0
+      ? slides.map((s, i) => (
+          <Image src={s} alt="" widths={[640, 1080, 1600, 2200]} sizes="100vw" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined}
+                 class:list={['hero-slide', i === 0 && 'is-active']} data-slide />
+        ))
+      : placeholder.map((p, i) => (
+          <div class:list={['hero-slide', i === 0 && 'is-active']} data-slide style={`background:${p.bg}`}>
+            <p class="absolute left-4 top-20 rounded-full bg-black/30 px-3 py-1.5 font-mono text-[11px] text-white/80">{p.note}</p>
+          </div>
+        ))}
+    <div class="absolute inset-0 bg-gradient-to-t from-cioccolato/85 via-cioccolato/30 to-cioccolato/40"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-4xl px-5 sm:px-6 pt-28 pb-16 md:pb-24 flex flex-col items-center justify-end text-center gap-6 w-full">
+    {logo ? (
+      <Image src={logo} alt="Magie" class="anim-drop h-24 sm:h-32 md:h-40 w-auto drop-shadow-[0_8px_24px_rgba(0,0,0,.35)]" style="animation-delay:.1s" loading="eager" />
+    ) : (
+      <p class="anim-drop display text-7xl sm:text-8xl md:text-9xl font-black leading-none tracking-tight drop-shadow-[0_8px_24px_rgba(0,0,0,.35)]" style="animation-delay:.1s" aria-hidden="true">Magie</p>
+    )}
+    <h1 class="anim-drop text-2xl sm:text-3xl md:text-4xl font-medium italic text-white/95" style="animation-delay:.25s">
+      <span class="sr-only">Gelateria Magie Rimini — </span>Il gelato senza peccato.
+    </h1>
+    <p class="anim-drop text-sm sm:text-base text-white/75 -mt-3" style="animation-delay:.35s">Artigianale. Anche vegano, senza zucchero, senza lattosio, senza glutine.</p>
+    <div class="anim-drop mt-2 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto" style="animation-delay:.45s">
+      <a href="/torte#ordina" class="btn btn-primary btn-lg w-full sm:w-auto">Ordina una torta</a>
+      <a href="/gusti" class="btn btn-secondary btn-lg w-full sm:w-auto">Scopri i gusti</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  const slides = hero ? [...hero.querySelectorAll<HTMLElement>('[data-slide]')] : [];
+  if (slides.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let i = 0;
+    setInterval(() => {
+      slides[i].classList.remove('is-active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('is-active');
+    }, 5500);
+  }
+</script>

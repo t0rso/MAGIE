@@ -5,7 +5,8 @@ Formato: JPG per le foto normali (lato lungo ≥ 1600 px), PNG con sfondo traspa
 
 | File | Dove compare | Cosa deve esserci | Formato |
 |---|---|---|---|
-| `hero-cono.png` | Home, in alto | Un cono con 2–3 palline ben visibili, tenuto in mano o su fondo neutro | **scontornata**, verticale |
+| `hero-1.jpg`, `hero-2.jpg`, `hero-3.jpg` | Home, sfondo a tutto schermo (ruotano) | 1: il banco di sera con le luci; 2: un cono in mano, primo piano; 3: i tavolini fuori con la gente. Soggetto al centro: su telefono l'immagine viene tagliata ai lati | orizzontali, lato lungo ≥ 2200 px |
+| `../logo.svg` (o `.png`) | Home, sopra il motto; header | Il logo ufficiale, su sfondo trasparente | SVG o PNG |
 | `banco.jpg` | Home | La vetrina dei gusti, di sera, con le etichette leggibili | orizzontale largo (21:9 va bene) |
 | `torta-hero.png` | Pagina torte, in alto | Una torta gelato finita, decorata, vista di 3/4 | **scontornata** |
 | `torta-personalizzata.jpg` | Pagina torte | Torta con scritta o foto in cialda | quadrata |

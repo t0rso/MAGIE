@@ -14,6 +14,7 @@ interface Props {
   jsonLd?: Record<string, unknown>;
 }
 const { title, description = info.descrizione, rawTitle = false, jsonLd } = Astro.props;
+const isHome = Astro.url.pathname === '/';
 const fullTitle = rawTitle ? title : `${title} · Gelateria Magie Rimini`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
@@ -71,7 +72,7 @@ const schemaShop = {
       <slot />
     </main>
     <Footer />
-    <WhatsAppFloat />
+    {!isHome && <WhatsAppFloat />}
     <script src="../scripts/reveal.ts"></script>
     <script src="../scripts/stato.ts"></script>
   </body>

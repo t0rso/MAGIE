@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const overlay = path === '/';
 const nav = [
   { href: '/gusti', label: 'Gusti' },
   { href: '/torte', label: 'Torte' },
@@ -11,7 +12,7 @@ const nav = [
 ];
 const current = (href: string) => (path === href ? 'page' : undefined);
 ---
-<header class="sticky top-0 z-40 header-blur border-b border-cialda/70">
+<header class:list={['sticky top-0 z-40 header-blur border-b border-cialda/70 transition-colors duration-300', overlay && 'header-overlay']} data-header>
   <div class="mx-auto max-w-6xl px-5 sm:px-6 flex items-center justify-between h-16 gap-4">
     <a href="/" class="flex items-center gap-2 group" aria-label="Gelateria Magie, home">
       <Logo />
@@ -40,6 +41,12 @@ const current = (href: string) => (path === href ? 'page' : undefined);
 </header>
 
 <script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  if (header?.classList.contains('header-overlay')) {
+    const aggiorna = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
+    aggiorna();
+    addEventListener('scroll', aggiorna, { passive: true });
+  }
   const btn = document.getElementById('nav-toggle');
   const panel = document.getElementById('nav-mobile');
   btn?.addEventListener('click', () => {

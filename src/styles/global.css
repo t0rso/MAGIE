@@ -51,18 +51,18 @@ h1, h2, h3, .display {
 p { text-wrap: pretty; }
 
 @layer components {
-/* Sfondo "zuccherini": puntini colorati sparsi, molto discreti */
-.sprinkles {
-  background-image:
-    radial-gradient(circle at 12% 18%, var(--color-fragola) 0 3px, transparent 4px),
-    radial-gradient(circle at 78% 12%, var(--color-pistacchio) 0 3px, transparent 4px),
-    radial-gradient(circle at 60% 70%, var(--color-limone) 0 3px, transparent 4px),
-    radial-gradient(circle at 25% 85%, var(--color-mirtillo) 0 3px, transparent 4px),
-    radial-gradient(circle at 90% 60%, var(--color-pesca) 0 3px, transparent 4px),
-    radial-gradient(circle at 45% 35%, var(--color-menta) 0 2px, transparent 3px);
-  background-size: 420px 420px;
-  background-position: 0 0;
+/* ---------- Hero a tutta immagine ---------- */
+.hero-slide {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1.06);
+  transition: opacity 1.4s ease, transform 7s linear;
 }
+.hero-slide.is-active { opacity: 1; transform: scale(1); }
+
+/* Header trasparente sopra l'hero, pieno dopo lo scroll */
+.header-overlay:not(.is-scrolled) { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; border-color: transparent; color: #fff; }
+.header-overlay:not(.is-scrolled) .nav-link::after { background: #fff; }
+.header-overlay:not(.is-scrolled) #nav-toggle { background: rgb(255 255 255 / .18) !important; color: #fff; box-shadow: none; }
 
 /* ---------- Bottoni: un solo primario per schermata, poi secondario, poi link ---------- */
 .btn {

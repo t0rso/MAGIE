@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Foto from '../components/Foto.astro';
+import Hero from '../components/Hero.astro';
 import Marquee from '../components/Marquee.astro';
 import PerChi from '../components/PerChi.astro';
 import CtaTorte from '../components/CtaTorte.astro';
@@ -13,34 +14,10 @@ import Drip from '../components/Drip.astro';
 import { gustiSignature } from '../lib/gusti';
 ---
 <Base title="Gelateria Magie Rimini · Gelato artigianale, anche vegano e senza zucchero" rawTitle>
-  <!-- HERO: un messaggio, una foto, un'azione -->
-  <section class="sprinkles overflow-hidden">
-    <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-8 pb-12 md:pt-16 md:pb-24 grid gap-6 md:gap-x-12 md:grid-cols-[1.1fr_1fr] md:grid-rows-[auto_auto] items-center">
-      <div class="text-center md:text-left md:self-end">
-        <p class="anim-drop text-[11px] sm:text-xs font-black uppercase tracking-[.2em] text-fragola" style="animation-delay:.05s">Gelateria artigianale · Rimini</p>
-        <h1 class="anim-drop mt-3 text-[2.5rem] leading-[1.02] sm:text-6xl lg:text-7xl font-semibold" style="animation-delay:.15s">
-          Gelato per tutti.<br />
-          <em class="underline-brush is-in font-medium" style="--brush:var(--color-menta)">Anche per chi di solito non può.</em>
-        </h1>
-        <p class="anim-drop mt-4 text-base sm:text-lg text-cacao/85 max-w-md mx-auto md:mx-0" style="animation-delay:.3s">
-          Vegano, con stevia, senza lattosio, senza glutine. Da vent'anni, e buono.
-        </p>
-      </div>
-      <div class="relative mx-auto w-[min(58vw,240px)] md:w-[min(40vw,420px)] md:col-start-2 md:row-span-2 anim-drop" style="animation-delay:.25s">
-        <div class="absolute inset-[4%] -z-10 rounded-[var(--radius-blob)] bg-limone/70 anim-wobble" aria-hidden="true"></div>
-        <div class="anim-float">
-          <Foto nome="hero-cono" alt="Cono con tre gusti di gelato Magie" ratio="4/5" scontornata priority nota="Cono con 2–3 palline, in mano" sizes="(min-width: 768px) 420px, 58vw" />
-        </div>
-      </div>
-      <div class="anim-drop flex flex-col sm:flex-row items-center gap-4 md:justify-start md:self-start" style="animation-delay:.45s">
-        <a href="/torte#ordina" class="btn btn-primary btn-lg w-full sm:w-auto">Ordina una torta</a>
-        <a href="/gusti" class="btn-link">Guarda i gusti →</a>
-      </div>
-    </div>
-  </section>
+  <Hero />
 
   <!-- TORTE: la conversione principale, subito -->
-  <CtaTorte />
+  <CtaTorte prima />
 
   <!-- PER CHI: quattro tessere, niente testo -->
   <PerChi />
