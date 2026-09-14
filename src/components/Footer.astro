@@ -6,15 +6,15 @@ import { orari, orariUniformi } from '../lib/orari';
 const anno = new Date().getFullYear();
 const uniforme = orariUniformi(orari);
 ---
-<footer class="mt-24 bg-cioccolato text-crema relative">
+<footer class="mt-24 bg-cioccolato text-crema relative on-dark">
   <Drip color="#3B2418" class="absolute -top-10 left-0 right-0" />
   <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-16 pb-10 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
     <div>
       <a href="/" class="group inline-flex text-crema"><Logo big /></a>
       <p class="mt-3 max-w-sm text-crema/80">{info.claim} Gelato artigianale a Rimini da oltre {info.anniAttivita} anni, anche vegano, con stevia, senza lattosio e senza glutine.</p>
-      <div class="mt-5 flex gap-3">
-        <a class="btn btn-ghost !bg-crema/10 !text-crema !shadow-none hover:!bg-crema/20 !py-2 !px-4 text-sm" href={info.social.instagram} target="_blank" rel="noopener">Instagram</a>
-        <a class="btn btn-ghost !bg-crema/10 !text-crema !shadow-none hover:!bg-crema/20 !py-2 !px-4 text-sm" href={info.social.facebook} target="_blank" rel="noopener">Facebook</a>
+      <div class="mt-5 flex gap-5">
+        <a class="btn-link" href={info.social.instagram} target="_blank" rel="noopener">Instagram</a>
+        <a class="btn-link" href={info.social.facebook} target="_blank" rel="noopener">Facebook</a>
       </div>
     </div>
     <div>

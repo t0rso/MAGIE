@@ -3,6 +3,7 @@ import info from '../data/info.json';
 import { orari, GIORNI_ORDINATI, GIORNI_LABEL, formattaFasce } from '../lib/orari';
 import StatoApertura from './StatoApertura.astro';
 import Titolo from './Titolo.astro';
+import Foto from './Foto.astro';
 interface Props { compatto?: boolean }
 const { compatto = false } = Astro.props;
 const q = encodeURIComponent(`Gelateria Magie, ${info.indirizzo.via}, ${info.indirizzo.citta}`);
@@ -30,14 +31,19 @@ const mapSrc = `https://www.google.com/maps?q=${q}&z=16&output=embed`;
           ))}
         </tbody>
       </table>
-      <div class="mt-5 flex flex-wrap gap-2">
-        <a href={`tel:${info.telefonoTel}`} class="btn btn-ghost !py-2.5 text-sm">📞 {info.telefono}</a>
-        <a href={`https://wa.me/${info.whatsapp}`} class="btn btn-wa !py-2.5 text-sm">WhatsApp</a>
-        <a href={info.social.google} target="_blank" rel="noopener" class="btn btn-dark !py-2.5 text-sm">Indicazioni ↗</a>
+      <div class="mt-5 grid gap-3">
+        <a href={info.social.google} target="_blank" rel="noopener" class="btn btn-primary">Indicazioni stradali</a>
+        <p class="flex flex-wrap gap-x-5 gap-y-1 text-sm">
+          <a href={`tel:${info.telefonoTel}`} class="btn-link">{info.telefono}</a>
+          <a href={`https://wa.me/${info.whatsapp}`} class="btn-link">WhatsApp {info.cellulare}</a>
+        </p>
       </div>
     </div>
-    <div class="card overflow-hidden min-h-72 reveal">
+    <div class="grid gap-6 reveal">
+      {!compatto && <Foto nome="esterno-sera" alt="L'ingresso della gelateria Magie di sera, con i tavolini fuori" ratio="16/9" nota="L'ingresso con i tavolini, di sera, luci accese" />}
+      <div class="card overflow-hidden min-h-72">
       <iframe src={mapSrc} title="Mappa: Gelateria Magie, via Covignano 152, Rimini" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full min-h-72 border-0 grayscale-[.2] contrast-[1.05]"></iframe>
+      </div>
     </div>
   </div>
 </section>

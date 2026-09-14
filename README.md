@@ -24,6 +24,14 @@ npm run check    # type-check
 
 Ogni dato ancora da verificare con la gelateria ha `daConfermare: true` e mostra il badge "da confermare" sul sito. Quando è confermato, basta togliere la chiave.
 
+## Foto
+
+Le foto reali vanno in `src/assets/foto/` con i nomi elencati in [src/assets/foto/README.md](src/assets/foto/README.md) (lista scatti da dare alla gelateria). Finché un file manca, il sito mostra un segnaposto che dice quale scatto serve; appena c'è, compare ottimizzato (WebP, più formati) senza toccare il codice.
+
+## Gerarchia bottoni
+
+Un solo `btn-primary` per schermata (sempre "Ordina una torta" o l'azione principale), `btn-secondary` in outline per l'alternativa, `btn-link` per tutto il resto. Sui fondi colorati la sezione ha classe `on-dark` e i bottoni si invertono da soli.
+
 ## Deploy
 
 Netlify: `netlify.toml` è già pronto. Il form torte usa Netlify Forms (`name="ordine-torta"`): attivare le notifiche email dal pannello Netlify.

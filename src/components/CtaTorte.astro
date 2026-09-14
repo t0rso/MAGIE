@@ -1,10 +1,10 @@
 ---
-import Torta from './Torta.astro';
+import Foto from './Foto.astro';
 import Drip from './Drip.astro';
 import Placeholder from './Placeholder.astro';
 import { preavvisoGiorni } from '../lib/gusti';
 ---
-<section class="relative bg-fragola text-white">
+<section class="relative bg-fragola text-white on-dark">
   <Drip color="#E85D75" class="absolute -top-10 left-0 right-0" />
   <div class="mx-auto max-w-6xl px-4 sm:px-6 py-20 grid gap-10 md:grid-cols-2 items-center">
     <div class="reveal">
@@ -17,12 +17,12 @@ import { preavvisoGiorni } from '../lib/gusti';
         <li>📲 Ordini via WhatsApp o dal sito</li>
       </ul>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/torte#ordina" class="btn btn-dark">Ordina una torta</a>
-        <a href="/torte" class="btn btn-ghost">Vedi le torte</a>
+        <a href="/torte#ordina" class="btn btn-primary btn-lg">Ordina una torta</a>
+        <a href="/torte" class="btn-link">Vedi le torte →</a>
       </div>
     </div>
-    <div class="group reveal max-w-md mx-auto w-full">
-      <Torta colori={['#8E3B6B', '#EFE3CF', '#A0714F']} class="anim-wobble drop-shadow-2xl" />
+    <div class="reveal max-w-md mx-auto w-full anim-float">
+      <Foto nome="torta-hero" alt="Torta gelato Magie decorata" ratio="1/1" scontornata nota="Una torta gelato finita, vista di 3/4" />
     </div>
   </div>
 </section>

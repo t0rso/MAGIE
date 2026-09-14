@@ -7,7 +7,7 @@ const { gusto: g } = Astro.props;
 ---
 <article class="card group p-5 flex gap-4 items-start"
          data-gusto data-categoria={g.categoria} data-vincoli={g.vincoli.join(' ')}>
-  <span class="scoop shrink-0 w-16 anim-float" style={`--c:${g.colore}; animation-delay:${(g.nome.length % 5) * -0.7}s`} aria-hidden="true"></span>
+  <span class="scoop shrink-0 w-12 mt-1" style={`--c:${g.colore}`} aria-hidden="true"></span>
   <div class="min-w-0">
     <div class="flex flex-wrap items-center gap-2">
       <h3 class="text-xl font-bold">{g.nome}</h3>

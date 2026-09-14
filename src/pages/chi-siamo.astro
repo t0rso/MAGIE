@@ -2,8 +2,14 @@
 import Base from '../layouts/Base.astro';
 import Titolo from '../components/Titolo.astro';
 import Placeholder from '../components/Placeholder.astro';
+import Foto from '../components/Foto.astro';
 import info from '../data/info.json';
-const foto = ['Il banco la sera', 'Il laboratorio', 'Chi ci lavora', 'Le torte pronte'];
+const foto = [
+  { nome: 'laboratorio', alt: 'Il laboratorio di Magie', nota: 'Il laboratorio mentre si lavora' },
+  { nome: 'team', alt: 'Le persone dietro al banco', nota: 'Chi ci lavora, sorridenti' },
+  { nome: 'dettaglio-ingredienti', alt: 'Ingredienti freschi', nota: 'Pistacchi, frutta, mandorle in primo piano' },
+  { nome: 'banco-dettaglio', alt: 'Una vaschetta con la spatola', nota: 'Primo piano di una vaschetta' },
+];
 ---
 <Base title="Chi siamo" description="Gelateria Magie, Rimini: da oltre vent'anni gelato artigianale in via Covignano, con un'attenzione vera a chi non può mangiare zucchero, latte o glutine.">
   <section class="sprinkles">
@@ -24,8 +30,8 @@ const foto = ['Il banco la sera', 'Il laboratorio', 'Chi ci lavora', 'Le torte p
     </div>
     <div class="grid grid-cols-2 gap-3 reveal-stagger">
       {foto.map((f, i) => (
-        <div class:list={['rounded-3xl border-2 border-dashed border-nocciola/60 bg-panna/70 grid place-items-center text-center p-4 aspect-[4/5]', i % 3 === 0 && 'rotate-[-2deg]', i % 3 === 1 && 'rotate-[1.5deg]']}>
-          <div><p class="text-3xl">📷</p><p class="mt-2 text-sm font-extrabold text-cacao/80">{f}</p><Placeholder testo="foto" class="mt-2" /></div>
+        <div class:list={[i % 2 === 0 ? 'rotate-[-1.5deg]' : 'rotate-[1.5deg] mt-8']}>
+          <Foto nome={f.nome} alt={f.alt} ratio="4/5" nota={f.nota} sizes="(min-width: 768px) 260px, 45vw" />
         </div>
       ))}
     </div>

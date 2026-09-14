@@ -10,7 +10,7 @@ const stelle = '★★★★★';
       <p class="text-limone-dark text-2xl tracking-wider text-caramello">{stelle}</p>
       <p class="mt-2 font-extrabold">{info.google.recensioni} recensioni su Google</p>
       <p class="text-cacao/80">{info.facebook.consigliata}% consigliata su Facebook · {info.facebook.follower} follower</p>
-      <a href={info.social.google} target="_blank" rel="noopener" class="btn btn-ghost mt-5 !py-2.5 text-sm">Leggi su Google Maps ↗</a>
+      <a href={info.social.google} target="_blank" rel="noopener" class="btn-link mt-5">Leggi su Google Maps ↗</a>
     </div>
     <ul class="grid gap-4 reveal-stagger">
       {info.recensioni.map((r, i) => (
