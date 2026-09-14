@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import Titolo from '../components/Titolo.astro';
+import DoveSiamo from '../components/DoveSiamo.astro';
+import Placeholder from '../components/Placeholder.astro';
+import info from '../data/info.json';
+---
+<Base title="Contatti e orari" description="Gelateria Magie: via Covignano 152, Rimini. Aperti tutti i giorni 14:30–24:00. Telefono, WhatsApp, mappa e consegna a domicilio.">
+  <section class="sprinkles">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 pb-4">
+      <Titolo tag="h1" occhiello="Contatti" brush="var(--color-limone)">
+        Siamo in <span class="underline-brush">via Covignano</span>, tutti i giorni dalle 14:30.
+        <Fragment slot="sotto">Per le torte scrivici su WhatsApp o usa il modulo: rispondiamo dal banco tra un cono e l'altro, quindi a volte ci vuole un'ora.</Fragment>
+      </Titolo>
+    </div>
+  </section>
+
+  <DoveSiamo compatto />
+
+  <section class="mx-auto max-w-6xl px-4 sm:px-6 pb-10 grid gap-5 md:grid-cols-3 reveal-stagger">
+    <a href={`https://wa.me/${info.whatsapp}`} class="card p-6 group">
+      <p class="text-3xl">💬</p><h2 class="mt-2 text-xl font-bold">WhatsApp</h2>
+      <p class="text-cacao/90">{info.cellulare}</p><p class="mt-2 text-sm font-extrabold text-fragola">Il modo più veloce →</p>
+    </a>
+    <a href={`tel:${info.telefonoTel}`} class="card p-6 group">
+      <p class="text-3xl">📞</p><h2 class="mt-2 text-xl font-bold">Telefono</h2>
+      <p class="text-cacao/90">{info.telefono}</p><p class="mt-2 text-sm font-extrabold text-fragola">Chiama in orario di apertura →</p>
+    </a>
+    <div class="card p-6">
+      <p class="text-3xl">🛵</p><h2 class="mt-2 text-xl font-bold">Consegna a domicilio <Placeholder /></h2>
+      <p class="text-cacao/90">{info.consegna.zona}. {info.consegna.note}</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 sm:px-6 py-10 reveal">
+    <div class="card p-6 flex flex-wrap gap-4 items-center justify-between">
+      <p class="font-extrabold text-lg">Le foto del banco, ogni giorno, le trovi sui social.</p>
+      <div class="flex gap-3">
+        <a class="btn btn-ghost" href={info.social.instagram} target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-ghost" href={info.social.facebook} target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+  </section>
+</Base>

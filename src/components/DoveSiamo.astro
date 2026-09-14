@@ -1,0 +1,43 @@
+---
+import info from '../data/info.json';
+import { orari, GIORNI_ORDINATI, GIORNI_LABEL, formattaFasce } from '../lib/orari';
+import StatoApertura from './StatoApertura.astro';
+import Titolo from './Titolo.astro';
+interface Props { compatto?: boolean }
+const { compatto = false } = Astro.props;
+const q = encodeURIComponent(`Gelateria Magie, ${info.indirizzo.via}, ${info.indirizzo.citta}`);
+const mapSrc = `https://www.google.com/maps?q=${q}&z=16&output=embed`;
+---
+<section class="mx-auto max-w-6xl px-4 sm:px-6 py-20" id="dove">
+  {!compatto && <Titolo occhiello="Via Covignano, non il lungomare" brush="var(--color-limone)">Il gelato del <span class="underline-brush">dopo cena.</span>
+    <Fragment slot="sotto">Siamo sulla collina di Rimini, aperti tutti i giorni dalle 14:30 a mezzanotte. Tavolini fuori, parcheggio facile.</Fragment>
+  </Titolo>}
+
+  <div class:list={['grid gap-6 md:grid-cols-[1fr_1.3fr]', !compatto && 'mt-10']}>
+    <div class="card p-6 reveal">
+      <StatoApertura />
+      <address class="not-italic mt-5 text-lg">
+        <strong>Gelateria Magie</strong><br />
+        {info.indirizzo.via}<br />{info.indirizzo.cap} {info.indirizzo.citta} ({info.indirizzo.provincia})
+      </address>
+      <table class="mt-5 w-full text-sm">
+        <tbody>
+          {GIORNI_ORDINATI.map((g) => (
+            <tr class="border-t border-cialda" data-giorno={g}>
+              <th class="py-1.5 text-left font-extrabold">{GIORNI_LABEL[g]}</th>
+              <td class="py-1.5 text-right">{formattaFasce(orari[g])}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div class="mt-5 flex flex-wrap gap-2">
+        <a href={`tel:${info.telefonoTel}`} class="btn btn-ghost !py-2.5 text-sm">📞 {info.telefono}</a>
+        <a href={`https://wa.me/${info.whatsapp}`} class="btn btn-wa !py-2.5 text-sm">WhatsApp</a>
+        <a href={info.social.google} target="_blank" rel="noopener" class="btn btn-dark !py-2.5 text-sm">Indicazioni ↗</a>
+      </div>
+    </div>
+    <div class="card overflow-hidden min-h-72 reveal">
+      <iframe src={mapSrc} title="Mappa: Gelateria Magie, via Covignano 152, Rimini" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full min-h-72 border-0 grayscale-[.2] contrast-[1.05]"></iframe>
+    </div>
+  </div>
+</section>

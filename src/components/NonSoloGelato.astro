@@ -1,0 +1,20 @@
+---
+import voci from '../data/nonSoloGelato.json';
+import Titolo from './Titolo.astro';
+import Drip from './Drip.astro';
+---
+<section class="relative bg-cialda/60">
+  <Drip color="rgb(242 227 198 / .6)" class="absolute -top-10 left-0 right-0" />
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-20">
+    <Titolo occhiello="Non solo coni" brush="var(--color-pesca)">Ai tavolini, <span class="underline-brush">la sera.</span></Titolo>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 reveal-stagger">
+      {voci.map((v) => (
+        <div class="card p-6">
+          <span class="text-4xl" aria-hidden="true">{v.emoji}</span>
+          <h3 class="mt-3 text-xl font-bold">{v.nome}</h3>
+          <p class="mt-1 text-cacao/90">{v.testo}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

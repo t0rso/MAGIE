@@ -1,0 +1,28 @@
+---
+import Torta from './Torta.astro';
+import Drip from './Drip.astro';
+import Placeholder from './Placeholder.astro';
+import { preavvisoGiorni } from '../lib/gusti';
+---
+<section class="relative bg-fragola text-white">
+  <Drip color="#E85D75" class="absolute -top-10 left-0 right-0" />
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-20 grid gap-10 md:grid-cols-2 items-center">
+    <div class="reveal">
+      <p class="text-sm font-black uppercase tracking-[.18em] text-limone mb-3">Torte gelato su ordinazione</p>
+      <h2 class="text-4xl sm:text-5xl font-semibold">Una torta che possono mangiare <span class="underline-brush" style="--brush:#C7405A">tutti gli invitati.</span></h2>
+      <p class="mt-5 text-lg text-white/90 max-w-lg">Compleanno con un nipote celiaco, un'amica vegana, il nonno diabetico? La facciamo su misura: vegana, senza glutine, con stevia, o semplicemente buona. Scritta o foto in cialda.</p>
+      <ul class="mt-6 grid gap-2 text-white/95 font-bold">
+        <li>🎂 Da 6 a 20 porzioni</li>
+        <li>⏱ Preavviso di {preavvisoGiorni} giorni <Placeholder class="!text-white !border-white/60 !bg-white/10" /></li>
+        <li>📲 Ordini via WhatsApp o dal sito</li>
+      </ul>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/torte#ordina" class="btn btn-dark">Ordina una torta</a>
+        <a href="/torte" class="btn btn-ghost">Vedi le torte</a>
+      </div>
+    </div>
+    <div class="group reveal max-w-md mx-auto w-full">
+      <Torta colori={['#8E3B6B', '#EFE3CF', '#A0714F']} class="anim-wobble drop-shadow-2xl" />
+    </div>
+  </div>
+</section>

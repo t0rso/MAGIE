@@ -1,0 +1,11 @@
+---
+import { vincoloById } from '../lib/gusti';
+import type { VincoloId } from '../lib/types';
+interface Props { id: VincoloId; link?: boolean; small?: boolean }
+const { id, link = false, small = false } = Astro.props;
+const v = vincoloById[id];
+const Tag = link ? 'a' : 'span';
+---
+<Tag href={link ? v.url : undefined} class:list={['chip', small && '!text-xs !py-1 !px-2.5']} style={`--chip:${v.colore}`}>
+  <span aria-hidden="true">{v.emoji}</span>{small ? v.breve : v.nome}
+</Tag>

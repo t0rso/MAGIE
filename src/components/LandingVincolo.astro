@@ -1,0 +1,83 @@
+---
+/** Pagina-vetrina per un vincolo alimentare (vegano, senza zucchero): posizionamento SEO + prova + CTA torta. */
+import Titolo from './Titolo.astro';
+import GustoCard from './GustoCard.astro';
+import Torta from './Torta.astro';
+import Placeholder from './Placeholder.astro';
+import { gustiCon, torte, vincoloById } from '../lib/gusti';
+import type { VincoloId } from '../lib/types';
+
+interface Props {
+  id: VincoloId;
+  titolo: string; // HTML consentito (span.underline-brush)
+  occhiello: string;
+  intro: string;
+  punti: { titolo: string; testo: string; daConfermare?: boolean }[];
+  faq: { q: string; a: string }[];
+}
+const { id, titolo, occhiello, intro, punti, faq } = Astro.props;
+const v = vincoloById[id];
+const lista = gustiCon(id);
+const torteOk = torte.filter((t) => t.vincoli.includes(id));
+---
+<section class="sprinkles">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 pb-10 grid gap-8 md:grid-cols-[1.3fr_1fr] items-center">
+    <Titolo tag="h1" occhiello={occhiello} brush={v.colore}>
+      <Fragment set:html={titolo} />
+      <Fragment slot="sotto">{intro}</Fragment>
+    </Titolo>
+    <div class="relative mx-auto w-56 sm:w-64 anim-drop" style="animation-delay:.3s">
+      <div class="absolute inset-0 -z-10 rounded-[var(--radius-blob)] anim-wobble" style={`background:${v.colore}55`} aria-hidden="true"></div>
+      <div class="grid grid-cols-2 gap-3 p-6">
+        {lista.slice(0, 4).map((g, i) => <span class="scoop anim-float" style={`--c:${g.colore}; animation-delay:${-i * 0.9}s`} title={g.nome}></span>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mx-auto max-w-6xl px-4 sm:px-6 py-14">
+  <div class="grid gap-5 md:grid-cols-3 reveal-stagger">
+    {punti.map((p) => (
+      <div class="card p-6">
+        <h2 class="text-xl font-bold">{p.titolo} {p.daConfermare && <Placeholder />}</h2>
+        <p class="mt-2 text-cacao/90">{p.testo}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section class="mx-auto max-w-6xl px-4 sm:px-6 py-10">
+  <Titolo brush={v.colore}>{lista.length} gusti <span class="underline-brush">{v.nome.toLowerCase()}</span> oggi
+    <Fragment slot="sotto">Lista provvisoria, in aggiornamento con la gelateria. Cambia con le stagioni.</Fragment>
+  </Titolo>
+  <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger">
+    {lista.map((g) => <GustoCard gusto={g} />)}
+  </div>
+  <p class="mt-6 reveal"><a href={`/gusti?v=${id}`} class="btn btn-ghost">Vedi con tutti i filtri →</a></p>
+</section>
+
+{torteOk.length > 0 && (
+  <section class="mx-auto max-w-6xl px-4 sm:px-6 py-14">
+    <div class="card group p-8 grid gap-8 md:grid-cols-[1fr_260px] items-center reveal" style={`background:linear-gradient(135deg, ${v.colore}33, var(--color-panna))`}>
+      <div>
+        <p class="text-sm font-black uppercase tracking-[.18em] text-fragola mb-2">Anche in torta</p>
+        <h2 class="text-3xl sm:text-4xl font-semibold">{torteOk[0].nome}, su ordinazione.</h2>
+        <p class="mt-3 text-lg text-cacao/90">{torteOk[0].descrizione} Per compleanni dove nessuno deve dire «io no, grazie».</p>
+        <a href="/torte#ordina" class="btn btn-primary mt-6">🎂 Ordina una torta {v.nome.toLowerCase()}</a>
+      </div>
+      <Torta colori={torteOk[0].colori} class="anim-wobble" />
+    </div>
+  </section>
+)}
+
+<section class="mx-auto max-w-3xl px-4 sm:px-6 py-14 reveal">
+  <h2 class="text-3xl font-semibold">Domande che ci fate spesso</h2>
+  <div class="mt-4 grid gap-2">
+    {faq.map((f) => (
+      <details class="card !rounded-2xl p-4 group/faq">
+        <summary class="cursor-pointer font-extrabold list-none flex justify-between items-center gap-3">{f.q}<span class="transition-transform group-open/faq:rotate-45 text-fragola text-2xl leading-none">+</span></summary>
+        <p class="mt-2 text-cacao/90">{f.a}</p>
+      </details>
+    ))}
+  </div>
+</section>

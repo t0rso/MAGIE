@@ -1,0 +1,13 @@
+---
+/** Bordo "che cola": va messo in cima alla sezione che ha sfondo `color`, sopra alla sezione precedente. */
+interface Props { color: string; class?: string; flip?: boolean }
+const { color, class: cls = '', flip = false } = Astro.props;
+---
+<div class:list={['drip', cls]} aria-hidden="true" style={flip ? 'transform:scaleY(-1)' : ''}>
+  <svg viewBox="0 0 1200 42" preserveAspectRatio="none">
+    <path fill={color} d="M0,42 L0,18 C60,18 60,30 110,30 C140,30 140,6 170,6 C200,6 200,26 240,26 C300,26 300,12 360,12 C400,12 400,34 440,34 C470,34 470,10 520,10 C580,10 580,24 640,24 C690,24 690,4 740,4 C780,4 780,30 830,30 C870,30 870,14 920,14 C980,14 980,28 1040,28 C1080,28 1080,8 1120,8 C1160,8 1160,20 1200,20 L1200,42 Z"/>
+    <ellipse cx="170" cy="40" rx="8" ry="6" fill={color}/>
+    <ellipse cx="740" cy="38" rx="9" ry="7" fill={color}/>
+    <ellipse cx="1120" cy="40" rx="7" ry="5" fill={color}/>
+  </svg>
+</div>

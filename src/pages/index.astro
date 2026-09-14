@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import Cono from '../components/Cono.astro';
+import StatoApertura from '../components/StatoApertura.astro';
+import VincoloChip from '../components/VincoloChip.astro';
+import Marquee from '../components/Marquee.astro';
+import PerChi from '../components/PerChi.astro';
+import CtaTorte from '../components/CtaTorte.astro';
+import GustoCard from '../components/GustoCard.astro';
+import Recensioni from '../components/Recensioni.astro';
+import NonSoloGelato from '../components/NonSoloGelato.astro';
+import DoveSiamo from '../components/DoveSiamo.astro';
+import Titolo from '../components/Titolo.astro';
+import Drip from '../components/Drip.astro';
+import info from '../data/info.json';
+import { gustiSignature, vincoli } from '../lib/gusti';
+---
+<Base title="Gelateria Magie Rimini · Gelato artigianale, anche vegano e senza zucchero" rawTitle>
+  <!-- HERO -->
+  <section class="sprinkles relative overflow-hidden">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-10 pb-16 md:pt-16 md:pb-24 grid gap-10 md:grid-cols-[1.15fr_1fr] items-center">
+      <div>
+        <p class="anim-drop text-sm font-black uppercase tracking-[.18em] text-fragola" style="animation-delay:.1s">Gelateria artigianale · Rimini, via Covignano</p>
+        <h1 class="anim-drop mt-4 text-5xl sm:text-6xl lg:text-7xl font-semibold" style="animation-delay:.2s">
+          Gelato per tutti.<br />
+          <em class="underline-brush is-in font-medium" style="--brush:var(--color-menta)">Anche per chi di solito non può.</em>
+        </h1>
+        <p class="anim-drop mt-6 text-lg sm:text-xl text-cacao/90 max-w-xl" style="animation-delay:.35s">
+          Vegano, con stevia, senza lattosio, senza glutine: lo facciamo da oltre {info.anniAttivita} anni, e lo facciamo buono. Il resto del banco? Cremino, pistacchio, fior di latte. Quello di sempre.
+        </p>
+        <div class="anim-drop mt-6 flex flex-wrap gap-2" style="animation-delay:.45s">
+          {vincoli.map((v) => <VincoloChip id={v.id} link />)}
+        </div>
+        <div class="anim-drop mt-8 flex flex-wrap items-center gap-3" style="animation-delay:.55s">
+          <a href="/torte#ordina" class="btn btn-primary">🎂 Ordina una torta</a>
+          <a href="/gusti" class="btn btn-ghost">Guarda i gusti</a>
+        </div>
+        <div class="anim-drop mt-6 flex flex-wrap items-center gap-x-3 gap-y-2" style="animation-delay:.65s">
+          <StatoApertura />
+          <a href="#dove" class="text-sm font-extrabold underline decoration-2 decoration-fragola underline-offset-4">Via Covignano 152</a>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute inset-0 -z-10 m-auto size-[80%] rounded-[var(--radius-blob)] bg-limone/60 anim-wobble" aria-hidden="true"></div>
+        <Cono />
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="relative bg-cioccolato text-crema">
+    <Drip color="#3B2418" class="absolute -top-10 left-0 right-0" />
+    <Marquee />
+    <Drip color="#3B2418" class="absolute -bottom-10 left-0 right-0" flip />
+  </div>
+
+  <div class="h-10"></div>
+  <PerChi />
+  <CtaTorte />
+
+  <!-- SIGNATURE -->
+  <section class="mx-auto max-w-6xl px-4 sm:px-6 py-20">
+    <Titolo occhiello="Dal banco" brush="var(--color-pesca)">
+      Quelli che ci <span class="underline-brush">chiedono di più.</span>
+      <Fragment slot="sotto">Lista provvisoria: la stiamo aggiornando con la gelateria. I gusti cambiano con le stagioni, la lista completa è nella pagina gusti.</Fragment>
+    </Titolo>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger">
+      {gustiSignature.map((g) => <GustoCard gusto={g} />)}
+    </div>
+    <div class="mt-8 reveal"><a href="/gusti" class="btn btn-dark">Tutti i gusti e i filtri →</a></div>
+  </section>
+
+  <NonSoloGelato />
+  <Recensioni />
+  <DoveSiamo />
+</Base>

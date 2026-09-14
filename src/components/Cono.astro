@@ -1,0 +1,106 @@
+---
+/** Cono illustrato: le palline "cadono" al caricamento, galleggiano e cambiano gusto a rotazione. */
+import { gusti } from '../lib/gusti';
+const colori = gusti.map((g) => ({ c: g.colore, n: g.nome }));
+---
+<div class="relative mx-auto w-[min(78vw,340px)] select-none" data-cono data-colori={JSON.stringify(colori)}>
+  <svg viewBox="0 0 320 440" class="w-full h-auto overflow-visible" aria-hidden="true">
+    <defs>
+      <pattern id="waffle" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="22" height="22" fill="#D9A968"/>
+        <path d="M0 11h22M11 0v22" stroke="#B8853F" stroke-width="3"/>
+      </pattern>
+      <radialGradient id="shine" cx="32%" cy="28%" r="60%">
+        <stop offset="0" stop-color="#fff" stop-opacity=".55"/>
+        <stop offset=".35" stop-color="#fff" stop-opacity="0"/>
+        <stop offset="1" stop-color="#000" stop-opacity=".12"/>
+      </radialGradient>
+      <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#3B2418" flood-opacity=".25"/>
+      </filter>
+    </defs>
+
+    <!-- ombra a terra -->
+    <ellipse cx="160" cy="428" rx="70" ry="9" fill="#3B2418" opacity=".12"/>
+
+    <!-- cono -->
+    <g class="anim-drop" style="animation-delay:.05s" filter="url(#shadow)">
+      <path d="M92 225 L160 425 L228 225 Z" fill="url(#waffle)"/>
+      <path d="M92 225 L160 425 L228 225 Z" fill="none" stroke="#A6732F" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M88 222 Q160 250 232 222 L228 232 Q160 262 92 232 Z" fill="#B8853F"/>
+    </g>
+
+    <!-- palline: dal basso verso l'alto -->
+    <g class="scoop-g anim-drop" style="animation-delay:.35s">
+      <g class="anim-float" style="animation-delay:-1s">
+        <circle class="scoop-fill" cx="160" cy="200" r="66" fill="#8FB57A" style="transition: fill 1.2s ease"/>
+        <circle cx="160" cy="200" r="66" fill="url(#shine)"/>
+        <path class="scoop-drip" d="M186 252 q0 22 -8 26 q-8 -4 -8 -26 z" fill="#8FB57A" style="transition: fill 1.2s ease; transform-origin: 178px 252px; animation: drip-grow 5s ease-in-out infinite"/>
+      </g>
+    </g>
+    <g class="scoop-g anim-drop" style="animation-delay:.6s">
+      <g class="anim-float" style="animation-delay:-2.3s">
+        <circle class="scoop-fill" cx="122" cy="132" r="56" fill="#E85D75" style="transition: fill 1.2s ease"/>
+        <circle cx="122" cy="132" r="56" fill="url(#shine)"/>
+        <path class="scoop-drip" d="M100 176 q0 20 -6 24 q-6 -4 -6 -24 z" fill="#E85D75" style="transition: fill 1.2s ease; transform-origin: 94px 176px; animation: drip-grow 6s ease-in-out infinite; animation-delay: -2s"/>
+      </g>
+    </g>
+    <g class="scoop-g anim-drop" style="animation-delay:.85s">
+      <g class="anim-float" style="animation-delay:-3.6s">
+        <circle class="scoop-fill" cx="200" cy="118" r="54" fill="#FBF6EC" style="transition: fill 1.2s ease"/>
+        <circle cx="200" cy="118" r="54" fill="url(#shine)"/>
+      </g>
+    </g>
+    <!-- ciliegina -->
+    <g class="anim-drop" style="animation-delay:1.1s">
+      <g class="anim-float" style="animation-delay:-1.8s">
+        <path d="M170 60 q-6 -28 18 -36" fill="none" stroke="#5E8A4A" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="168" cy="68" r="13" fill="#C7405A"/>
+        <circle cx="163" cy="63" r="4" fill="#fff" opacity=".7"/>
+      </g>
+    </g>
+
+    <!-- zuccherini che orbitano -->
+    <g class="anim-spin-slow" style="transform-origin:160px 160px" opacity=".9">
+      <rect x="40" y="90" width="10" height="4" rx="2" fill="#F4E76E" transform="rotate(30 45 92)"/>
+      <rect x="280" y="140" width="10" height="4" rx="2" fill="#7B4B94" transform="rotate(-40 285 142)"/>
+      <rect x="60" y="260" width="10" height="4" rx="2" fill="#E85D75" transform="rotate(70 65 262)"/>
+      <rect x="270" y="270" width="10" height="4" rx="2" fill="#9FD3B6" transform="rotate(15 275 272)"/>
+      <circle cx="150" cy="30" r="4" fill="#F9B48A"/>
+      <circle cx="30" cy="180" r="3.5" fill="#8FB57A"/>
+    </g>
+  </svg>
+
+  <!-- etichetta gusto corrente -->
+  <p class="absolute -bottom-2 inset-x-0 mx-auto w-fit max-w-[95%] text-center text-balance rounded-2xl bg-panna px-3 py-1 text-sm font-extrabold shadow-soft" data-cono-label>
+    Pistacchio · Fragola · Fior di latte
+  </p>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-cono]');
+  if (root && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const colori: { c: string; n: string }[] = JSON.parse(root.dataset.colori || '[]');
+    const fills = root.querySelectorAll<SVGElement>('.scoop-g');
+    const label = root.querySelector('[data-cono-label]');
+    let i = 0;
+    const scegli = () => {
+      // tre gusti diversi, evitando due colori troppo simili
+      const pick: { c: string; n: string }[] = [];
+      let guard = 0;
+      while (pick.length < 3 && guard++ < 50) {
+        const g = colori[(i++ * 7 + 3) % colori.length];
+        if (!pick.some((p) => p.c === g.c)) pick.push(g);
+      }
+      return pick;
+    };
+    const applica = () => {
+      const p = scegli();
+      fills.forEach((g, k) => {
+        g.querySelectorAll<SVGElement>('.scoop-fill, .scoop-drip').forEach((el) => el.setAttribute('fill', p[k].c));
+      });
+      if (label) label.textContent = p.map((x) => x.n).join(' · ');
+    };
+    setTimeout(() => { applica(); setInterval(applica, 3200); }, 2600);
+  }
+</script>

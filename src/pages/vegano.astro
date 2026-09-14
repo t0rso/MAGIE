@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import LandingVincolo from '../components/LandingVincolo.astro';
+const faq = [
+  { q: 'Il gelato vegano è solo sorbetto di frutta?', a: 'No. I sorbetti sono vegani, ma facciamo anche le creme: mandorla, nocciola, pistacchio e cioccolato su base di mandorla o riso. Cremose come quelle al latte.' },
+  { q: 'Usate la stessa spatola per tutti i gusti?', a: 'No: per i gusti vegani usiamo spatole dedicate. Se hai un\'allergia grave al latte dillo al banco, così stiamo ancora più attenti.' },
+  { q: 'Il cono è vegano?', a: 'Chiedi al banco: ti diciamo esattamente cosa contiene cono e cialda, e ti proponiamo la coppetta in caso.' },
+  { q: 'Fate torte vegane?', a: 'Sì, su ordinazione con 2 giorni di preavviso. Anche vegane e senza glutine insieme.' },
+];
+const jsonLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+<Base title="Gelato vegano a Rimini" description="Gelato vegano artigianale a Rimini: creme su base di mandorla e riso, sorbetti di frutta, torte vegane su ordinazione. Gelateria Magie, via Covignano 152." jsonLd={jsonLd}>
+  <LandingVincolo
+    id="vegano"
+    occhiello="Gelato vegano a Rimini"
+    titolo="Vegano, ma <span class='underline-brush'>cremoso</span> sul serio."
+    intro="Non un gusto di frutta messo lì per non dire di no. Creme vegane su base di mandorla e riso, sorbetti con tanta frutta, e torte vegane su ordinazione. Da vent'anni, prima che fosse di moda."
+    punti={[
+      { titolo: 'Basi vegetali fatte da noi', testo: 'Latte di mandorla e di riso preparati in laboratorio, non comprati in brik. Per questo la nocciola vegana è cremosa come l\'altra.', daConfermare: true },
+      { titolo: 'Spatole dedicate', testo: 'I gusti vegani hanno le loro spatole. Piccola cosa, ma per chi ha un\'allergia al latte fa la differenza.', daConfermare: true },
+      { titolo: 'Anche senza zucchero', testo: 'Diversi gusti vegani sono anche con stevia e senza glutine: cerca le tre etichette insieme.' },
+    ]}
+    faq={faq}
+  />
+</Base>

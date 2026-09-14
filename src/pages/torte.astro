@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import Titolo from '../components/Titolo.astro';
+import Torta from '../components/Torta.astro';
+import VincoloChip from '../components/VincoloChip.astro';
+import Placeholder from '../components/Placeholder.astro';
+import FormTorta from '../components/FormTorta.astro';
+import { torte, preavvisoGiorni } from '../lib/gusti';
+const faq = [
+  { q: 'Quanto prima devo ordinare?', a: `Almeno ${preavvisoGiorni} giorni. Sotto le feste un po' di più: scrivici e vediamo.` },
+  { q: 'Potete farla vegana / senza glutine / senza zucchero?', a: 'Sì, tutte e tre, anche insieme. È la cosa che ci chiedono di più e per cui esistiamo.' },
+  { q: 'Quanto costa?', a: 'Dipende da porzioni e gusti. Ti diciamo il prezzo quando confermiamo l\'ordine, prima di prepararla.' },
+  { q: 'Si scioglie prima di arrivare a casa?', a: 'Te la diamo nella borsa termica: regge circa 30–40 minuti. Poi in freezer, e tirala fuori 10 minuti prima di tagliarla.' },
+  { q: 'Fate la consegna?', a: 'A Rimini e dintorni sì. Chiedicelo quando ordini.' },
+];
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+<Base title="Torte gelato su ordinazione" description="Torte gelato artigianali a Rimini, anche vegane, senza glutine e senza zucchero (stevia). Ordina online o su WhatsApp con 2 giorni di preavviso." jsonLd={jsonLd}>
+  <section class="sprinkles">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-12 pb-10 grid gap-8 md:grid-cols-[1.2fr_1fr] items-center">
+      <Titolo tag="h1" occhiello="Torte gelato" brush="var(--color-fragola)">
+        La torta che <span class="underline-brush">mangiano tutti,</span> non solo chi può.
+        <Fragment slot="sotto">Su misura: gusti, porzioni, vincoli alimentari, scritta o foto in cialda. Ordini dal sito o su WhatsApp, confermiamo a voce.</Fragment>
+      </Titolo>
+      <div class="group max-w-xs mx-auto w-full anim-drop" style="animation-delay:.3s"><Torta colori={['#E85D75', '#FBF6EC', '#A0714F']} class="anim-wobble" /></div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 sm:px-6 py-12">
+    <div class="grid gap-5 sm:grid-cols-2 reveal-stagger">
+      {torte.map((t) => (
+        <article class="card group p-6 grid gap-4 sm:grid-cols-[1fr_140px] items-center">
+          <div>
+            <h2 class="text-2xl font-bold">{t.nome}</h2>
+            <p class="mt-1 text-cacao/90">{t.descrizione}</p>
+            <div class="mt-3 flex flex-wrap gap-1.5">{t.vincoli.map((v) => <VincoloChip id={v} small />)}</div>
+            <p class="mt-3 text-sm font-extrabold">
+              {t.porzioni} porzioni · {t.prezzo ? `${t.prezzo} €` : <span>prezzo su richiesta <Placeholder /></span>}
+            </p>
+          </div>
+          <div class="order-first sm:order-none"><Torta colori={t.colori} candeline={false} /></div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 sm:px-6 py-12 grid gap-10 lg:grid-cols-[1.4fr_1fr] items-start">
+    <div class="reveal"><FormTorta /></div>
+    <div class="reveal">
+      <h2 class="text-3xl font-semibold">Domande frequenti</h2>
+      <div class="mt-4 grid gap-2">
+        {faq.map((f) => (
+          <details class="card !rounded-2xl p-4 group/faq">
+            <summary class="cursor-pointer font-extrabold list-none flex justify-between items-center gap-3">
+              {f.q}<span class="transition-transform group-open/faq:rotate-45 text-fragola text-2xl leading-none">+</span>
+            </summary>
+            <p class="mt-2 text-cacao/90">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

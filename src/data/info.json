@@ -1,0 +1,47 @@
+{
+  "nome": "Magie",
+  "sottotitolo": "Gelateria artigianale a Rimini",
+  "claim": "Gelato per tutti. Anche per chi di solito non può.",
+  "descrizione": "Gelateria Magie, via Covignano 152, Rimini: da oltre vent'anni gelato artigianale, anche vegano, con stevia, senza lattosio e senza glutine. Torte gelato su ordinazione, coppe, yogurt naturale, granite. Aperto tutti i giorni dalle 14:30 a mezzanotte.",
+  "indirizzo": {
+    "via": "Via Covignano, 152",
+    "cap": "47923",
+    "citta": "Rimini",
+    "provincia": "RN",
+    "lat": 44.0497,
+    "lng": 12.5067
+  },
+  "telefono": "0541 012388",
+  "telefonoTel": "+390541012388",
+  "cellulare": "328 818 4273",
+  "whatsapp": "393288184273",
+  "email": "",
+  "social": {
+    "instagram": "https://www.instagram.com/magierimini",
+    "facebook": "https://www.facebook.com/magierimini",
+    "google": "https://www.google.com/maps/search/?api=1&query=Gelateria+Magie+Via+Covignano+152+Rimini"
+  },
+  "servizi": ["Tavolini all'aperto", "Asporto", "Consegna a domicilio", "Torte su ordinazione"],
+  "orari": {
+    "lun": [["14:30", "24:00"]],
+    "mar": [["14:30", "24:00"]],
+    "mer": [["14:30", "24:00"]],
+    "gio": [["14:30", "24:00"]],
+    "ven": [["14:30", "24:00"]],
+    "sab": [["14:30", "24:00"]],
+    "dom": [["14:30", "24:00"]]
+  },
+  "google": { "voto": 4.6, "recensioni": 196 },
+  "facebook": { "follower": "1.200", "consigliata": 100 },
+  "anniAttivita": 20,
+  "recensioni": [
+    { "autore": "Camilla L.", "voto": 5, "testo": "Una bella scoperta, soprattutto per chi cerca opzioni vegane." },
+    { "autore": "Viktor G.", "voto": 5, "testo": "Si sente subito la qualità degli ingredienti e la cura nella preparazione. Gusti ben bilanciati, cremosi e pieni di sapore." },
+    { "autore": "Lucia R.", "voto": 5, "testo": "Personale molto cordiale e gelati cremosi e gustosi, in particolare quelli veg e con zucchero non raffinato. Ci torneremo presto." }
+  ],
+  "consegna": {
+    "daConfermare": true,
+    "zona": "Rimini e dintorni",
+    "note": "Zona, orari e ordine minimo da confermare con la gelateria."
+  }
+}

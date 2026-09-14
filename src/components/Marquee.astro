@@ -1,0 +1,19 @@
+---
+import { gusti } from '../lib/gusti';
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+const voci = gusti.map((g) => ({ n: g.nome, c: g.colore }));
+---
+<div class:list={['marquee py-4', cls]} aria-label="Gusti in vetrina">
+  <div class="marquee-track">
+    {[0, 1].map((k) => (
+      <ul class="flex gap-10 items-center shrink-0" aria-hidden={k === 1}>
+        {voci.map((v) => (
+          <li class="flex items-center gap-3 display text-2xl font-semibold italic whitespace-nowrap">
+            <span class="scoop w-7 !shadow-none" style={`--c:${v.c}`}></span>{v.n}
+          </li>
+        ))}
+      </ul>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,59 @@
+---
+import Logo from './Logo.astro';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const nav = [
+  { href: '/gusti', label: 'Gusti' },
+  { href: '/torte', label: 'Torte' },
+  { href: '/vegano', label: 'Vegano' },
+  { href: '/senza-zucchero', label: 'Senza zucchero' },
+  { href: '/chi-siamo', label: 'Chi siamo' },
+  { href: '/contatti', label: 'Contatti' },
+];
+const current = (href: string) => (path === href ? 'page' : undefined);
+---
+<header class="sticky top-0 z-40 header-blur border-b border-cialda/70">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 flex items-center justify-between h-16 gap-4">
+    <a href="/" class="flex items-center gap-2 group" aria-label="Gelateria Magie, home">
+      <Logo />
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6" aria-label="Principale">
+      {nav.map((n) => <a href={n.href} class="nav-link" aria-current={current(n.href)}>{n.label}</a>)}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href="/torte#ordina" class="btn btn-primary hidden sm:inline-flex !py-2.5 !px-4 text-sm">🎂 Ordina una torta</a>
+      <button id="nav-toggle" class="md:hidden grid place-items-center size-11 rounded-full bg-panna shadow-soft" aria-expanded="false" aria-controls="nav-mobile" aria-label="Apri il menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path class="l1" d="M4 7h16"/><path class="l2" d="M4 12h16"/><path class="l3" d="M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="nav-mobile" class="md:hidden grid transition-[grid-template-rows] duration-300 [grid-template-rows:0fr]" hidden>
+    <div class="overflow-hidden">
+      <nav class="px-4 pb-5 pt-1 flex flex-col gap-1" aria-label="Principale (mobile)">
+        {nav.map((n) => <a href={n.href} class="py-3 px-3 rounded-xl font-extrabold text-lg hover:bg-panna" aria-current={current(n.href)}>{n.label}</a>)}
+        <a href="/torte#ordina" class="btn btn-primary mt-2 justify-center">🎂 Ordina una torta</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('nav-toggle');
+  const panel = document.getElementById('nav-mobile');
+  btn?.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.setAttribute('aria-label', open ? 'Apri il menu' : 'Chiudi il menu');
+    if (panel) {
+      if (open) {
+        panel.style.gridTemplateRows = '0fr';
+        panel.addEventListener('transitionend', () => (panel.hidden = true), { once: true });
+      } else {
+        panel.hidden = false;
+        requestAnimationFrame(() => (panel.style.gridTemplateRows = '1fr'));
+      }
+    }
+  });
+</script>

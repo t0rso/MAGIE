@@ -1,0 +1,6 @@
+---
+/** Badge visibile su ogni dato ancora da confermare con la gelateria. Da rimuovere quando i dati sono veri. */
+interface Props { testo?: string; class?: string }
+const { testo = 'da confermare', class: cls = '' } = Astro.props;
+---
+<span class:list={['placeholder', cls]} title="Informazione provvisoria: da confermare con Magie">✎ {testo}</span>

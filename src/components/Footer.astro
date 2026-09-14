@@ -1,0 +1,44 @@
+---
+import info from '../data/info.json';
+import Logo from './Logo.astro';
+import Drip from './Drip.astro';
+import { orari, orariUniformi } from '../lib/orari';
+const anno = new Date().getFullYear();
+const uniforme = orariUniformi(orari);
+---
+<footer class="mt-24 bg-cioccolato text-crema relative">
+  <Drip color="#3B2418" class="absolute -top-10 left-0 right-0" />
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-16 pb-10 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+    <div>
+      <a href="/" class="group inline-flex text-crema"><Logo big /></a>
+      <p class="mt-3 max-w-sm text-crema/80">{info.claim} Gelato artigianale a Rimini da oltre {info.anniAttivita} anni, anche vegano, con stevia, senza lattosio e senza glutine.</p>
+      <div class="mt-5 flex gap-3">
+        <a class="btn btn-ghost !bg-crema/10 !text-crema !shadow-none hover:!bg-crema/20 !py-2 !px-4 text-sm" href={info.social.instagram} target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-ghost !bg-crema/10 !text-crema !shadow-none hover:!bg-crema/20 !py-2 !px-4 text-sm" href={info.social.facebook} target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+    <div>
+      <h3 class="text-xl mb-3">Dove e quando</h3>
+      <address class="not-italic text-crema/85 leading-relaxed">
+        {info.indirizzo.via}<br />{info.indirizzo.cap} {info.indirizzo.citta}
+      </address>
+      <p class="mt-2 text-crema/85">{uniforme ? `Tutti i giorni ${uniforme}` : 'Vedi orari'}</p>
+      <p class="mt-2"><a class="underline decoration-fragola decoration-2 underline-offset-4" href={`tel:${info.telefonoTel}`}>{info.telefono}</a></p>
+      <p><a class="underline decoration-fragola decoration-2 underline-offset-4" href={`https://wa.me/${info.whatsapp}`}>WhatsApp {info.cellulare}</a></p>
+    </div>
+    <div>
+      <h3 class="text-xl mb-3">Sul sito</h3>
+      <ul class="grid gap-1.5 text-crema/85">
+        <li><a class="hover:text-limone" href="/gusti">I gusti</a></li>
+        <li><a class="hover:text-limone" href="/torte">Torte su ordinazione</a></li>
+        <li><a class="hover:text-limone" href="/vegano">Gelato vegano</a></li>
+        <li><a class="hover:text-limone" href="/senza-zucchero">Gelato senza zucchero</a></li>
+        <li><a class="hover:text-limone" href="/chi-siamo">Chi siamo</a></li>
+        <li><a class="hover:text-limone" href="/contatti">Contatti</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-crema/15">
+    <p class="mx-auto max-w-6xl px-4 sm:px-6 py-5 text-sm text-crema/60">© {anno} Gelateria Magie · Rimini · P.IVA <span class="placeholder !text-crema/70 !border-crema/40 !bg-transparent">da inserire</span></p>
+  </div>
+</footer>

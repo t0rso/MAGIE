@@ -1,0 +1,10 @@
+{
+  "nota": "Formati, prezzi e preavviso da confermare con la gelateria.",
+  "preavvisoGiorni": 2,
+  "torte": [
+    { "id": "personalizzata", "nome": "Torta personalizzata", "descrizione": "Scegli tu gusti, base e decorazione. Scritta o foto in cialda.", "porzioni": "6–20", "prezzo": null, "colori": ["#E85D75", "#FBF6EC", "#A0714F"], "vincoli": [], "daConfermare": true },
+    { "id": "vegana", "nome": "Torta vegana", "descrizione": "Base di mandorla e sorbetti di frutta. Nessun derivato animale.", "porzioni": "8–10", "prezzo": null, "colori": ["#8E3B6B", "#EFE3CF", "#8FB57A"], "vincoli": ["vegano", "senza-lattosio", "senza-glutine"], "daConfermare": true },
+    { "id": "stevia", "nome": "Torta senza zucchero", "descrizione": "Gusti dolcificati con stevia. Per chi non può o non vuole lo zucchero.", "porzioni": "8–10", "prezzo": null, "colori": ["#5A3A2E", "#EEF3E6", "#C69C6D"], "vincoli": ["stevia", "senza-glutine"], "daConfermare": true },
+    { "id": "cremino", "nome": "Torta Cremino", "descrizione": "Nocciola e cioccolato al latte a strati. Il nostro gusto più richiesto.", "porzioni": "8–10", "prezzo": null, "colori": ["#A0714F", "#F5D98B", "#4A2C21"], "vincoli": ["senza-glutine"], "daConfermare": true }
+  ]
+}

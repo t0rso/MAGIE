@@ -1,0 +1,43 @@
+---
+/** Torta gelato illustrata a strati, con i colori passati. */
+interface Props { colori: string[]; class?: string; candeline?: boolean }
+const { colori, class: cls = '', candeline = true } = Astro.props;
+const [a = '#E85D75', b = '#FBF6EC', c = '#A0714F'] = colori;
+---
+<svg viewBox="0 0 240 200" class:list={['w-full h-auto overflow-visible', cls]} aria-hidden="true">
+  <ellipse cx="120" cy="188" rx="96" ry="9" fill="#3B2418" opacity=".12"/>
+  <!-- piatto -->
+  <ellipse cx="120" cy="178" rx="104" ry="14" fill="#fff" stroke="#F2E3C6" stroke-width="3"/>
+  <!-- strati -->
+  <g class="torta-strato">
+    <path d={`M28 120 v40 a92 16 0 0 0 184 0 v-40 z`} fill={c}/>
+    <ellipse cx="120" cy="120" rx="92" ry="16" fill={c} style="filter:brightness(1.12)"/>
+  </g>
+  <g class="torta-strato">
+    <path d={`M36 88 v34 a84 15 0 0 0 168 0 v-34 z`} fill={b}/>
+    <ellipse cx="120" cy="88" rx="84" ry="15" fill={b} style="filter:brightness(1.05)"/>
+  </g>
+  <g class="torta-strato">
+    <path d={`M44 60 v30 a76 14 0 0 0 152 0 v-30 z`} fill={a}/>
+    <ellipse cx="120" cy="60" rx="76" ry="14" fill={a} style="filter:brightness(1.15)"/>
+    <!-- colata -->
+    <path d="M60 66 q8 22 0 30 q-8 -8 0 -30 M170 64 q10 26 0 34 q-10 -8 0 -34 M120 72 q6 14 0 20 q-6 -6 0 -20" fill={a} style="filter:brightness(.92)"/>
+  </g>
+  {candeline && (
+    <g>
+      <rect x="86" y="30" width="6" height="30" rx="3" fill="#F4E76E"/>
+      <rect x="117" y="24" width="6" height="36" rx="3" fill="#9FD3B6"/>
+      <rect x="148" y="30" width="6" height="30" rx="3" fill="#F9B48A"/>
+      <g class="fiamma" style="transform-origin:89px 28px"><ellipse cx="89" cy="24" rx="4" ry="7" fill="#F6A623"/><ellipse cx="89" cy="26" rx="2" ry="4" fill="#FFF3B0"/></g>
+      <g class="fiamma" style="transform-origin:120px 22px; animation-delay:-.4s"><ellipse cx="120" cy="18" rx="4" ry="7" fill="#F6A623"/><ellipse cx="120" cy="20" rx="2" ry="4" fill="#FFF3B0"/></g>
+      <g class="fiamma" style="transform-origin:151px 28px; animation-delay:-.8s"><ellipse cx="151" cy="24" rx="4" ry="7" fill="#F6A623"/><ellipse cx="151" cy="26" rx="2" ry="4" fill="#FFF3B0"/></g>
+    </g>
+  )}
+  <style>
+    .fiamma { animation: fiamma 1.1s ease-in-out infinite alternate; }
+    @keyframes fiamma { from { transform: scale(1) rotate(-3deg) } to { transform: scale(1.15, .9) rotate(3deg) } }
+    .torta-strato { transition: transform .5s var(--ease-spring); transform-box: fill-box; transform-origin: center; }
+    :global(.group:hover) .torta-strato:nth-child(3) { transform: translateY(-4px) }
+    :global(.group:hover) .torta-strato:nth-child(4) { transform: translateY(-8px) }
+  </style>
+</svg>

@@ -1,0 +1,61 @@
+---
+import info from '../data/info.json';
+import { torte, vincoli, preavvisoGiorni } from '../lib/gusti';
+import Placeholder from './Placeholder.astro';
+const min = new Date(Date.now() + preavvisoGiorni * 864e5).toISOString().slice(0, 10);
+---
+<div class="card p-6 sm:p-8" id="ordina">
+  <h2 class="text-3xl font-semibold">Ordina la tua torta</h2>
+  <p class="mt-2 text-cacao/90">Compila e ti richiamiamo per confermare. Oppure manda tutto su WhatsApp con un tocco. Preavviso minimo {preavvisoGiorni} giorni <Placeholder />.</p>
+
+  <form name="ordine-torta" method="POST" data-netlify="true" netlify-honeypot="sito" action="/torte?ok=1#ordina" class="mt-6 grid gap-5" data-form-torta data-wa={info.whatsapp}>
+    <input type="hidden" name="form-name" value="ordine-torta" />
+    <p class="hidden"><label>Non compilare: <input name="sito" /></label></p>
+
+    <div class="grid gap-5 sm:grid-cols-2">
+      <div class="field"><label for="nome">Il tuo nome</label><input id="nome" name="nome" required autocomplete="name" /></div>
+      <div class="field"><label for="telefono">Telefono</label><input id="telefono" name="telefono" type="tel" required autocomplete="tel" placeholder="Per confermarti l'ordine" /></div>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-3">
+      <div class="field"><label for="data">Giorno del ritiro</label><input id="data" name="data" type="date" required min={min} /></div>
+      <div class="field"><label for="ora">Ora</label><input id="ora" name="ora" type="time" min="14:30" max="23:30" value="18:00" /></div>
+      <div class="field"><label for="porzioni">Porzioni</label>
+        <select id="porzioni" name="porzioni">
+          {['6', '8', '10', '12', '15', '20'].map((p) => <option value={p} selected={p === '10'}>{p} persone</option>)}
+        </select>
+      </div>
+    </div>
+
+    <div class="field"><label for="torta">Che torta?</label>
+      <select id="torta" name="torta">
+        {torte.map((t) => <option value={t.nome}>{t.nome}</option>)}
+      </select>
+    </div>
+
+    <fieldset class="grid gap-2">
+      <legend class="font-extrabold text-sm mb-1">Deve essere…</legend>
+      <div class="flex flex-wrap gap-2">
+        {vincoli.map((v) => (
+          <label class="check"><input type="checkbox" name="vincoli" value={v.nome} /><span>{v.emoji} {v.nome}</span></label>
+        ))}
+      </div>
+    </fieldset>
+
+    <div class="field"><label for="gusti">Gusti che vorresti</label><input id="gusti" name="gusti" placeholder="Es. pistacchio e fragola, oppure «fate voi»" /></div>
+    <div class="field"><label for="scritta">Scritta sulla torta</label><input id="scritta" name="scritta" placeholder="Es. Auguri Giulia!" /></div>
+    <div class="field"><label for="note">Note</label><textarea id="note" name="note" rows="3" placeholder="Allergie, decorazioni, foto in cialda…"></textarea></div>
+
+    <div class="flex flex-wrap gap-3 pt-2">
+      <button type="submit" class="btn btn-primary">Invia la richiesta</button>
+      <a href={`https://wa.me/${info.whatsapp}`} target="_blank" rel="noopener" class="btn btn-wa" data-wa-link>Manda su WhatsApp</a>
+    </div>
+    <p class="text-xs text-cacao/70">Nessun pagamento online: confermiamo tutto a voce. Se non ti rispondiamo entro un giorno, chiamaci allo <a class="underline" href={`tel:${info.telefonoTel}`}>{info.telefono}</a>.</p>
+  </form>
+
+  <div class="hidden rounded-2xl bg-pistacchio/25 p-5 font-bold" data-form-ok>
+    🎉 Richiesta inviata! Ti richiamiamo per confermare gusti, orario e prezzo.
+  </div>
+</div>
+
+<script src="../scripts/torta-form.ts"></script>
