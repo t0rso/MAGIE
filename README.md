@@ -26,6 +26,8 @@ Ogni dato ancora da verificare con la gelateria ha `daConfermare: true` e mostra
 
 ## Foto
 
+Foto **provvisorie**: stanno in `src/assets/foto/provvisorie/` e `mappa.json` dice quale usare per ogni slot. Sul sito hanno un badge "provvisoria · foto/nome.jpg" che indica il nome con cui salvare quella vera.
+
 Le foto reali vanno in `src/assets/foto/` con i nomi elencati in [src/assets/foto/README.md](src/assets/foto/README.md) (lista scatti da dare alla gelateria). Finché un file manca, il sito mostra un segnaposto che dice quale scatto serve; appena c'è, compare ottimizzato (WebP, più formati) senza toccare il codice.
 
 ## Gerarchia bottoni

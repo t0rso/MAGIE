@@ -1,0 +1,23 @@
+{
+  "_nota": "Foto temporanee usate finché in src/assets/foto/ non c'è il file con il nome dello slot. Quando arriva la foto vera, questa viene ignorata.",
+  "hero-1": "banco-interno",
+  "hero-2": "vaschette",
+  "hero-3": "biscotti",
+  "banco": "banco-interno",
+  "esterno-sera": "banco-interno",
+  "torta-hero": "biscotti",
+  "torta-personalizzata": "biscotti",
+  "torta-vegana": "vaschette",
+  "torta-stevia": "biscotti",
+  "torta-cremino": "vaschette",
+  "vegano": "vaschette",
+  "stevia": "biscotti",
+  "coppe": "vaschette",
+  "yogurt": "biscotti",
+  "granite": "vaschette",
+  "inverno": "biscotti",
+  "laboratorio": "vaschette",
+  "team": "banco-interno",
+  "dettaglio-ingredienti": "biscotti",
+  "banco-dettaglio": "vaschette"
+}
