@@ -81,7 +81,14 @@ const current = (href: string) => (path === href ? 'page' : undefined);
       setTimeout(() => menu.classList.add('is-open'), 30);
     } else {
       menu.classList.remove('is-open');
-      menu.addEventListener('transitionend', () => { if (!aperto) menu.hidden = true; }, { once: true });
+      const pannello = menu.querySelector<HTMLElement>('.colata-pannello');
+      const chiudi = (e: TransitionEvent) => {
+        if (e.target !== pannello || e.propertyName !== 'transform') return;
+        pannello?.removeEventListener('transitionend', chiudi);
+        if (!aperto) menu.hidden = true;
+      };
+      pannello?.addEventListener('transitionend', chiudi);
+      setTimeout(() => { if (!aperto) menu.hidden = true; }, 900);
     }
   };
   btn?.addEventListener('click', () => setMenu(!aperto));

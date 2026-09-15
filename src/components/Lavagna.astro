@@ -11,14 +11,16 @@ interface Props {
   /** Mostra descrizione e allergeni sotto ogni gusto. */
   dettagli?: boolean;
   legenda?: boolean;
+  /** Due colonne da 1024px in su. */
+  due?: boolean;
   class?: string;
 }
-const { gusti, perCategoria = false, dettagli = false, legenda = true, class: cls = '' } = Astro.props;
+const { gusti, perCategoria = false, dettagli = false, legenda = true, due = false, class: cls = '' } = Astro.props;
 const gruppi = perCategoria
   ? Object.entries(CATEGORIE).map(([k, l]) => ({ id: k, label: l, voci: gusti.filter((g) => g.categoria === k) })).filter((g) => g.voci.length)
   : [{ id: 'tutti', label: '', voci: gusti }];
 ---
-<div class:list={['lavagna', cls]} data-lavagna>
+<div class:list={['lavagna', due && 'is-due', cls]} data-lavagna>
   {gruppi.map((gr) => (
     <section class="lavagna-gruppo" data-gruppo={gr.id}>
       {gr.label && <h3 class="lavagna-titolo">{gr.label}</h3>}
@@ -27,19 +29,18 @@ const gruppi = perCategoria
           <li class="lavagna-voce" data-gusto data-categoria={g.categoria} data-vincoli={g.vincoli.join(' ')}>
             <div class="lavagna-riga">
               <span class="scoop lavagna-dot" style={`--c:${g.colore}`} aria-hidden="true"></span>
-              <span class="lavagna-nome">{g.nome}{g.stagionale && <span class="lavagna-stag"> · stagione</span>}</span>
-              <span class="lavagna-leader" aria-hidden="true"></span>
+              <span class="lavagna-nome">{g.nome}{g.stagionale && <span class="lavagna-stag">stagione</span>}</span>
+              {dettagli && (
+                <p class="lavagna-dett">
+                  {g.descrizione}
+                  {g.allergeni.length > 0 && <span class="lavagna-all"> · contiene {g.allergeni.join(', ')}</span>}
+                  {g.daConfermare && <Placeholder class="lavagna-ph" />}
+                </p>
+              )}
               {g.vincoli.length > 0 && (
                 <span class="lavagna-sigle">{g.vincoli.map((v) => <abbr title={vincoloById[v].nome}>{vincoloById[v].sigla}</abbr>)}</span>
               )}
             </div>
-            {dettagli && (
-              <p class="lavagna-dett">
-                {g.descrizione}
-                {g.allergeni.length > 0 && <span class="lavagna-all"> · contiene {g.allergeni.join(', ')}</span>}
-                {g.daConfermare && <Placeholder class="lavagna-ph" />}
-              </p>
-            )}
           </li>
         ))}
       </ul>

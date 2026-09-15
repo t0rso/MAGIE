@@ -4,8 +4,7 @@ import Drip from './Drip.astro';
 interface Props { prima?: boolean }
 const { prima = false } = Astro.props;
 ---
-<section class:list={['relative bg-fragola text-white on-dark', !prima && 'mt-6']}>
-  {!prima && <Drip color="#E85D75" class="absolute -top-8 md:-top-10 left-0 right-0" />}
+<section class:list={['relative bg-fragola text-white on-dark', !prima && 'mt-16']}>
   <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-12 pb-14 md:py-20 grid gap-8 md:gap-12 md:grid-cols-[1fr_1fr] items-center">
     <div class="reveal text-center md:text-left order-2 md:order-1">
       <p class="text-[11px] sm:text-xs font-black uppercase tracking-[.2em] text-limone">Torte gelato su ordinazione</p>
@@ -20,4 +19,5 @@ const { prima = false } = Astro.props;
       <Foto nome="torta-hero" alt="Torta gelato Magie decorata" ratio="1/1" scontornata nota="Una torta finita, vista di 3/4" sizes="(min-width: 768px) 448px, 70vw" />
     </div>
   </div>
+  <Drip color="#E85D75" />
 </section>

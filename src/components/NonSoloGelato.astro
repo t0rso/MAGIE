@@ -4,9 +4,9 @@ import Titolo from './Titolo.astro';
 import Drip from './Drip.astro';
 import Foto from './Foto.astro';
 ---
-<section class="relative bg-cialda/60 mt-6">
-  <Drip color="rgb(242 227 198 / .6)" class="absolute -top-8 md:-top-10 left-0 right-0" />
-  <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-12 pb-14 md:py-20">
+<div class="relative" aria-hidden="true"><Drip color="#FBF3E4" /></div>
+<section class="relative bg-cialda mt-0">
+  <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-24 pb-14 md:pt-32 md:pb-20">
     <Titolo occhiello="Non solo coni" brush="var(--color-pesca)">Ai tavolini, <span class="underline-brush">la sera.</span></Titolo>
     <div class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 reveal-stagger">
       {voci.map((v) => (
@@ -20,4 +20,5 @@ import Foto from './Foto.astro';
       ))}
     </div>
   </div>
+  <Drip color="#F2E3C6" />
 </section>

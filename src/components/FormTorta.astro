@@ -35,9 +35,9 @@ const min = new Date(Date.now() + preavvisoGiorni * 864e5).toISOString().slice(0
 
     <fieldset class="grid gap-2">
       <legend class="font-extrabold text-sm mb-1">Deve essere…</legend>
-      <div class="flex flex-wrap gap-2">
+      <div class="grid grid-cols-2 gap-3">
         {vincoli.map((v) => (
-          <label class="check"><input type="checkbox" name="vincoli" value={v.nome} /><span>{v.emoji} {v.nome}</span></label>
+          <label class="check check-tile"><input type="checkbox" name="vincoli" value={v.nome} /><span><i class="not-italic text-xl" aria-hidden="true">{v.emoji}</i>{v.nome}</span></label>
         ))}
       </div>
     </fieldset>
@@ -46,9 +46,9 @@ const min = new Date(Date.now() + preavvisoGiorni * 864e5).toISOString().slice(0
     <div class="field"><label for="scritta">Scritta sulla torta</label><input id="scritta" name="scritta" placeholder="Es. Auguri Giulia!" /></div>
     <div class="field"><label for="note">Note</label><textarea id="note" name="note" rows="3" placeholder="Allergie, decorazioni, foto in cialda…"></textarea></div>
 
-    <div class="flex flex-wrap gap-3 pt-2">
-      <button type="submit" class="btn btn-primary btn-lg">Invia la richiesta</button>
-      <a href={`https://wa.me/${info.whatsapp}`} target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-wa-link>
+    <div class="grid gap-3 pt-2">
+      <button type="submit" class="btn btn-primary btn-lg w-full">Invia la richiesta</button>
+      <a href={`https://wa.me/${info.whatsapp}`} target="_blank" rel="noopener" class="btn btn-social btn-lg w-full" style="background:#25D366;color:#fff" data-wa-link>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4M12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8m8.4-18.2A11.8 11.8 0 0 0 12 .1C5.5.1.2 5.4.2 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7c1.7.9 3.7 1.4 5.7 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.4-8.3"/></svg>
         Manda su WhatsApp
       </a>

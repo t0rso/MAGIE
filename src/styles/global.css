@@ -101,6 +101,10 @@ p { text-wrap: pretty; }
 .on-dark .btn-link { color: #fff; text-decoration-color: rgb(255 255 255 / .6); }
 .on-dark .btn-link:hover { text-decoration-color: #fff; }
 
+/* Bottoni social: pillola colorata con icona */
+.btn-social { box-shadow: 0 8px 20px -10px rgb(0 0 0 / .45); }
+.btn-social:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 14px 26px -12px rgb(0 0 0 / .5); }
+
 /* WhatsApp: solo dove si contatta davvero */
 .btn-wa { background: #25D366; color: #fff; }
 .btn-wa:hover { background: #1fb457; }
@@ -143,10 +147,12 @@ p { text-wrap: pretty; }
 }
 .foto-placeholder-file { font-family: ui-monospace, monospace; font-size: .7rem; opacity: .7; }
 
-/* ---------- Bordo che cola tra le sezioni ---------- */
-.drip { display: block; width: 100%; height: 32px; margin-bottom: -1px; }
-@media (min-width: 768px) { .drip { height: 42px; } }
-.drip svg { width: 100%; height: 100%; display: block; }
+/* ---------- Colata tra sezioni ---------- */
+.colata-sez { position: absolute; left: 0; right: 0; top: 100%; height: 48px; z-index: 2; pointer-events: none; margin-top: -1px; }
+@media (min-width: 768px) { .colata-sez { height: 84px; } }
+.colata-sez svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.colata-goccia-sez { animation: goccia-sez 7s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes goccia-sez { from { transform: scaleY(.82) } to { transform: scaleY(1.12) } }
 
 /* ---------- Ticker ---------- */
 .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent); }
@@ -225,6 +231,9 @@ p { text-wrap: pretty; }
 .check { display: inline-flex; align-items: center; gap: .5rem; cursor: pointer; }
 .check input { position: absolute; opacity: 0; pointer-events: none; }
 .check span { padding: .45rem .9rem; border-radius: 999px; border: 2px solid var(--color-cialda); background: white; font-weight: 800; font-size: .9rem; transition: all .25s var(--ease-spring); }
+/* Tessere grandi (griglia 2x2 nel modulo torte) */
+.check-tile span { display: flex; align-items: center; justify-content: center; gap: .5rem; width: 100%; padding: 1rem .75rem; border-radius: 1.25rem; font-size: 1rem; text-align: center; }
+.check-tile input:checked + span { transform: scale(1.02); }
 .check input:checked + span { background: var(--color-cioccolato); color: var(--color-crema); border-color: var(--color-cioccolato); transform: scale(1.04); }
 .check input:focus-visible + span { box-shadow: 0 0 0 4px rgb(232 93 117 / .3); }
 
@@ -245,25 +254,25 @@ p { text-wrap: pretty; }
     box-shadow: var(--shadow-lift), inset 0 0 0 1px rgb(249 251 231 / .08);
     background-image: radial-gradient(ellipse at 20% 0%, rgb(255 255 255 / .06), transparent 55%);
   }
-  @media (min-width: 640px) { .lavagna { padding: 2.25rem 2.5rem; } }
+  @media (min-width: 640px) { .lavagna { padding: 2rem 2.25rem; } }
   .lavagna-gruppo + .lavagna-gruppo { margin-top: 1.75rem; }
   .lavagna-titolo {
     font-family: var(--font-sans); font-weight: 800; font-size: .72rem; letter-spacing: .28em; text-transform: uppercase;
-    color: rgb(249 251 231 / .55); margin-bottom: .5rem;
+    color: rgb(249 251 231 / .55); margin-bottom: .25rem;
   }
   .lavagna-lista { display: grid; column-gap: 2.5rem; }
-  @media (min-width: 1024px) { .lavagna-lista { grid-template-columns: 1fr 1fr; } }
-  .lavagna-voce { padding: .7rem 0; border-bottom: 1px solid rgb(249 251 231 / .12); }
+  .lavagna.is-due .lavagna-lista { grid-template-columns: 1fr; }
+  @media (min-width: 1024px) { .lavagna.is-due .lavagna-lista { grid-template-columns: 1fr 1fr; } }
+  .lavagna-voce { padding: .8rem 0; border-bottom: 1px solid rgb(249 251 231 / .12); }
   .lavagna-voce[hidden] { display: none; }
-  .lavagna-riga { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem .7rem; min-width: 0; }
-  .lavagna-dot { width: .8rem; flex: none; align-self: center; box-shadow: 0 0 0 2px rgb(249 251 231 / .15); }
-  .lavagna-nome { font-family: var(--font-display); font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 32; font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
-  @media (min-width: 640px) { .lavagna-nome { font-size: 1.4rem; } }
-  .lavagna-stag { font-family: var(--font-sans); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--color-pesca); }
-  .lavagna-leader { flex: 1; min-width: .75rem; border-bottom: 2px dotted rgb(249 251 231 / .25); transform: translateY(-.35em); }
-  .lavagna-sigle { display: flex; flex-wrap: wrap; gap: .3rem; flex: none; }
-  .lavagna-sigle abbr { text-decoration: none; font-size: .58rem; font-weight: 800; letter-spacing: .08em; padding: .18rem .4rem; border-radius: 999px; border: 1px solid rgb(249 251 231 / .35); color: rgb(249 251 231 / .85); line-height: 1; }
-  .lavagna-dett { margin: .35rem 0 0 1.5rem; font-size: .85rem; color: rgb(249 251 231 / .7); }
+  .lavagna-riga { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: .75rem; row-gap: .4rem; align-items: center; }
+  .lavagna-dot { width: 1rem; box-shadow: 0 0 0 2px rgb(249 251 231 / .18); }
+  .lavagna-nome { font-family: var(--font-display); font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 32; font-size: 1.3rem; font-weight: 600; letter-spacing: -.01em; line-height: 1.15; }
+  @media (min-width: 640px) { .lavagna-nome { font-size: 1.45rem; } }
+  .lavagna-stag { font-family: var(--font-sans); font-size: .65rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--color-pesca); margin-left: .35rem; }
+  .lavagna-sigle { grid-column: 2; display: flex; flex-wrap: wrap; gap: .3rem; }
+  .lavagna-sigle abbr { text-decoration: none; font-size: .6rem; font-weight: 800; letter-spacing: .08em; padding: .2rem .45rem; border-radius: 999px; border: 1px solid rgb(249 251 231 / .35); color: rgb(249 251 231 / .85); line-height: 1; }
+  .lavagna-dett { grid-column: 2; margin: 0; font-size: .85rem; line-height: 1.45; color: rgb(249 251 231 / .7); }
   .lavagna-all { color: rgb(249 251 231 / .5); }
   .lavagna-ph { margin-left: .4rem; border-color: rgb(249 251 231 / .4) !important; color: rgb(249 251 231 / .8) !important; background: transparent !important; }
   .lavagna-legenda { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; font-size: .72rem; color: rgb(249 251 231 / .6); }
@@ -314,6 +323,7 @@ p { text-wrap: pretty; }
   .colata-link[aria-current="page"] { color: var(--color-limone); }
   .colata-fondo { opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease-out) calc(.5s + var(--i) * .07s), transform .6s var(--ease-out) calc(.5s + var(--i) * .07s); }
   .colata.is-open .colata-link, .colata.is-open .colata-fondo { opacity: 1; transform: none; }
+  .colata:not(.is-open) .colata-pannello { transition: transform .6s cubic-bezier(.7, 0, .3, 1) .15s; }
   .colata:not(.is-open) .colata-link, .colata:not(.is-open) .colata-fondo { transition-delay: 0s; transition-duration: .2s; }
-  .colata:not(.is-open) .colata-goccia { transition: transform .2s ease; }
+  .colata:not(.is-open) .colata-goccia { transition: transform .25s ease-in; }
 }

@@ -6,6 +6,7 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { fotoHero } from '../lib/foto';
+import Drip from './Drip.astro';
 
 const slides = fotoHero();
 const logo = Object.values(import.meta.glob<{ default: ImageMetadata }>('../assets/logo.{svg,png,webp}', { eager: true }))[0]?.default;
@@ -17,8 +18,8 @@ const placeholder = [
 ];
 const n = slides.length || placeholder.length;
 ---
-<section class="hero relative min-h-[100svh] md:min-h-[92vh] grid overflow-hidden bg-cioccolato text-white on-dark -mt-16" data-hero data-n={n}>
-  <div class="absolute inset-0" aria-hidden="true">
+<section class="hero relative min-h-[100svh] md:min-h-[92vh] grid bg-cioccolato text-white on-dark -mt-16" data-hero data-n={n}>
+  <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
     {slides.length > 0
       ? slides.map((s, i) => (
           <Image src={s} alt="" widths={[640, 1080, 1600, 2200]} sizes="100vw" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined}
@@ -29,8 +30,9 @@ const n = slides.length || placeholder.length;
             <p class="absolute left-4 top-20 rounded-full bg-black/30 px-3 py-1.5 font-mono text-[11px] text-white/80">{p.note}</p>
           </div>
         ))}
-    <div class="absolute inset-0 bg-gradient-to-t from-cioccolato/85 via-cioccolato/30 to-cioccolato/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-cioccolato via-cioccolato/30 to-cioccolato/40"></div>
   </div>
+  <Drip color="#3B2418" />
 
   <div class="relative mx-auto max-w-4xl px-5 sm:px-6 pt-28 pb-16 md:pb-24 flex flex-col items-center justify-end text-center gap-6 w-full">
     {logo ? (

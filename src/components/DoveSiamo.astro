@@ -4,6 +4,7 @@ import { orari, GIORNI_ORDINATI, GIORNI_LABEL, formattaFasce, orariUniformi } fr
 import StatoApertura from './StatoApertura.astro';
 import Titolo from './Titolo.astro';
 import Foto from './Foto.astro';
+import SocialButton from './SocialButton.astro';
 interface Props { compatto?: boolean }
 const { compatto = false } = Astro.props;
 const q = encodeURIComponent(`Gelateria Magie, ${info.indirizzo.via}, ${info.indirizzo.citta}`);
@@ -31,10 +32,10 @@ const uniforme = orariUniformi(orari);
       )}
       <div class="grid gap-3 mt-auto">
         <a href={info.social.google} target="_blank" rel="noopener" class="btn btn-primary">Portami lì</a>
-        <p class="flex flex-wrap gap-x-5 gap-y-1 text-sm justify-center md:justify-start">
-          <a href={`tel:${info.telefonoTel}`} class="btn-link">{info.telefono}</a>
-          <a href={`https://wa.me/${info.whatsapp}`} class="btn-link">WhatsApp</a>
-        </p>
+        <div class="grid grid-cols-2 gap-3">
+          <SocialButton tipo="whatsapp" class="btn-sm" />
+          <SocialButton tipo="telefono" label="Chiama" class="btn-sm" />
+        </div>
       </div>
     </div>
     <div class="grid gap-4 md:gap-6 reveal">

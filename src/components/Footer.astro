@@ -3,18 +3,20 @@ import info from '../data/info.json';
 import Logo from './Logo.astro';
 import Drip from './Drip.astro';
 import { orari, orariUniformi } from '../lib/orari';
+import SocialButton from './SocialButton.astro';
 const anno = new Date().getFullYear();
 const uniforme = orariUniformi(orari);
 ---
-<footer class="mt-24 bg-verde text-crema-chiara relative on-dark">
-  <Drip color="#1C3E2C" class="absolute -top-8 md:-top-10 left-0 right-0" />
-  <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-16 pb-10 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+<div class="relative mt-24" aria-hidden="true"><Drip color="#FBF3E4" /></div>
+<footer class="bg-verde text-crema-chiara relative on-dark">
+  <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-24 md:pt-32 pb-10 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
     <div>
       <a href="/" class="group inline-flex text-crema"><Logo big /></a>
       <p class="mt-3 max-w-sm text-crema/80">Gelateria e pasticceria artigianale a Rimini da oltre {info.anniAttivita} anni. Anche vegano, con stevia, senza lattosio e senza glutine.</p>
-      <div class="mt-5 flex gap-5">
-        <a class="btn-link" href={info.social.instagram} target="_blank" rel="noopener">Instagram</a>
-        <a class="btn-link" href={info.social.facebook} target="_blank" rel="noopener">Facebook</a>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <SocialButton tipo="whatsapp" class="btn-sm" />
+        <SocialButton tipo="instagram" class="btn-sm" />
+        <SocialButton tipo="facebook" class="btn-sm" />
       </div>
     </div>
     <div>
@@ -24,7 +26,6 @@ const uniforme = orariUniformi(orari);
       </address>
       <p class="mt-2 text-crema/85">{uniforme ? `Tutti i giorni ${uniforme}` : 'Vedi orari'}</p>
       <p class="mt-2"><a class="underline decoration-fragola decoration-2 underline-offset-4" href={`tel:${info.telefonoTel}`}>{info.telefono}</a></p>
-      <p><a class="underline decoration-fragola decoration-2 underline-offset-4" href={`https://wa.me/${info.whatsapp}`}>WhatsApp {info.cellulare}</a></p>
     </div>
     <div>
       <h3 class="text-xl mb-3">Sul sito</h3>
