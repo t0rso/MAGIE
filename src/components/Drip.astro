@@ -1,24 +1,22 @@
 ---
 /**
- * Colata tra sezioni: il colore della sezione che la contiene cola su quella sotto.
- * Va dentro una sezione `relative`, in fondo. `color` = sfondo della sezione che cola.
+ * Colata tra sezioni: il colore della sezione che la contiene cola su quella sotto,
+ * con un bordo ondulato e tre gocce a lacrima. Statico, nessuna animazione.
  */
 interface Props { color: string; class?: string }
 const { color, class: cls = '' } = Astro.props;
-// Gocce: [x, larghezza, lunghezza, ritardo]
-const gocce: [number, number, number, number][] = [
-  [90, 34, 62, 0], [260, 26, 40, 1.3], [430, 40, 78, 0.6], [640, 28, 46, 2.1], [800, 36, 70, 0.3], [990, 24, 38, 1.7], [1130, 32, 56, 1.0],
-];
+// Goccia a lacrima: collo stretto che si allarga in un bulbo. x = centro, l = lunghezza totale, w = larghezza del bulbo
+const goccia = (x: number, l: number, w: number) => {
+  const neck = w * 0.42, r = w / 2, yb = 18 + l - r;
+  return `M${x - neck},14 C${x - neck},${18 + l * 0.35} ${x - r},${yb - r * 0.9} ${x - r},${yb} A${r},${r} 0 0 0 ${x + r},${yb} C${x + r},${yb - r * 0.9} ${x + neck},${18 + l * 0.35} ${x + neck},14 Z`;
+};
 ---
 <div class:list={['colata-sez', cls]} aria-hidden="true">
-  <svg viewBox="0 0 1200 100" preserveAspectRatio="none">
-    <path fill={color} d="M0,0 H1200 V14 C1170,14 1160,26 1130,26 C1100,26 1100,10 1060,10 C1020,10 1020,22 990,22 C960,22 960,8 920,8 C880,8 880,24 840,24 C810,24 810,12 780,12 C740,12 740,28 700,28 C670,28 670,14 640,14 C600,14 600,24 560,24 C530,24 530,10 500,10 C460,10 460,26 430,26 C400,26 400,12 360,12 C320,12 320,22 290,22 C260,22 260,8 230,8 C190,8 190,26 150,26 C120,26 120,14 90,14 C60,14 60,20 30,20 C15,20 8,16 0,16 Z"/>
-    <g fill={color}>
-      {gocce.map(([x, w, l, d]) => (
-        <g class="colata-goccia-sez" style={`--d:${d}s; transform-origin:${x}px 10px`}>
-          <path d={`M${x - w / 2},10 v${l - w / 2} a${w / 2},${w / 2} 0 0 0 ${w},0 v-${l - w / 2} z`} />
-        </g>
-      ))}
-    </g>
+  <svg viewBox="0 0 1200 110" preserveAspectRatio="none">
+    <path fill={color} d="M0,0 H1200 V16 C1160,16 1150,30 1110,30 C1075,30 1070,12 1030,12 C990,12 985,26 950,26 C915,26 910,10 870,10 C830,10 825,28 790,28 C755,28 750,14 710,14 C670,14 665,24 630,24 C595,24 590,8 550,8 C510,8 505,26 470,26 C435,26 430,12 390,12 C350,12 345,22 310,22 C275,22 270,10 230,10 C190,10 185,28 150,28 C115,28 110,14 70,14 C40,14 30,20 0,20 Z"/>
+    <path fill={color} d={goccia(150, 78, 44)} />
+    <path fill={color} d={goccia(550, 52, 34)} />
+    <path fill={color} d={goccia(870, 88, 48)} />
+    <path fill={color} d={goccia(1110, 40, 28)} />
   </svg>
 </div>

@@ -23,11 +23,11 @@ import { gustiSignature } from '../lib/gusti';
   <!-- DAL BANCO -->
   <section class="mx-auto max-w-6xl px-5 sm:px-6 pt-16 pb-14 md:py-20">
     <Titolo occhiello="Dal banco" brush="var(--color-pesca)">Quelli che ci <span class="underline-brush">chiedono di più.</span></Titolo>
-    <div class="mt-8 grid gap-5 md:grid-cols-[1fr_1.2fr] items-stretch">
-      <div class="reveal md:order-2"><Lavagna gusti={gustiSignature} legenda={false} class="h-full" /></div>
-      <div class="reveal md:order-1 grid grid-cols-2 md:grid-cols-1 gap-3">
-        <Foto nome="vaschette" alt="Le vaschette al banco di Magie" ratio="4/5" class="md:!aspect-[4/3]" sizes="(min-width: 768px) 40vw, 50vw" />
-        <Foto nome="coni" alt="Due coni davanti alla vetrina di Magie" ratio="4/5" class="md:!aspect-[4/3]" sizes="(min-width: 768px) 40vw, 50vw" />
+    <div class="mt-8 grid gap-4 md:gap-5 md:grid-cols-[1fr_1.25fr]">
+      <div class="reveal md:order-2"><Lavagna gusti={gustiSignature} legenda={false} /></div>
+      <div class="reveal md:order-1 grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-3 md:gap-4">
+        <div class="relative"><Foto nome="vaschette" alt="Le vaschette al banco di Magie" ratio="4/5" class="md:foto-fill" sizes="(min-width: 768px) 40vw, 50vw" /></div>
+        <div class="relative"><Foto nome="coni" alt="Due coni davanti alla vetrina di Magie" ratio="4/5" class="md:foto-fill" sizes="(min-width: 768px) 40vw, 50vw" /></div>
       </div>
     </div>
     <div class="mt-8 text-center md:text-left reveal"><a href="/gusti" class="btn btn-secondary">Tutti i gusti, con i filtri</a></div>

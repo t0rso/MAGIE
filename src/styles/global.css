@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@utility foto-fill {
+  position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto !important;
+  object-fit: cover; border-radius: 1.5rem; box-shadow: var(--shadow-lift);
+}
+
 @theme {
   --font-display: "Fraunces", "Georgia", serif;
   --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
@@ -128,7 +133,7 @@ p { text-wrap: pretty; }
 }
 
 /* ---------- Foto ---------- */
-.foto { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 1.5rem; box-shadow: var(--shadow-lift); }
+.foto { display: block; width: 100%; height: auto; object-fit: cover; border-radius: 1.5rem; box-shadow: var(--shadow-lift); }
 .foto-scontornata { display: block; width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 24px 30px rgb(59 36 24 / .3)); }
 .foto-placeholder {
   display: grid; place-content: center; justify-items: center; gap: .35rem; text-align: center;
@@ -148,11 +153,9 @@ p { text-wrap: pretty; }
 .foto-placeholder-file { font-family: ui-monospace, monospace; font-size: .7rem; opacity: .7; }
 
 /* ---------- Colata tra sezioni ---------- */
-.colata-sez { position: absolute; left: 0; right: 0; top: 100%; height: 48px; z-index: 2; pointer-events: none; margin-top: -1px; }
-@media (min-width: 768px) { .colata-sez { height: 84px; } }
-.colata-sez svg { width: 100%; height: 100%; display: block; overflow: visible; }
-.colata-goccia-sez { animation: goccia-sez 7s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
-@keyframes goccia-sez { from { transform: scaleY(.82) } to { transform: scaleY(1.12) } }
+.colata-sez { position: absolute; left: 0; right: 0; top: 100%; height: 56px; z-index: 2; pointer-events: none; margin-top: -1px; }
+@media (min-width: 768px) { .colata-sez { height: 110px; } }
+.colata-sez svg { width: 100%; height: 100%; display: block; }
 
 /* ---------- Ticker ---------- */
 .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent); }

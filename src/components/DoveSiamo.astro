@@ -38,10 +38,10 @@ const uniforme = orariUniformi(orari);
         </div>
       </div>
     </div>
-    <div class="grid gap-4 md:gap-6 reveal">
-      {!compatto && <Foto nome="esterno-sera" alt="L'ingresso della gelateria Magie di sera, con i tavolini fuori" ratio="16/9" nota="L'ingresso con i tavolini, di sera" />}
-      <div class="card overflow-hidden min-h-56 md:min-h-72">
-        <iframe src={mapSrc} title="Mappa: Gelateria Magie, via Covignano 152, Rimini" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full min-h-56 md:min-h-72 border-0 grayscale-[.2] contrast-[1.05]"></iframe>
+    <div class="grid gap-4 md:gap-6 md:grid-rows-[auto_1fr] reveal">
+      {!compatto && <Foto nome="esterno-sera" alt="L'ingresso della gelateria Magie di sera, con i tavolini fuori" ratio="16/9" nota="L'ingresso con i tavolini, di sera" class="md:!aspect-[2/1]" />}
+      <div class="card overflow-hidden relative min-h-56 md:min-h-64">
+        <iframe src={mapSrc} title="Mappa: Gelateria Magie, via Covignano 152, Rimini" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="absolute inset-0 w-full h-full border-0 grayscale-[.2] contrast-[1.05]"></iframe>
       </div>
     </div>
   </div>
