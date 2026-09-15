@@ -1,8 +1,7 @@
 ---
 /**
- * Foto reale del locale. Cerca `src/assets/foto/<nome>.(jpg|png|webp)`; se manca usa la
- * provvisoria indicata in provvisorie/mappa.json (con badge); se manca anche quella, un segnaposto.
- * L'elenco degli scatti richiesti è in src/assets/foto/README.md.
+ * Foto del locale: `src/assets/foto/<nome>.jpg` oppure l'alias in alias.json.
+ * Se manca, un segnaposto che dice quale scatto serve (lista in src/assets/foto/README.md).
  */
 import { Image } from 'astro:assets';
 import { trovaFoto } from '../lib/foto';
@@ -11,7 +10,7 @@ interface Props {
   nome: string;
   alt: string;
   ratio?: string;
-  /** PNG con sfondo trasparente: niente cornice. Se il file trovato è un JPG viene mostrato incorniciato. */
+  /** PNG con sfondo trasparente: niente cornice. Un JPG viene comunque mostrato incorniciato. */
   scontornata?: boolean;
   nota?: string;
   class?: string;
@@ -19,30 +18,26 @@ interface Props {
   sizes?: string;
 }
 const { nome, alt, ratio = '4/3', scontornata = false, nota = '', class: cls = '', priority = false, sizes = '(min-width: 768px) 50vw, 100vw' } = Astro.props;
-const f = trovaFoto(nome);
-const trasparente = !!f && /png|webp|avif/.test(f.img.format);
-const comeScontornata = scontornata && trasparente;
+const img = trovaFoto(nome);
+const comeScontornata = scontornata && !!img && /png|webp|avif/.test(img.format);
 ---
-{f ? (
-  <div class:list={['relative', cls]}>
-    <Image
-      src={f.img}
-      alt={alt}
-      widths={[480, 800, 1200, 1600]}
-      sizes={sizes}
-      loading={priority ? 'eager' : 'lazy'}
-      fetchpriority={priority ? 'high' : undefined}
-      class={comeScontornata ? 'foto-scontornata' : 'foto'}
-      style={`aspect-ratio:${ratio}`}
-    />
-    {f.provvisoria && <span class="foto-badge">provvisoria · foto/{nome}.{scontornata ? 'png' : 'jpg'}</span>}
-  </div>
+{img ? (
+  <Image
+    src={img}
+    alt={alt}
+    widths={[480, 800, 1200, 1600]}
+    sizes={sizes}
+    loading={priority ? 'eager' : 'lazy'}
+    fetchpriority={priority ? 'high' : undefined}
+    class:list={[comeScontornata ? 'foto-scontornata' : 'foto', cls]}
+    style={`aspect-ratio:${ratio}`}
+  />
 ) : (
   <div class:list={['foto-placeholder', scontornata && 'is-scontornata', cls]} style={`aspect-ratio:${ratio}`} role="img" aria-label={`Segnaposto foto: ${alt}`}>
     <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>
     </svg>
     <p class="foto-placeholder-titolo">{nota || alt}</p>
-    <p class="foto-placeholder-file">foto/{nome}.{scontornata ? 'png' : 'jpg'}{scontornata && ' · sfondo trasparente'}</p>
+    <p class="foto-placeholder-file">foto/{nome}.{scontornata ? 'png' : 'jpg'}</p>
   </div>
 )}

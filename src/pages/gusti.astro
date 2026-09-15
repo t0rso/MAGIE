@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Titolo from '../components/Titolo.astro';
-import GustoCard from '../components/GustoCard.astro';
+import Lavagna from '../components/Lavagna.astro';
 import Placeholder from '../components/Placeholder.astro';
 import { gusti, vincoli, CATEGORIE } from '../lib/gusti';
 const allergeni = [...new Set(gusti.flatMap((g) => g.allergeni))].sort();
@@ -11,32 +11,31 @@ const allergeni = [...new Set(gusti.flatMap((g) => g.allergeni))].sort();
     <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-12 pb-8">
       <Titolo tag="h1" occhiello="Il banco" brush="var(--color-limone)">
         Scegli per <span class="underline-brush">come mangi,</span> poi per gusto.
-        <Fragment slot="sotto">Filtra per vincolo alimentare: ti restano solo i gusti che puoi prendere senza chiedere. Sotto ogni gusto trovi gli allergeni.</Fragment>
+        <Fragment slot="sotto">Filtra per vincolo: restano solo i gusti che puoi prendere senza chiedere.</Fragment>
       </Titolo>
       <p class="mt-4"><Placeholder testo="lista provvisoria, in aggiornamento con la gelateria" /></p>
     </div>
   </section>
 
   <section class="mx-auto max-w-6xl px-5 sm:px-6 pb-20">
-    <div class="sticky top-16 z-20 -mx-4 sm:-mx-6 px-5 sm:px-6 py-3 header-blur border-b border-cialda/70" data-filtri>
-      <div class="flex flex-wrap gap-2 items-center">
-        <span class="text-sm font-black mr-1">Deve essere:</span>
+    <div class="sticky top-16 z-20 -mx-5 sm:-mx-6 px-5 sm:px-6 py-3 header-blur border-b border-cialda/70" data-filtri>
+      <div class="flex gap-2 items-center overflow-x-auto sm:overflow-visible sm:flex-wrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-5 px-5 sm:mx-0 sm:px-0">
+        <span class="hidden sm:inline text-sm font-black mr-1">Deve essere:</span>
         {vincoli.map((v) => (
-          <label class="check"><input type="checkbox" name="v" value={v.id} /><span style={`--chip:${v.colore}`}>{v.emoji} {v.nome}</span></label>
+          <label class="check shrink-0"><input type="checkbox" name="v" value={v.id} /><span class="whitespace-nowrap" style={`--chip:${v.colore}`}>{v.emoji} {v.nome}</span></label>
         ))}
         <span class="mx-2 hidden sm:inline text-cialda">|</span>
-        <select name="cat" class="rounded-full border-2 border-cialda bg-white px-3 py-2 text-sm font-extrabold" aria-label="Categoria">
+        <select name="cat" class="shrink-0 rounded-full border-2 border-cialda bg-white px-3 py-2 text-sm font-extrabold" aria-label="Categoria">
           <option value="">Tutte le categorie</option>
           {Object.entries(CATEGORIE).map(([k, l]) => <option value={k}>{l}</option>)}
         </select>
-        <span class="ml-auto text-sm font-extrabold text-cacao/80" data-conteggio aria-live="polite">{gusti.length} gusti</span>
+        <span class="hidden sm:inline ml-auto text-sm font-extrabold text-cacao/80" data-conteggio aria-live="polite">{gusti.length} gusti</span>
       </div>
     </div>
 
-    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger" data-lista>
-      {gusti.map((g) => <GustoCard gusto={g} />)}
+    <div class="mt-8 reveal" data-lista>
+      <Lavagna gusti={gusti} perCategoria dettagli />
     </div>
-    <p hidden class="mt-10 text-center text-lg text-cacao/80" data-vuoto>Nessun gusto con questa combinazione oggi. Chiedici al banco: spesso possiamo prepararlo.</p>
 
     <div class="mt-14 card p-6 reveal">
       <h2 class="text-2xl font-semibold">Allergeni</h2>

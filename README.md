@@ -20,13 +20,13 @@ npm run check    # type-check
 | `src/data/gusti.json` | Lista gusti con vincoli alimentari e allergeni |
 | `src/data/torte.json` | Torte, porzioni, prezzi, preavviso |
 | `src/data/vincoli.json` | I quattro vincoli (vegano, stevia, senza lattosio, senza glutine) |
-| `src/data/nonSoloGelato.json` | Coppe, yogurt, granite, caldi |
+| `src/data/nonSoloGelato.json` | Coni e coppe, pasticcini, torte, biscotti gelato |
 
 Ogni dato ancora da verificare con la gelateria ha `daConfermare: true` e mostra il badge "da confermare" sul sito. Quando è confermato, basta togliere la chiave.
 
 ## Foto
 
-Foto **provvisorie**: stanno in `src/assets/foto/provvisorie/` e `mappa.json` dice quale usare per ogni slot. Sul sito hanno un badge "provvisoria · foto/nome.jpg" che indica il nome con cui salvare quella vera.
+Le foto stanno in `src/assets/foto/` con nomi descrittivi; `alias.json` collega ogni slot usato nel codice (es. `torta-hero`) al file. Un file con lo stesso nome dello slot vince sull'alias.
 
 Le foto reali vanno in `src/assets/foto/` con i nomi elencati in [src/assets/foto/README.md](src/assets/foto/README.md) (lista scatti da dare alla gelateria). Finché un file manca, il sito mostra un segnaposto che dice quale scatto serve; appena c'è, compare ottimizzato (WebP, più formati) senza toccare il codice.
 

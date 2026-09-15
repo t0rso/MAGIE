@@ -5,6 +5,7 @@ export interface Vincolo {
   id: VincoloId;
   nome: string;
   breve: string;
+  sigla: string;
   colore: string;
   emoji: string;
   url: string;

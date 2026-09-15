@@ -1,6 +1,6 @@
 # Foto da chiedere alla gelateria
 
-Finché uno scatto manca, il sito usa una foto provvisoria da `provvisorie/` (vedi `provvisorie/mappa.json`) con un badge che dice il nome del file da fornire.
+Le foto attuali sono quelle fornite il 15/09/2026 (bassa risoluzione, da Google/Facebook): `alias.json` le assegna agli slot. Sostituirle con gli originali dal telefono con gli stessi nomi.
 
 Copia qui i file con **esattamente questi nomi**: il sito li trova da solo e li ottimizza.
 Formato: JPG per le foto normali (lato lungo ≥ 1600 px), PNG con sfondo trasparente per le "scontornate".

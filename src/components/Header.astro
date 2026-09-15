@@ -1,12 +1,11 @@
 ---
 import Logo from './Logo.astro';
+import info from '../data/info.json';
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const overlay = path === '/';
 const nav = [
   { href: '/gusti', label: 'Gusti' },
   { href: '/torte', label: 'Torte' },
-  { href: '/vegano', label: 'Vegano' },
-  { href: '/senza-zucchero', label: 'Senza zucchero' },
   { href: '/chi-siamo', label: 'Chi siamo' },
   { href: '/contatti', label: 'Contatti' },
 ];
@@ -18,27 +17,46 @@ const current = (href: string) => (path === href ? 'page' : undefined);
       <Logo />
     </a>
 
-    <nav class="hidden md:flex items-center gap-6" aria-label="Principale">
+    <nav class="hidden md:flex items-center gap-7" aria-label="Principale">
       {nav.map((n) => <a href={n.href} class="nav-link" aria-current={current(n.href)}>{n.label}</a>)}
     </nav>
 
     <div class="flex items-center gap-2">
-      <a href="/torte#ordina" class="btn btn-primary btn-sm hidden sm:inline-flex">Ordina una torta</a>
-      <button id="nav-toggle" class="md:hidden grid place-items-center size-11 rounded-full bg-panna shadow-soft" aria-expanded="false" aria-controls="nav-mobile" aria-label="Apri il menu">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path class="l1" d="M4 7h16"/><path class="l2" d="M4 12h16"/><path class="l3" d="M4 17h16"/></svg>
+      <a href="/torte#ordina" class="btn btn-primary btn-sm hidden md:inline-flex">Ordina una torta</a>
+      <button id="nav-toggle" class="md:hidden nav-toggle" aria-expanded="false" aria-controls="nav-mobile" aria-label="Apri il menu">
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
       </button>
     </div>
   </div>
-
-  <div id="nav-mobile" class="md:hidden grid transition-[grid-template-rows] duration-300 [grid-template-rows:0fr]" hidden>
-    <div class="overflow-hidden">
-      <nav class="px-4 pb-5 pt-1 flex flex-col gap-1" aria-label="Principale (mobile)">
-        {nav.map((n) => <a href={n.href} class="py-3 px-3 rounded-xl font-extrabold text-lg hover:bg-panna" aria-current={current(n.href)}>{n.label}</a>)}
-        <a href="/torte#ordina" class="btn btn-primary mt-2">Ordina una torta</a>
-      </nav>
-    </div>
-  </div>
 </header>
+
+<!-- Menu mobile: colata di cioccolato a schermo intero -->
+<div id="nav-mobile" class="colata md:hidden" hidden>
+  <div class="colata-pannello on-dark">
+    <nav class="colata-nav" aria-label="Principale (mobile)">
+      {nav.map((n, i) => (
+        <a href={n.href} class="colata-link" style={`--i:${i}`} aria-current={current(n.href)}>{n.label}</a>
+      ))}
+    </nav>
+    <div class="colata-fondo" style={`--i:${nav.length}`}>
+      <a href="/torte#ordina" class="btn btn-primary btn-lg w-full">Ordina una torta</a>
+      <p class="mt-4 flex justify-center gap-6 text-sm">
+        <a href={`tel:${info.telefonoTel}`} class="btn-link">{info.telefono}</a>
+        <a href={`https://wa.me/${info.whatsapp}`} class="btn-link">WhatsApp</a>
+      </p>
+    </div>
+    <svg class="colata-gocce" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="#3B2418" d="M0,0 H400 V14 C380,14 380,26 366,26 C352,26 352,6 336,6 C320,6 320,32 300,32 C284,32 284,10 266,10 C250,10 250,22 236,22 C220,22 220,4 200,4 C184,4 184,30 166,30 C150,30 150,12 134,12 C118,12 118,24 100,24 C86,24 86,8 70,8 C54,8 54,18 40,18 C26,18 26,10 0,10 Z"/>
+      <g fill="#3B2418">
+        <path class="colata-goccia" style="--d:0s" d="M300,30 c0,10 -5,18 -8,22 c-3,-4 -8,-12 -8,-22 z"/>
+        <path class="colata-goccia" style="--d:.25s" d="M166,28 c0,12 -6,22 -9,26 c-3,-4 -9,-14 -9,-26 z"/>
+        <path class="colata-goccia" style="--d:.5s" d="M100,22 c0,8 -4,14 -6,17 c-2,-3 -6,-9 -6,-17 z"/>
+        <path class="colata-goccia" style="--d:.15s" d="M366,24 c0,8 -4,13 -6,16 c-2,-3 -6,-8 -6,-16 z"/>
+      </g>
+    </svg>
+  </div>
+</div>
 
 <script>
   const header = document.querySelector<HTMLElement>('[data-header]');
@@ -47,20 +65,26 @@ const current = (href: string) => (path === href ? 'page' : undefined);
     aggiorna();
     addEventListener('scroll', aggiorna, { passive: true });
   }
+
   const btn = document.getElementById('nav-toggle');
-  const panel = document.getElementById('nav-mobile');
-  btn?.addEventListener('click', () => {
-    const open = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!open));
-    btn.setAttribute('aria-label', open ? 'Apri il menu' : 'Chiudi il menu');
-    if (panel) {
-      if (open) {
-        panel.style.gridTemplateRows = '0fr';
-        panel.addEventListener('transitionend', () => (panel.hidden = true), { once: true });
-      } else {
-        panel.hidden = false;
-        requestAnimationFrame(() => (panel.style.gridTemplateRows = '1fr'));
-      }
+  const menu = document.getElementById('nav-mobile');
+  let aperto = false;
+  const setMenu = (open: boolean) => {
+    if (!btn || !menu) return;
+    aperto = open;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Chiudi il menu' : 'Apri il menu');
+    header?.classList.toggle('is-menu-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) {
+      menu.hidden = false;
+      setTimeout(() => menu.classList.add('is-open'), 30);
+    } else {
+      menu.classList.remove('is-open');
+      menu.addEventListener('transitionend', () => { if (!aperto) menu.hidden = true; }, { once: true });
     }
-  });
+  };
+  btn?.addEventListener('click', () => setMenu(!aperto));
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && aperto) setMenu(false); });
 </script>

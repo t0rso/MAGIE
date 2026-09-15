@@ -19,6 +19,9 @@ if (box && lista) {
     });
     if (conteggio) conteggio.textContent = `${n} gust${n === 1 ? 'o' : 'i'}`;
     if (vuoto) vuoto.hidden = n > 0;
+    lista.querySelectorAll<HTMLElement>('[data-gruppo]').forEach((gr) => {
+      gr.hidden = ![...gr.querySelectorAll<HTMLElement>('[data-gusto]')].some((c) => !c.hidden);
+    });
     if (pushUrl) {
       const p = new URLSearchParams();
       if (attivi.length) p.set('v', attivi.join(','));

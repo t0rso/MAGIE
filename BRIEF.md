@@ -13,7 +13,8 @@ Tutto il resto (gusti, storia, mappa, recensioni) esiste per sostenere questi du
 
 - Via Covignano 152, 47923 Rimini — collina/residenziale, **non lungomare** → cliente riminese, famiglie, sportivi. Non il turista di passaggio.
 - 20+ anni di attività. Google 4.6★ / ~196 recensioni. Facebook 1.200 follower, 100% consigliata.
-- Aperto **tutti i giorni 14:30–24:00**.
+- Aperto **tutti i giorni 10:00–24:00** (dalla loro grafica orari). Motto ufficiale: **"Il gelato senza peccato"**. Colore brand: verde `#1C3E2C` con crema `#F9FBE7`.
+- È anche **pasticceria**: pasticcini mignon, biscotti gelato, torte decorate con scritta.
 - Tel 0541 012388 · WhatsApp 328 818 4273 · IG/FB `magierimini`.
 - Offerta dichiarata: gelato artigianale, coppe, torte personalizzate, yogurt naturale, granite; **opzioni vegane e con stevia "per sportivi, diabetici e intolleranti"**; tavolini fuori, asporto, consegna a domicilio; bombardino/caldi d'inverno.
 - Le recensioni parlano soprattutto di: opzioni vegane, zuccheri non raffinati, cremosità, cordialità.

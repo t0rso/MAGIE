@@ -1,0 +1,20 @@
+{
+  "_nota": "slot usato nel codice -> file in questa cartella. Se esiste un file con il nome dello slot, vince quello.",
+  "hero-1": "esterno",
+  "hero-2": "coni",
+  "hero-3": "vaschette",
+  "esterno-sera": "esterno",
+  "torta-hero": "torta-pistacchio",
+  "torta-personalizzata": "torta-gioele",
+  "torta-vegana": "torta-valentina",
+  "torta-stevia": "torta-numero",
+  "torta-cremino": "torta-pistacchio",
+  "coppe": "coni",
+  "pasticcini": "pasticcini-vassoio",
+  "torte": "torta-pistacchio",
+  "biscotti": "biscotti-gelato",
+  "laboratorio": "pasticcini-vetrina",
+  "team": "staff",
+  "dettaglio-ingredienti": "vaschette",
+  "banco-dettaglio": "banco"
+}

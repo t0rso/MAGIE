@@ -2,15 +2,13 @@
 import Base from '../layouts/Base.astro';
 import Foto from '../components/Foto.astro';
 import Hero from '../components/Hero.astro';
-import Marquee from '../components/Marquee.astro';
 import PerChi from '../components/PerChi.astro';
 import CtaTorte from '../components/CtaTorte.astro';
-import GustoCard from '../components/GustoCard.astro';
+import Lavagna from '../components/Lavagna.astro';
 import Recensioni from '../components/Recensioni.astro';
 import NonSoloGelato from '../components/NonSoloGelato.astro';
 import DoveSiamo from '../components/DoveSiamo.astro';
 import Titolo from '../components/Titolo.astro';
-import Drip from '../components/Drip.astro';
 import { gustiSignature } from '../lib/gusti';
 ---
 <Base title="Gelateria Magie Rimini · Gelato artigianale, anche vegano e senza zucchero" rawTitle>
@@ -22,21 +20,15 @@ import { gustiSignature } from '../lib/gusti';
   <!-- PER CHI: quattro tessere, niente testo -->
   <PerChi />
 
-  <!-- TICKER -->
-  <div class="relative bg-cioccolato text-crema my-6">
-    <Drip color="#3B2418" class="absolute -top-8 md:-top-10 left-0 right-0" />
-    <Marquee />
-    <Drip color="#3B2418" class="absolute -bottom-8 md:-bottom-10 left-0 right-0" flip />
-  </div>
-
   <!-- DAL BANCO -->
   <section class="mx-auto max-w-6xl px-5 sm:px-6 pt-16 pb-14 md:py-20">
     <Titolo occhiello="Dal banco" brush="var(--color-pesca)">Quelli che ci <span class="underline-brush">chiedono di più.</span></Titolo>
-    <div class="mt-8 reveal">
-      <Foto nome="banco" alt="La vetrina dei gusti di Gelateria Magie, di sera" ratio="16/9" nota="La vetrina dei gusti, di sera" sizes="(min-width: 1152px) 1152px, 100vw" class="md:!aspect-[21/9]" />
-    </div>
-    <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger">
-      {gustiSignature.slice(0, 6).map((g) => <GustoCard gusto={g} />)}
+    <div class="mt-8 grid gap-5 md:grid-cols-[1fr_1.2fr] items-stretch">
+      <div class="reveal md:order-2"><Lavagna gusti={gustiSignature} legenda={false} class="h-full" /></div>
+      <div class="reveal md:order-1 grid grid-cols-2 md:grid-cols-1 gap-3">
+        <Foto nome="vaschette" alt="Le vaschette al banco di Magie" ratio="4/5" class="md:!aspect-[4/3]" sizes="(min-width: 768px) 40vw, 50vw" />
+        <Foto nome="coni" alt="Due coni davanti alla vetrina di Magie" ratio="4/5" class="md:!aspect-[4/3]" sizes="(min-width: 768px) 40vw, 50vw" />
+      </div>
     </div>
     <div class="mt-8 text-center md:text-left reveal"><a href="/gusti" class="btn btn-secondary">Tutti i gusti, con i filtri</a></div>
   </section>

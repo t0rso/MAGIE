@@ -21,7 +21,7 @@ const n = slides.length || placeholder.length;
   <div class="absolute inset-0" aria-hidden="true">
     {slides.length > 0
       ? slides.map((s, i) => (
-          <Image src={s.img} alt="" widths={[640, 1080, 1600, 2200]} sizes="100vw" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined}
+          <Image src={s} alt="" widths={[640, 1080, 1600, 2200]} sizes="100vw" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined}
                  class:list={['hero-slide', i === 0 && 'is-active']} data-slide />
         ))
       : placeholder.map((p, i) => (

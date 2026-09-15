@@ -1,6 +1,6 @@
 [
-  { "foto": "coppe", "fotoNota": "Una coppa composta, ai tavolini", "nome": "Coppe", "testo": "Composte al momento con panna fresca, salse e frutta. Ai tavolini fuori, la sera." },
-  { "foto": "yogurt", "fotoNota": "Yogurt soft con topping", "nome": "Yogurt naturale", "testo": "Montato al momento, con topping a scelta." },
-  { "foto": "granite", "fotoNota": "Granita di frutta", "nome": "Granite", "testo": "Di frutta vera, anche con stevia." },
-  { "foto": "inverno", "fotoNota": "Bombardino o cioccolata calda", "nome": "D'inverno", "testo": "Bombardino, cioccolata calda e affogati. Il gelato non va in vacanza." }
+  { "foto": "coppe", "nome": "Coni e coppe", "testo": "Al banco, tutti i giorni dalle 10 a mezzanotte." },
+  { "foto": "pasticcini", "nome": "Pasticcini", "testo": "Mignon freschi, anche da portare via su vassoio." },
+  { "foto": "torte", "nome": "Torte", "testo": "Gelato o pasticceria, su ordinazione con scritta." },
+  { "foto": "biscotti", "nome": "Biscotti gelato", "testo": "Il gelato tra due biscotti. Da prendere in scatola." }
 ]

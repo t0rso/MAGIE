@@ -1,0 +1,54 @@
+---
+/** Lista gusti come lavagna della gelateria: verde Magie, nomi in evidenza, sigle dei vincoli. */
+import type { Gusto } from '../lib/types';
+import { CATEGORIE, vincoloById, vincoli } from '../lib/gusti';
+import Placeholder from './Placeholder.astro';
+
+interface Props {
+  gusti: Gusto[];
+  /** Raggruppa per categoria (creme / frutta / sorbetti). */
+  perCategoria?: boolean;
+  /** Mostra descrizione e allergeni sotto ogni gusto. */
+  dettagli?: boolean;
+  legenda?: boolean;
+  class?: string;
+}
+const { gusti, perCategoria = false, dettagli = false, legenda = true, class: cls = '' } = Astro.props;
+const gruppi = perCategoria
+  ? Object.entries(CATEGORIE).map(([k, l]) => ({ id: k, label: l, voci: gusti.filter((g) => g.categoria === k) })).filter((g) => g.voci.length)
+  : [{ id: 'tutti', label: '', voci: gusti }];
+---
+<div class:list={['lavagna', cls]} data-lavagna>
+  {gruppi.map((gr) => (
+    <section class="lavagna-gruppo" data-gruppo={gr.id}>
+      {gr.label && <h3 class="lavagna-titolo">{gr.label}</h3>}
+      <ul class="lavagna-lista">
+        {gr.voci.map((g) => (
+          <li class="lavagna-voce" data-gusto data-categoria={g.categoria} data-vincoli={g.vincoli.join(' ')}>
+            <div class="lavagna-riga">
+              <span class="scoop lavagna-dot" style={`--c:${g.colore}`} aria-hidden="true"></span>
+              <span class="lavagna-nome">{g.nome}{g.stagionale && <span class="lavagna-stag"> · stagione</span>}</span>
+              <span class="lavagna-leader" aria-hidden="true"></span>
+              {g.vincoli.length > 0 && (
+                <span class="lavagna-sigle">{g.vincoli.map((v) => <abbr title={vincoloById[v].nome}>{vincoloById[v].sigla}</abbr>)}</span>
+              )}
+            </div>
+            {dettagli && (
+              <p class="lavagna-dett">
+                {g.descrizione}
+                {g.allergeni.length > 0 && <span class="lavagna-all"> · contiene {g.allergeni.join(', ')}</span>}
+                {g.daConfermare && <Placeholder class="lavagna-ph" />}
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+  {legenda && (
+    <p class="lavagna-legenda">
+      {vincoli.map((v) => <span><b>{v.sigla}</b> {v.nome.toLowerCase()}</span>)}
+    </p>
+  )}
+  <p class="lavagna-vuoto" hidden data-vuoto>Niente con questa combinazione, oggi. Chiedi al banco.</p>
+</div>
