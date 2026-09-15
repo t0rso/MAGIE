@@ -153,8 +153,8 @@ p { text-wrap: pretty; }
 .foto-placeholder-file { font-family: ui-monospace, monospace; font-size: .7rem; opacity: .7; }
 
 /* ---------- Colata tra sezioni ---------- */
-.colata-sez { position: absolute; left: 0; right: 0; top: 100%; height: 56px; z-index: 2; pointer-events: none; margin-top: -1px; }
-@media (min-width: 768px) { .colata-sez { height: 110px; } }
+.colata-sez { position: absolute; left: 0; right: 0; top: 100%; height: 28px; z-index: 2; pointer-events: none; margin-top: -1px; }
+@media (min-width: 768px) { .colata-sez { height: 48px; } }
 .colata-sez svg { width: 100%; height: 100%; display: block; }
 
 /* ---------- Ticker ---------- */

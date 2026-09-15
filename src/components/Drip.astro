@@ -1,22 +1,10 @@
 ---
-/**
- * Colata tra sezioni: il colore della sezione che la contiene cola su quella sotto,
- * con un bordo ondulato e tre gocce a lacrima. Statico, nessuna animazione.
- */
+/** Bordo ondulato tra sezioni: il colore della sezione che lo contiene scende su quella sotto. Statico. */
 interface Props { color: string; class?: string }
 const { color, class: cls = '' } = Astro.props;
-// Goccia a lacrima: collo stretto che si allarga in un bulbo. x = centro, l = lunghezza totale, w = larghezza del bulbo
-const goccia = (x: number, l: number, w: number) => {
-  const neck = w * 0.42, r = w / 2, yb = 18 + l - r;
-  return `M${x - neck},14 C${x - neck},${18 + l * 0.35} ${x - r},${yb - r * 0.9} ${x - r},${yb} A${r},${r} 0 0 0 ${x + r},${yb} C${x + r},${yb - r * 0.9} ${x + neck},${18 + l * 0.35} ${x + neck},14 Z`;
-};
 ---
 <div class:list={['colata-sez', cls]} aria-hidden="true">
-  <svg viewBox="0 0 1200 110" preserveAspectRatio="none">
-    <path fill={color} d="M0,0 H1200 V16 C1160,16 1150,30 1110,30 C1075,30 1070,12 1030,12 C990,12 985,26 950,26 C915,26 910,10 870,10 C830,10 825,28 790,28 C755,28 750,14 710,14 C670,14 665,24 630,24 C595,24 590,8 550,8 C510,8 505,26 470,26 C435,26 430,12 390,12 C350,12 345,22 310,22 C275,22 270,10 230,10 C190,10 185,28 150,28 C115,28 110,14 70,14 C40,14 30,20 0,20 Z"/>
-    <path fill={color} d={goccia(150, 78, 44)} />
-    <path fill={color} d={goccia(550, 52, 34)} />
-    <path fill={color} d={goccia(870, 88, 48)} />
-    <path fill={color} d={goccia(1110, 40, 28)} />
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+    <path fill={color} d="M0,0 H1200 V22 C1140,22 1120,44 1050,44 C980,44 960,18 890,18 C820,18 800,46 730,46 C660,46 640,20 570,20 C500,20 480,42 410,42 C340,42 320,16 250,16 C180,16 160,40 90,40 C50,40 30,28 0,28 Z"/>
   </svg>
 </div>
