@@ -11,12 +11,12 @@ const min = new Date(Date.now() + 2 * 864e5).toISOString().slice(0, 10);
     <input type="hidden" name="form-name" value="ordine-torta" />
     <p class="hidden"><label>Non compilare: <input name="sito" /></label></p>
 
-    <div class="grid gap-5 sm:grid-cols-2">
+    <div class="grid gap-5 sm:grid-cols-2 min-w-0">
       <div class="field"><label for="nome">Il tuo nome</label><input id="nome" name="nome" required autocomplete="name" /></div>
       <div class="field"><label for="telefono">Telefono</label><input id="telefono" name="telefono" type="tel" required autocomplete="tel" placeholder="Per confermarti l'ordine" /></div>
     </div>
 
-    <div class="grid gap-5 sm:grid-cols-3">
+    <div class="grid gap-5 sm:grid-cols-3 min-w-0">
       <div class="field"><label for="data">Giorno del ritiro</label><input id="data" name="data" type="date" required min={min} /></div>
       <div class="field"><label for="ora">Ora</label><input id="ora" name="ora" type="time" min="14:30" max="23:30" value="18:00" /></div>
       <div class="field"><label for="porzioni">Porzioni</label>
