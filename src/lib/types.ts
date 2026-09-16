@@ -22,18 +22,13 @@ export interface Gusto {
   vincoli: VincoloId[];
   signature?: boolean;
   stagionale?: boolean;
-  daConfermare?: boolean;
 }
 
 export interface Torta {
   id: string;
   nome: string;
   descrizione: string;
-  porzioni: string;
-  prezzo: number | null;
-  colori: string[];
   vincoli: VincoloId[];
-  daConfermare?: boolean;
 }
 
 /** Fasce orarie per giorno: chiave lun..dom, valore lista di [apre, chiude]. */

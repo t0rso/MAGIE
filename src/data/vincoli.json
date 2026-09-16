@@ -6,7 +6,7 @@
     "colore": "#8FB57A",
     "emoji": "🌱",
     "url": "/gusti?v=vegano",
-    "descrizione": "Senza latte, uova o derivati animali. Basi di mandorla, riso e acqua.",
+    "descrizione": "Lorem ipsum dolor sit amet.",
     "sigla": "VEG"
   },
   {
@@ -16,7 +16,7 @@
     "colore": "#9FD3B6",
     "emoji": "🍃",
     "url": "/gusti?v=stevia",
-    "descrizione": "Dolcificato con stevia, senza zuccheri aggiunti. Pensato per diabetici e sportivi.",
+    "descrizione": "Consectetur adipiscing elit.",
     "sigla": "STEVIA"
   },
   {
@@ -26,7 +26,7 @@
     "colore": "#F4E76E",
     "emoji": "🥛",
     "url": "/gusti?v=senza-lattosio",
-    "descrizione": "Sorbetti e gusti su base vegetale, zero lattosio.",
+    "descrizione": "Sed do eiusmod tempor incididunt.",
     "sigla": "NO LATT."
   },
   {
@@ -36,7 +36,7 @@
     "colore": "#F9B48A",
     "emoji": "🌾",
     "url": "/gusti?v=senza-glutine",
-    "descrizione": "Quasi tutti i gusti. Coni e cialde senza glutine disponibili.",
+    "descrizione": "Ut labore et dolore magna aliqua.",
     "sigla": "NO GLUT."
   }
 ]

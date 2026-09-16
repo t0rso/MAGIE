@@ -2,9 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Titolo from '../components/Titolo.astro';
 import Lavagna from '../components/Lavagna.astro';
-import Placeholder from '../components/Placeholder.astro';
 import { gusti, vincoli, CATEGORIE } from '../lib/gusti';
-const allergeni = [...new Set(gusti.flatMap((g) => g.allergeni))].sort();
 ---
 <Base title="I gusti" description="Tutti i gusti di Gelateria Magie Rimini, filtrabili per vegano, senza zucchero (stevia), senza lattosio e senza glutine, con allergeni.">
   <section class="">
@@ -13,7 +11,6 @@ const allergeni = [...new Set(gusti.flatMap((g) => g.allergeni))].sort();
         Scegli per <span class="underline-brush">come mangi,</span> poi per gusto.
         <Fragment slot="sotto">Filtra per vincolo: restano solo i gusti che puoi prendere senza chiedere.</Fragment>
       </Titolo>
-      <p class="mt-4"><Placeholder testo="lista provvisoria, in aggiornamento con la gelateria" /></p>
     </div>
   </section>
 
@@ -39,7 +36,7 @@ const allergeni = [...new Set(gusti.flatMap((g) => g.allergeni))].sort();
 
     <div class="mt-14 card p-6 reveal">
       <h2 class="text-2xl font-semibold">Allergeni</h2>
-      <p class="mt-2 text-cacao/90">Nel laboratorio lavoriamo anche <strong>{allergeni.join(', ')}</strong>: non possiamo escludere tracce. Se hai un'allergia grave, dillo al banco: ti diciamo esattamente cosa c'è dentro.</p>
+      <p class="mt-2 text-cacao/90">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     </div>
   </section>
 

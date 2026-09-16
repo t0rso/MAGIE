@@ -1,47 +1,52 @@
 ---
 import Base from '../layouts/Base.astro';
 import Titolo from '../components/Titolo.astro';
-import Placeholder from '../components/Placeholder.astro';
 import Foto from '../components/Foto.astro';
 import info from '../data/info.json';
-const foto = [
-  { nome: 'laboratorio', alt: 'Il laboratorio di Magie', nota: 'Il laboratorio mentre si lavora' },
-  { nome: 'team', alt: 'Le persone dietro al banco', nota: 'Chi ci lavora, sorridenti' },
-  { nome: 'dettaglio-ingredienti', alt: 'Ingredienti freschi', nota: 'Pistacchi, frutta, mandorle in primo piano' },
-  { nome: 'banco-dettaglio', alt: 'Una vaschetta con la spatola', nota: 'Primo piano di una vaschetta' },
-];
+const L1 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+const L2 = 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+const L3 = 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
+const L4 = 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
 ---
-<Base title="Chi siamo" description="Gelateria Magie, Rimini: da oltre vent'anni gelato artigianale in via Covignano, con un'attenzione vera a chi non può mangiare zucchero, latte o glutine.">
-  <section class="">
-    <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-12 pb-10">
-      <Titolo tag="h1" occhiello={`Dal ${new Date().getFullYear() - info.anniAttivita}, circa`} brush="var(--color-pesca)">
-        Vent'anni di gelato, <span class="underline-brush">e di gente</span> che ci chiede «posso?»
-        <Fragment slot="sotto">La storia vera la scriviamo con la gelateria. Qui sotto la struttura, con le cose che sappiamo per certo.</Fragment>
-      </Titolo>
+<Base title="Chi siamo" description="Gelateria e pasticceria Magie, Rimini: da oltre vent'anni gelato artigianale in via Covignano, con un'attenzione vera a chi non può mangiare zucchero, latte o glutine.">
+  <section class="mx-auto max-w-6xl px-5 sm:px-6 pt-8 md:pt-12 pb-6">
+    <Titolo tag="h1" occhiello="Chi siamo" brush="var(--color-pesca)">
+      Vent'anni di gelato <span class="underline-brush">in via Covignano.</span>
+      <Fragment slot="sotto">{L1}</Fragment>
+    </Titolo>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-5 sm:px-6 py-8 md:py-12 grid gap-8 md:gap-12 md:grid-cols-[1fr_1.1fr] items-center">
+    <div class="reveal">
+      <Foto nome="chi-siamo" alt="Le titolari di Magie con un cono e una pila di coni" ratio="1/1" priority sizes="(min-width: 768px) 45vw, 100vw" />
+    </div>
+    <div class="reveal grid gap-5 text-base sm:text-lg text-cacao/95">
+      <h2 class="text-3xl sm:text-4xl font-semibold">Le persone dietro al banco.</h2>
+      <p>{L1} {L2}</p>
+      <p>{L3}</p>
+      <p><strong>Il gelato senza peccato.</strong> {L4}</p>
     </div>
   </section>
 
-  <section class="mx-auto max-w-6xl px-5 sm:px-6 py-10 grid gap-10 md:grid-cols-[1.2fr_1fr]">
-    <div class="prose-lg reveal grid gap-5 text-lg text-cacao/95">
-      <p><strong>Via Covignano 152.</strong> Non il lungomare, non la piazza: la collina di Rimini, dove vengono i riminesi. Da oltre {info.anniAttivita} anni, aperti tutti i giorni dalle 14:30 a mezzanotte.</p>
-      <p><strong>Perché la stevia, perché il vegano.</strong> <Placeholder testo="storia da raccogliere" /> Qui va la storia vera: chi ha iniziato, il primo cliente diabetico, il primo gusto vegano che è venuto bene. Non la scriviamo noi al posto loro.</p>
-      <p><strong>Come lavoriamo.</strong> <Placeholder testo="da confermare" /> Basi fatte in laboratorio, frutta vera, spatole dedicate per i gusti vegani. Gusti che cambiano con la stagione: il melone ad agosto, il fico a settembre.</p>
-      <p><strong>Chi siamo.</strong> <Placeholder testo="nomi e foto" /> Le persone dietro il banco, con nome. La gente torna per il gelato ma anche per chi glielo dà.</p>
-    </div>
-    <div class="grid grid-cols-2 gap-3 reveal-stagger">
-      {foto.map((f, i) => (
-        <div class:list={[i % 2 === 0 ? 'rotate-[-1.5deg]' : 'rotate-[1.5deg] mt-8']}>
-          <Foto nome={f.nome} alt={f.alt} ratio="4/5" nota={f.nota} sizes="(min-width: 768px) 260px, 45vw" />
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <section class="mx-auto max-w-6xl px-5 sm:px-6 py-10 reveal">
-    <div class="card p-8 grid gap-6 sm:grid-cols-3 text-center">
-      <div><p class="display text-5xl font-black text-fragola">{info.anniAttivita}+</p><p class="font-extrabold">anni di gelato</p></div>
+  <section class="mx-auto max-w-6xl px-5 sm:px-6 py-8 md:py-12 reveal">
+    <div class="card p-6 sm:p-8 grid gap-6 sm:grid-cols-3 text-center">
+      <div><p class="display text-5xl font-black text-fragola">{info.anniAttivita}+</p><p class="font-extrabold">anni di gelato a Rimini</p></div>
       <div><p class="display text-5xl font-black text-pistacchio-scuro">{info.google.voto}★</p><p class="font-extrabold">{info.google.recensioni} recensioni Google</p></div>
       <div><p class="display text-5xl font-black text-mirtillo">{info.facebook.consigliata}%</p><p class="font-extrabold">consigliata su Facebook</p></div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-5 sm:px-6 py-8 md:py-12">
+    <div class="grid gap-8 md:grid-cols-[1.1fr_1fr] items-center">
+      <div class="reveal grid gap-4 text-base sm:text-lg text-cacao/95 md:order-2">
+        <h2 class="text-3xl sm:text-4xl font-semibold">Anche pasticceria.</h2>
+        <p>{L2} {L3}</p>
+        <p>{L4}</p>
+      </div>
+      <div class="reveal grid grid-cols-2 gap-3 md:order-1">
+        <div class="rotate-[-1.5deg]"><Foto nome="pasticcini-vetrina" alt="La vetrina dei pasticcini" ratio="1/1" sizes="(min-width: 768px) 25vw, 45vw" /></div>
+        <div class="rotate-[1.5deg] mt-6"><Foto nome="staff" alt="Al banco di Magie" ratio="4/5" sizes="(min-width: 768px) 25vw, 45vw" /></div>
+      </div>
     </div>
   </section>
 </Base>

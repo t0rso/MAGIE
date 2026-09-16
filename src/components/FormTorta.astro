@@ -1,12 +1,11 @@
 ---
 import info from '../data/info.json';
-import { torte, vincoli, preavvisoGiorni } from '../lib/gusti';
-import Placeholder from './Placeholder.astro';
-const min = new Date(Date.now() + preavvisoGiorni * 864e5).toISOString().slice(0, 10);
+import { torte, vincoli } from '../lib/gusti';
+const min = new Date(Date.now() + 2 * 864e5).toISOString().slice(0, 10);
 ---
 <div class="card p-6 sm:p-8" id="ordina">
   <h2 class="text-3xl font-semibold">Ordina la tua torta</h2>
-  <p class="mt-2 text-cacao/90">Compila e ti richiamiamo per confermare. Oppure manda tutto su WhatsApp con un tocco. Preavviso minimo {preavvisoGiorni} giorni <Placeholder />.</p>
+  <p class="mt-2 text-cacao/90">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
   <form name="ordine-torta" method="POST" data-netlify="true" netlify-honeypot="sito" action="/torte?ok=1#ordina" class="mt-6 grid gap-5" data-form-torta data-wa={info.whatsapp}>
     <input type="hidden" name="form-name" value="ordine-torta" />
@@ -53,7 +52,7 @@ const min = new Date(Date.now() + preavvisoGiorni * 864e5).toISOString().slice(0
         Manda su WhatsApp
       </a>
     </div>
-    <p class="text-xs text-cacao/70">Nessun pagamento online: confermiamo tutto a voce. Se non ti rispondiamo entro un giorno, chiamaci allo <a class="underline" href={`tel:${info.telefonoTel}`}>{info.telefono}</a>.</p>
+    <p class="text-xs text-cacao/70">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Telefono: <a class="underline" href={`tel:${info.telefonoTel}`}>{info.telefono}</a>.</p>
   </form>
 
   <div class="hidden rounded-2xl bg-pistacchio/25 p-5 font-bold" data-form-ok>

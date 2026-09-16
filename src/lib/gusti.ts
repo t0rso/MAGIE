@@ -5,7 +5,6 @@ import vincoliJson from '../data/vincoli.json';
 
 export const gusti = gustiJson.gusti as Gusto[];
 export const torte = torteJson.torte as Torta[];
-export const preavvisoGiorni = torteJson.preavvisoGiorni;
 export const vincoli = vincoliJson as Vincolo[];
 
 export const vincoloById = Object.fromEntries(vincoli.map((v) => [v.id, v])) as Record<VincoloId, Vincolo>;

@@ -22,7 +22,7 @@ npm run check    # type-check
 | `src/data/vincoli.json` | I quattro vincoli (vegano, stevia, senza lattosio, senza glutine) |
 | `src/data/nonSoloGelato.json` | Coni e coppe, pasticcini, torte, biscotti gelato |
 
-Ogni dato ancora da verificare con la gelateria ha `daConfermare: true` e mostra il badge "da confermare" sul sito. Quando è confermato, basta togliere la chiave.
+I testi ancora da scrivere con la gelateria sono in *lorem ipsum*; i titoli e i dati verificati (indirizzo, orari, recensioni, motto) sono veri.
 
 ## Foto
 

@@ -2,7 +2,6 @@
 /** Lista gusti come lavagna della gelateria: verde Magie, nomi in evidenza, sigle dei vincoli. */
 import type { Gusto } from '../lib/types';
 import { CATEGORIE, vincoloById, vincoli } from '../lib/gusti';
-import Placeholder from './Placeholder.astro';
 
 interface Props {
   gusti: Gusto[];
@@ -34,7 +33,6 @@ const gruppi = perCategoria
                 <p class="lavagna-dett">
                   {g.descrizione}
                   {g.allergeni.length > 0 && <span class="lavagna-all"> · contiene {g.allergeni.join(', ')}</span>}
-                  {g.daConfermare && <Placeholder class="lavagna-ph" />}
                 </p>
               )}
               {g.vincoli.length > 0 && (

@@ -3,25 +3,25 @@ import Base from '../layouts/Base.astro';
 import Titolo from '../components/Titolo.astro';
 import Foto from '../components/Foto.astro';
 import FormTorta from '../components/FormTorta.astro';
-import { torte, preavvisoGiorni } from '../lib/gusti';
+import { torte } from '../lib/gusti';
 const faq = [
-  { q: 'Quanto prima devo ordinare?', a: `Almeno ${preavvisoGiorni} giorni. Sotto le feste un po' di più: scrivici e vediamo.` },
-  { q: 'Potete farla vegana / senza glutine / senza zucchero?', a: 'Sì, tutte e tre, anche insieme. È la cosa che ci chiedono di più e per cui esistiamo.' },
-  { q: 'Quanto costa?', a: 'Dipende da porzioni e gusti. Ti diciamo il prezzo quando confermiamo l\'ordine, prima di prepararla.' },
-  { q: 'Si scioglie prima di arrivare a casa?', a: 'Te la diamo nella borsa termica: regge circa 30–40 minuti. Poi in freezer, e tirala fuori 10 minuti prima di tagliarla.' },
-  { q: 'Fate la consegna?', a: 'A Rimini e dintorni sì. Chiedicelo quando ordini.' },
+  { q: 'Quanto prima devo ordinare?', a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+  { q: 'Potete farla vegana / senza glutine / senza zucchero?', a: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' },
+  { q: 'Quanto costa?', a: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.' },
+  { q: 'Si scioglie prima di arrivare a casa?', a: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' },
+  { q: 'Fate la consegna?', a: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
 ];
 const jsonLd = {
   '@context': 'https://schema.org', '@type': 'FAQPage',
   mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 };
 ---
-<Base title="Torte gelato su ordinazione" description="Torte gelato artigianali a Rimini, anche vegane, senza glutine e senza zucchero (stevia). Ordina online o su WhatsApp con 2 giorni di preavviso." jsonLd={jsonLd}>
+<Base title="Torte gelato su ordinazione" description="Torte gelato artigianali a Rimini, anche vegane, senza glutine e senza zucchero (stevia). Ordina online o su WhatsApp." jsonLd={jsonLd}>
   <section class="">
     <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-8 md:pt-12 pb-10 grid gap-6 md:gap-8 md:grid-cols-[1.2fr_1fr] items-center">
       <Titolo tag="h1" occhiello="Torte gelato" brush="var(--color-fragola)">
         La torta che <span class="underline-brush">mangiano tutti,</span> non solo chi può.
-        <Fragment slot="sotto">Gusti, porzioni e vincoli alimentari a scelta. Due giorni di preavviso.</Fragment>
+        <Fragment slot="sotto">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Fragment>
       </Titolo>
       <div class="order-3 md:col-span-2 md:-mt-4 flex flex-col sm:flex-row items-center gap-4 anim-drop" style="animation-delay:.4s">
         <a href="#ordina" class="btn btn-primary btn-lg w-full sm:w-auto">Ordina ora</a>

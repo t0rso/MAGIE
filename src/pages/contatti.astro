@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import Titolo from '../components/Titolo.astro';
 import DoveSiamo from '../components/DoveSiamo.astro';
-import Placeholder from '../components/Placeholder.astro';
 import Foto from '../components/Foto.astro';
 import SocialButton from '../components/SocialButton.astro';
 import info from '../data/info.json';
@@ -12,7 +11,7 @@ import info from '../data/info.json';
     <div class="mx-auto max-w-6xl px-5 sm:px-6 pt-8 md:pt-12 pb-4">
       <Titolo tag="h1" occhiello="Contatti" brush="var(--color-limone)">
         Siamo in <span class="underline-brush">via Covignano</span>, tutti i giorni dalle 14:30.
-        <Fragment slot="sotto">Rispondiamo dal banco, tra un cono e l'altro.</Fragment>
+        <Fragment slot="sotto">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Fragment>
       </Titolo>
     </div>
   </section>
@@ -24,12 +23,12 @@ import info from '../data/info.json';
 
   <section class="mx-auto max-w-6xl px-5 sm:px-6 pb-10 grid gap-4 md:grid-cols-2 reveal-stagger">
     <div class="card p-5 sm:p-6">
-      <h2 class="text-xl font-bold">Consegna a domicilio <Placeholder /></h2>
+      <h2 class="text-xl font-bold">Consegna a domicilio</h2>
       <p class="mt-1 text-cacao/85">{info.consegna.zona}. {info.consegna.note}</p>
     </div>
     <div class="card p-5 sm:p-6">
       <h2 class="text-xl font-bold">Il banco di oggi</h2>
-      <p class="mt-1 text-cacao/85">Le foto aggiornate sono sui social.</p>
+      <p class="mt-1 text-cacao/85">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       <div class="mt-4 flex flex-wrap gap-3"><SocialButton tipo="instagram" class="btn-sm" /><SocialButton tipo="facebook" class="btn-sm" /></div>
     </div>
   </section>
